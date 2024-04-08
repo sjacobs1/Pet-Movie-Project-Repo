@@ -13,8 +13,14 @@ class NowPlayingViewModel {
     func fetchMovies() {
         nowPlayingRepository.fetchMovies { result in
             switch result {
-            case .success(let data):
-                print(data)
+            case .success(let nowPlaying):
+                if let movies = nowPlaying.results {
+                    for movie in movies {
+                        print("Movie ID: \(movie.movieID ?? 0 )")
+                        print("Title: \(movie.originalTitle ?? "nil")")
+                        print("Image: \(movie.moviePoster ?? "nil")\n")
+                    }
+                }
             case .failure(let error):
                 print(error)
             }
