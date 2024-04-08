@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		D816185B2BBBD42000644A0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816185A2BBBD42000644A0B /* AppDelegate.swift */; };
 		D816185D2BBBD42000644A0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816185C2BBBD42000644A0B /* SceneDelegate.swift */; };
-		D816185F2BBBD42000644A0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816185E2BBBD42000644A0B /* ViewController.swift */; };
+		D816185F2BBBD42000644A0B /* NowPlaying-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816185E2BBBD42000644A0B /* NowPlaying-ViewController.swift */; };
 		D81618622BBBD42000644A0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81618602BBBD42000644A0B /* Main.storyboard */; };
 		D81618642BBBD42100644A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81618632BBBD42100644A0B /* Assets.xcassets */; };
 		D81618672BBBD42100644A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81618652BBBD42100644A0B /* LaunchScreen.storyboard */; };
+		D8A8B9242BC3D6E700EB2D13 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8B9232BC3D6E700EB2D13 /* NetworkManager.swift */; };
+		D8A8B9262BC3D6F200EB2D13 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8B9252BC3D6F200EB2D13 /* Constants.swift */; };
+		D8A8B92A2BC3E62F00EB2D13 /* NowPlaying-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8B9292BC3E62F00EB2D13 /* NowPlaying-ViewModel.swift */; };
+		D8A8B92C2BC3E63F00EB2D13 /* NowPlaying-Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8B92B2BC3E63F00EB2D13 /* NowPlaying-Repository.swift */; };
+		D8A8B92E2BC3E66500EB2D13 /* NowPlaying-Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A8B92D2BC3E66500EB2D13 /* NowPlaying-Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D81618572BBBD42000644A0B /* MovieAppPetProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieAppPetProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D816185A2BBBD42000644A0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D816185C2BBBD42000644A0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D816185E2BBBD42000644A0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D816185E2BBBD42000644A0B /* NowPlaying-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NowPlaying-ViewController.swift"; sourceTree = "<group>"; };
 		D81618612BBBD42000644A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D81618632BBBD42100644A0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D81618662BBBD42100644A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D81618682BBBD42100644A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8A8B9232BC3D6E700EB2D13 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D8A8B9252BC3D6F200EB2D13 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D8A8B9292BC3E62F00EB2D13 /* NowPlaying-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NowPlaying-ViewModel.swift"; sourceTree = "<group>"; };
+		D8A8B92B2BC3E63F00EB2D13 /* NowPlaying-Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NowPlaying-Repository.swift"; sourceTree = "<group>"; };
+		D8A8B92D2BC3E66500EB2D13 /* NowPlaying-Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NowPlaying-Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,36 @@
 		D81618592BBBD42000644A0B /* MovieAppPetProject */ = {
 			isa = PBXGroup;
 			children = (
+				D8A8B9222BC3D6C500EB2D13 /* Network */,
+				D8A8B9282BC3E5C800EB2D13 /* HomeScreenNowPlaying */,
 				D816185A2BBBD42000644A0B /* AppDelegate.swift */,
 				D816185C2BBBD42000644A0B /* SceneDelegate.swift */,
-				D816185E2BBBD42000644A0B /* ViewController.swift */,
-				D81618602BBBD42000644A0B /* Main.storyboard */,
 				D81618632BBBD42100644A0B /* Assets.xcassets */,
 				D81618652BBBD42100644A0B /* LaunchScreen.storyboard */,
 				D81618682BBBD42100644A0B /* Info.plist */,
 			);
 			path = MovieAppPetProject;
+			sourceTree = "<group>";
+		};
+		D8A8B9222BC3D6C500EB2D13 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D8A8B9232BC3D6E700EB2D13 /* NetworkManager.swift */,
+				D8A8B9252BC3D6F200EB2D13 /* Constants.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D8A8B9282BC3E5C800EB2D13 /* HomeScreenNowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				D816185E2BBBD42000644A0B /* NowPlaying-ViewController.swift */,
+				D8A8B9292BC3E62F00EB2D13 /* NowPlaying-ViewModel.swift */,
+				D8A8B92B2BC3E63F00EB2D13 /* NowPlaying-Repository.swift */,
+				D8A8B92D2BC3E66500EB2D13 /* NowPlaying-Model.swift */,
+				D81618602BBBD42000644A0B /* Main.storyboard */,
+			);
+			path = HomeScreenNowPlaying;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +105,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D816186B2BBBD42100644A0B /* Build configuration list for PBXNativeTarget "MovieAppPetProject" */;
 			buildPhases = (
+				D8A8B9272BC3DCC100EB2D13 /* Run SwiftLint */,
 				D81618532BBBD42000644A0B /* Sources */,
 				D81618542BBBD42000644A0B /* Frameworks */,
 				D81618552BBBD42000644A0B /* Resources */,
@@ -133,14 +165,40 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D8A8B9272BC3DCC100EB2D13 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n \nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D81618532BBBD42000644A0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D816185F2BBBD42000644A0B /* ViewController.swift in Sources */,
+				D8A8B92A2BC3E62F00EB2D13 /* NowPlaying-ViewModel.swift in Sources */,
+				D8A8B9262BC3D6F200EB2D13 /* Constants.swift in Sources */,
+				D8A8B9242BC3D6E700EB2D13 /* NetworkManager.swift in Sources */,
+				D816185F2BBBD42000644A0B /* NowPlaying-ViewController.swift in Sources */,
 				D816185B2BBBD42000644A0B /* AppDelegate.swift in Sources */,
 				D816185D2BBBD42000644A0B /* SceneDelegate.swift in Sources */,
+				D8A8B92C2BC3E63F00EB2D13 /* NowPlaying-Repository.swift in Sources */,
+				D8A8B92E2BC3E66500EB2D13 /* NowPlaying-Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +261,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -266,7 +324,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
