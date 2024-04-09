@@ -1,17 +1,17 @@
 //
-//  NowPlaying-Model.swift
+//  PopularMovies-Model.swift
 //  MovieAppPetProject
 //
-//  Created by Sebastian Jacobs on 2024/04/08.
+//  Created by Sebastian Jacobs on 2024/04/09.
 //
 
 import Foundation
 
-struct NowPlaying: Codable {
-    let results: [Results]?
+struct PopularMovies: Codable {
+    let results: [PopularMovieResults]?
 }
 
-struct Results: Codable {
+struct PopularMovieResults: Codable {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?

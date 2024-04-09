@@ -16,6 +16,7 @@ class NowPlayingViewModel {
             case .success(let nowPlaying):
                 if let movies = nowPlaying.results {
                     for movie in movies {
+                        print("Now Playing:")
                         print("Movie ID: \(movie.movieID ?? 0 )")
                         print("Title: \(movie.originalTitle ?? "nil")")
                         print("Image: \(movie.moviePoster ?? "nil")\n")

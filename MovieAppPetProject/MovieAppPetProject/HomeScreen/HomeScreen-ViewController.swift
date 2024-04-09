@@ -7,11 +7,13 @@
 
 import UIKit
 
-class NowPlayingViewController: UIViewController {
+class HomeScreenViewController: UIViewController {
     private let nowPlayingViewModel = NowPlayingViewModel()
+    private let popularMoviesViewModel = PopularMoviesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nowPlayingViewModel.fetchMovies()
+        popularMoviesViewModel.fetchMovies()
     }
 }
