@@ -1,21 +1,19 @@
 //
-//  NowPlaying-ViewModel.swift
+//  TopRated-ViewModel.swift
 //  MovieAppPetProject
 //
-//  Created by Sebastian Jacobs on 2024/04/08.
+//  Created by Sebastian Jacobs on 2024/04/09.
 //
 
-import Foundation
-
-class NowPlayingViewModel {
-    private let nowPlayingRepository = NowPlayingRepository()
+class TopRatedViewModel {
+    private let topRatedMoviesRepository = TopRatedMoviesRepository()
     
     func fetchMovies() {
-        nowPlayingRepository.fetchMovies { result in
+        topRatedMoviesRepository.fetchMovies { result in
             switch result {
             case .success(let nowPlaying):
                 if let movies = nowPlaying.results {
-                    print("Now Playing:")
+                    print("Top Rated Movies:")
                     for movie in movies {
                         print("Movie ID: \(movie.movieID ?? 0 )")
                         print("Title: \(movie.originalTitle ?? "nil")")

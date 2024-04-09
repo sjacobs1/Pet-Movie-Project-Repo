@@ -13,8 +13,8 @@ class PopularMoviesViewModel {
             switch result {
             case .success(let nowPlaying):
                 if let movies = nowPlaying.results {
+                    print("Popular Movies:")
                     for movie in movies {
-                        print("Popular Movies:")
                         print("Movie ID: \(movie.movieID ?? 0 )")
                         print("Title: \(movie.originalTitle ?? "nil")")
                         print("Image: \(movie.moviePoster ?? "nil")\n")

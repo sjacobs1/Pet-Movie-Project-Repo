@@ -13,5 +13,6 @@ struct Constants {
         static let nowPlayingURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)"
         static let movieDetailsURL = "https://api.themoviedb.org/3/movie/823464?api_key=\(apiKey)"  
         static let popularMoviesURL = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
+        static let topRatedMoviesURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)"
     }
 }
