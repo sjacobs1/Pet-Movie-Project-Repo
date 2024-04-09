@@ -11,11 +11,13 @@ class HomeScreenViewController: UIViewController {
     private let nowPlayingViewModel = NowPlayingViewModel()
     private let popularMoviesViewModel = PopularMoviesViewModel()
     private let topRatedViewModel = TopRatedViewModel()
+    private let upcomingMoviesViewModel = UpcomingMoviesViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nowPlayingViewModel.fetchMovies()
         popularMoviesViewModel.fetchMovies()
         topRatedViewModel.fetchMovies()
+        upcomingMoviesViewModel.fetchMovies()
     }
 }
