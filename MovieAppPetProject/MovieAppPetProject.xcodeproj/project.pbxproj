@@ -18,6 +18,7 @@
 		D81618622BBBD42000644A0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81618602BBBD42000644A0B /* Main.storyboard */; };
 		D81618642BBBD42100644A0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D81618632BBBD42100644A0B /* Assets.xcassets */; };
 		D81618672BBBD42100644A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D81618652BBBD42100644A0B /* LaunchScreen.storyboard */; };
+		D878A41C2BC68AFF00F8C5A7 /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D878A41B2BC68AFF00F8C5A7 /* HomeScreen.storyboard */; };
 		D885DCC42BC50B3100C2CFBE /* PopularMovies-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885DCC32BC50B3100C2CFBE /* PopularMovies-ViewModel.swift */; };
 		D885DCC62BC50B4100C2CFBE /* PopularMovies-Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885DCC52BC50B4100C2CFBE /* PopularMovies-Repository.swift */; };
 		D885DCC82BC50B5400C2CFBE /* PopularMovies-Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D885DCC72BC50B5400C2CFBE /* PopularMovies-Model.swift */; };
@@ -53,6 +54,7 @@
 		D81618632BBBD42100644A0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D81618662BBBD42100644A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D81618682BBBD42100644A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D878A41B2BC68AFF00F8C5A7 /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
 		D885DCC32BC50B3100C2CFBE /* PopularMovies-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularMovies-ViewModel.swift"; sourceTree = "<group>"; };
 		D885DCC52BC50B4100C2CFBE /* PopularMovies-Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularMovies-Repository.swift"; sourceTree = "<group>"; };
 		D885DCC72BC50B5400C2CFBE /* PopularMovies-Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PopularMovies-Model.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				D816185C2BBBD42000644A0B /* SceneDelegate.swift */,
 				D81618632BBBD42100644A0B /* Assets.xcassets */,
 				D81618652BBBD42100644A0B /* LaunchScreen.storyboard */,
+				D81618602BBBD42000644A0B /* Main.storyboard */,
 				D81618682BBBD42100644A0B /* Info.plist */,
 			);
 			path = MovieAppPetProject;
@@ -132,7 +135,7 @@
 		D885DCC12BC50A7600C2CFBE /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				D81618602BBBD42000644A0B /* Main.storyboard */,
+				D878A41B2BC68AFF00F8C5A7 /* HomeScreen.storyboard */,
 				D816185E2BBBD42000644A0B /* HomeScreen-ViewController.swift */,
 				D885DCD02BC5143900C2CFBE /* HomeScreenUpcomingMovies */,
 				D885DCC92BC511BE00C2CFBE /* HomeScreenTopRated */,
@@ -265,6 +268,7 @@
 				D81618672BBBD42100644A0B /* LaunchScreen.storyboard in Resources */,
 				D81618642BBBD42100644A0B /* Assets.xcassets in Resources */,
 				D8A8B9442BC3FB1000EB2D13 /* MovieDetailsCard.storyboard in Resources */,
+				D878A41C2BC68AFF00F8C5A7 /* HomeScreen.storyboard in Resources */,
 				D81618622BBBD42000644A0B /* Main.storyboard in Resources */,
 				D80C32882BC66ADB00CCE1A0 /* SearchMovieScreen.storyboard in Resources */,
 			);
