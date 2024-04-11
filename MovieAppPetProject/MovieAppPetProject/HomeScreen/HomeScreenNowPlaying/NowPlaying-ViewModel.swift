@@ -7,23 +7,26 @@
 
 import Foundation
 
+//class NowPlayingViewModel {
+//    private let nowPlayingRepository = NowPlayingRepository()
+//    
+//    func fetchMovies(completion: @escaping (Result<NowPlaying, CustomError>) -> Void) {
+//        nowPlayingRepository.fetchMovies(completion: completion)
+//    }
+//}
 class NowPlayingViewModel {
     private let nowPlayingRepository = NowPlayingRepository()
     
-    func fetchMovies() {
-        nowPlayingRepository.fetchMovies { result in
+    var nowPlayingMovies: [NowPlayingResults] = []
+
+    func fetchNowPlayingMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {
+        nowPlayingRepository.fetchMovies { [weak self] result in
             switch result {
             case .success(let nowPlaying):
-                if let movies = nowPlaying.results {
-                    print("Now Playing:")
-                    for movie in movies {
-                        print("Movie ID: \(movie.movieID ?? 0 )")
-                        print("Title: \(movie.originalTitle ?? "nil")")
-                        print("Image: \(movie.moviePoster ?? "nil")\n")
-                    }
-                }
+                self?.nowPlayingMovies = nowPlaying.results ?? []
+                completion(.success(()))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }
