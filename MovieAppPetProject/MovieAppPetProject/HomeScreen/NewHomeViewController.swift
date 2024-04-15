@@ -11,6 +11,8 @@ import SDWebImage
 class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     private let nowPlayingViewModel = NowPlayingViewModel()
+    
+    
 
     @IBOutlet weak var newTableView: UITableView!
 

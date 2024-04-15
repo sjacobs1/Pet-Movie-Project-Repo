@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class NewTableViewCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDataSource {
+class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var newCollectionView: UICollectionView!
 
