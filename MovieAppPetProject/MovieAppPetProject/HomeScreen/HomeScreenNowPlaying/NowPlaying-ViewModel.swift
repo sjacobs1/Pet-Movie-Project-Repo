@@ -7,16 +7,9 @@
 
 import Foundation
 
-//class NowPlayingViewModel {
-//    private let nowPlayingRepository = NowPlayingRepository()
-//    
-//    func fetchMovies(completion: @escaping (Result<NowPlaying, CustomError>) -> Void) {
-//        nowPlayingRepository.fetchMovies(completion: completion)
-//    }
-//}
 class NowPlayingViewModel {
     private let nowPlayingRepository = NowPlayingRepository()
-    
+
     var nowPlayingMovies: [NowPlayingResults] = []
 
     func fetchNowPlayingMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {

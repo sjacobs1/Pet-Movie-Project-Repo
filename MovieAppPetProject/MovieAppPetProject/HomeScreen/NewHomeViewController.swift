@@ -11,13 +11,13 @@ import SDWebImage
 class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     private let nowPlayingViewModel = NowPlayingViewModel()
-    
+
     @IBOutlet weak var newTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }

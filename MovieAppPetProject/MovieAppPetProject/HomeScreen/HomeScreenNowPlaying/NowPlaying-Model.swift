@@ -15,7 +15,7 @@ struct NowPlayingResults: Codable {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case movieID = "id"
         case originalTitle = "original_title"

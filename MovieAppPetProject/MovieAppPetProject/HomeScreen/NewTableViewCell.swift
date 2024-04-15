@@ -9,10 +9,9 @@ import UIKit
 import SDWebImage
 
 class NewTableViewCell: UITableViewCell,UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    
+
     @IBOutlet weak var newCollectionView: UICollectionView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         newCollectionView.dataSource = self
@@ -32,11 +31,11 @@ class NewTableViewCell: UITableViewCell,UICollectionViewDelegate, UICollectionVi
 
         // Configure the view for the selected state
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseCell", for: indexPath) as? PosterCellCollectionViewCell else {
             fatalError("Unable to dequeue PosterCellCollectionViewCell.")
