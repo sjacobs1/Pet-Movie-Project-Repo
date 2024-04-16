@@ -17,8 +17,10 @@ class NowPlayingViewModel {
             switch result {
             case .success(let nowPlaying):
                 self?.nowPlayingMovies = nowPlaying.results ?? []
+                print("Now playing movies fetched successfully: \(self?.nowPlayingMovies ?? [])")
                 completion(.success(()))
             case .failure(let error):
+                print("Error fetching now playing movies: \(error)")
                 completion(.failure(error))
             }
         }

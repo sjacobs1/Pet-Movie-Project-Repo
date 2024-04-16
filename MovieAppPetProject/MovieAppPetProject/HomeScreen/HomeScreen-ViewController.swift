@@ -45,6 +45,7 @@ class HomeScreenViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("orgnl: \(nowPlayingViewModel.nowPlayingMovies.count)")
         return nowPlayingViewModel.nowPlayingMovies.count
     }
 

@@ -8,20 +8,16 @@
 class TopRatedViewModel {
     private let topRatedMoviesRepository = TopRatedMoviesRepository()
     
-    func fetchMovies() {
-        topRatedMoviesRepository.fetchMovies { result in
+    var topRatedMovies: [TopRatedMoviesResults] = []
+    
+    func fetchMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {
+        topRatedMoviesRepository.fetchMovies { [weak self] result in
             switch result {
-            case .success(let nowPlaying):
-                if let movies = nowPlaying.results {
-                    print("Top Rated Movies:")
-                    for movie in movies {
-                        print("Movie ID: \(movie.movieID ?? 0 )")
-                        print("Title: \(movie.originalTitle ?? "nil")")
-                        print("Image: \(movie.moviePoster ?? "nil")\n")
-                    }
-                }
+            case .success(let topRatedMovies):
+                self?.topRatedMovies = topRatedMovies.results ?? []
+                completion(.success(()))
             case .failure(let error):
-                print(error)
+                completion(.failure(error))
             }
         }
     }

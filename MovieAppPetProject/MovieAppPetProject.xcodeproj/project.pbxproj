@@ -132,9 +132,9 @@
 		D81618592BBBD42000644A0B /* MovieAppPetProject */ = {
 			isa = PBXGroup;
 			children = (
+				D8A8B9222BC3D6C500EB2D13 /* Network */,
 				D8DC6F442BCCFD0B00FF4B61 /* Login */,
 				D83459582BC7C55A00046A9C /* MockPosters */,
-				D8A8B9222BC3D6C500EB2D13 /* Network */,
 				D885DCC12BC50A7600C2CFBE /* HomeScreen */,
 				D8A8B93A2BC3F94500EB2D13 /* GetMovieDetailsByID */,
 				D80C327E2BC665C400CCE1A0 /* SearchMovies */,
