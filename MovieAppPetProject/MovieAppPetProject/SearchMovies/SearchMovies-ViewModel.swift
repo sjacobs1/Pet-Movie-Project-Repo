@@ -10,20 +10,17 @@ import Foundation
 class SearchMoviesViewModel {
     private let searchMoviesRepository = SearchMoviesRepository()
     
-    func fetchSearchedMovies() {
-        searchMoviesRepository.fetchSearchedMovies { result in
+    var searchedMovies: [SearchMoviesResults] = []
+    
+    func fetchSearchedMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {
+        searchMoviesRepository.fetchSearchedMovies { [weak self] result in
             switch result {
             case .success(let searchedMovie):
-                if let movies = searchedMovie.results {
-                    print("Search Results:")
-                    for movie in movies {
-                        print("Movie ID: \(movie.movieID ?? 0 )")
-                        print("Title: \(movie.originalTitle ?? "nil")")
-                        print("Image: \(movie.moviePoster ?? "nil")\n")
-                    }
-                }
+                self?.searchedMovies = searchedMovie.results ?? []
+                completion(.success(()))
             case .failure(let error):
                 print(error)
+                completion(.failure(error))
             }
         }
     }

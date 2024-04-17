@@ -15,13 +15,48 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-hT-vfd">
+                                <rect key="frame" x="0.0" y="120" width="393" height="698"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseCell" rowHeight="129" id="2Zo-xY-Jy8" customClass="SearchMovieTableViewCell" customModule="MovieAppPetProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="129"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Zo-xY-Jy8" id="tf3-gq-qLh">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="129"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yZL-03-lsW">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="fwQ-KB-znq"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cuB-hT-vfd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3KJ-WM-rT8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cuB-hT-vfd" secondAttribute="bottom" id="7ht-sF-DS7"/>
+                            <constraint firstItem="cuB-hT-vfd" firstAttribute="top" secondItem="yZL-03-lsW" secondAttribute="bottom" constant="5" id="Bz9-yu-UOg"/>
+                            <constraint firstItem="yZL-03-lsW" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qGd-44-PSu"/>
+                            <constraint firstItem="yZL-03-lsW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rYn-R1-0wX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cuB-hT-vfd" secondAttribute="trailing" id="x57-1c-KFu"/>
+                            <constraint firstItem="yZL-03-lsW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="xPA-RR-zsp"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchMovieTableView" destination="cuB-hT-vfd" id="rmt-gG-yvQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="4"/>
+            <point key="canvasLocation" x="136.64122137404578" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>

@@ -138,6 +138,7 @@
                                                             <connections>
                                                                 <outlet property="posterCover" destination="14h-i3-ZBt" id="WNc-bP-OGS"/>
                                                                 <outlet property="titleLabel" destination="tTt-os-Mh8" id="WBi-99-ebF"/>
+                                                                <segue destination="yRO-qx-RgG" kind="show" id="yLd-MU-fdb"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -187,6 +188,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S0g-Fh-9gL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2174.8091603053435" y="-32.394366197183103"/>
+        </scene>
+        <!--MovieDetailsCard-->
+        <scene sceneID="4rr-vj-4qJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MovieDetailsCard" id="yRO-qx-RgG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="OnW-Vc-Abg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jz2-Lp-cad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2890" y="-82"/>
         </scene>
     </scenes>
     <resources>
