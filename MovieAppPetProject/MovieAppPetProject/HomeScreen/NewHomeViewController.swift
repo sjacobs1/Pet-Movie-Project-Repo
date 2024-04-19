@@ -19,6 +19,17 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         fetchNowPlayingMovies()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToMovieDetails",
+           let movieDetailsVC = segue.destination as? MovieDetailsViewController {
+            if let selectedNowPlayingMovie = sender as? NowPlayingResults {
+                movieDetailsVC.selectedHomeScreenMovies = selectedNowPlayingMovie
+            } else if let selectedSearchMovie = sender as? SearchMoviesResults {
+                movieDetailsVC.selectedSearchMovie = selectedSearchMovie
+            }
+        }
+    }
+
     func fetchNowPlayingMovies() {
         nowPlayingViewModel.fetchNowPlayingMovies { [weak self] result in
             switch result {
@@ -40,16 +51,16 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 1
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 190
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseTableCell", for: indexPath) as? NewTableViewCell else {
             fatalError("Unable to dequeue NewTableViewCell.")
         }
         cell.configure(with: nowPlayingViewModel.nowPlayingMovies)
-
+        cell.parentViewController = self
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 190
     }
 }

@@ -9,12 +9,12 @@ import UIKit
 import SDWebImage
 
 class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-//    private let nowPlayingViewModel = NowPlayingViewModel()
+
     var nowPlayingMovies: [NowPlayingResults] = []
-    
+    weak var parentViewController: UIViewController?
+
     @IBOutlet weak var newCollectionView: UICollectionView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         newCollectionView.dataSource = self
@@ -26,17 +26,17 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
         layout.minimumLineSpacing = 10
         newCollectionView.collectionViewLayout = layout
     }
-    
+
     func configure(with movies: [NowPlayingResults]) {
         nowPlayingMovies = movies
         newCollectionView.reloadData()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("tester: \(nowPlayingMovies.count)")
         return nowPlayingMovies.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseCell", for: indexPath) as? PosterCellCollectionViewCell else {
             fatalError("Unable to dequeue PosterCellCollectionViewCell.")
@@ -50,5 +50,10 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
             cell.configure(with: nil, placeholderImage: UIImage(named: "Photo"), title: title)
         }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = nowPlayingMovies[indexPath.item]
+        parentViewController?.performSegue(withIdentifier: "goToMovieDetails", sender: selectedMovie)
     }
 }
