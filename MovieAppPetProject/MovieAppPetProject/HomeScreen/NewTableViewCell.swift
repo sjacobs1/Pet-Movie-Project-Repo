@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import SDWebImage
 
 class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var nowPlayingMovies: [NowPlayingResults] = []
-    weak var parentViewController: UIViewController?
+    var didSelectItem: ((NowPlayingResults) -> Void)?
 
     @IBOutlet weak var newCollectionView: UICollectionView!
 
@@ -33,13 +32,12 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("tester: \(nowPlayingMovies.count)")
         return nowPlayingMovies.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseCell", for: indexPath) as? PosterCellCollectionViewCell else {
-            fatalError("Unable to dequeue PosterCellCollectionViewCell.")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.tableCellReuseIdentifier, for: indexPath) as? PosterCellCollectionViewCell else {
+            return fetchDefaultCell()
         }
         let movie = nowPlayingMovies[indexPath.item]
         let title = movie.originalTitle
@@ -54,6 +52,11 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = nowPlayingMovies[indexPath.item]
-        parentViewController?.performSegue(withIdentifier: "goToMovieDetails", sender: selectedMovie)
+        didSelectItem?(selectedMovie)
+    }
+    
+    func fetchDefaultCell() -> UICollectionViewCell {
+        let defaultCell = UICollectionViewCell()
+        return defaultCell
     }
 }

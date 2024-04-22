@@ -6,17 +6,16 @@
 //
 
 import UIKit
-import SDWebImage
 
 class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private let searchMoviesViewModel = SearchMoviesViewModel()
 
-    @IBOutlet weak var searchMovieTableView: UITableView!
+    @IBOutlet private weak var searchMovieTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "SearchMovieTableViewCell", bundle: nil)
-        searchMovieTableView.register(nib, forCellReuseIdentifier: "reuseCell")
+        let nib = UINib(nibName: Constants.Identifiers.nibIdentifier, bundle: nil)
+        searchMovieTableView.register(nib, forCellReuseIdentifier: Constants.Identifiers.tableCellReuseIdentifier)
         searchMovieTableView.dataSource = self
         searchMovieTableView.delegate = self
         searchMoviesViewModel.fetchSearchedMovies(completion: { [weak self] result in
@@ -27,7 +26,6 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("vase:\(searchMoviesViewModel.searchedMovies.count)")
         return searchMoviesViewModel.searchedMovies.count
     }
 
@@ -36,7 +34,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as? SearchMovieTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.tableCellReuseIdentifier, for: indexPath) as? SearchMovieTableViewCell else {
             return UITableViewCell()
         }
 
@@ -55,14 +53,15 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMovie = searchMoviesViewModel.searchedMovies[indexPath.row]
-        performSegue(withIdentifier: "goToMovieDetails", sender: selectedMovie)
+        performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToMovieDetails",
-            let movieDetailsVC = segue.destination as? MovieDetailsViewController,
-            let selectedMovie = sender as? SearchMoviesResults {
-            movieDetailsVC.selectedSearchMovie = selectedMovie
+        if segue.identifier == Constants.Identifiers.goToMovieDetails,
+           let movieDetailsVC = segue.destination as? MovieDetailsViewController {
+            if let selectedSearchMovie = sender as? SearchMoviesResults {
+                movieDetailsVC.setMovieDetails(selectedSearchMovie: selectedSearchMovie)
+            }
         }
     }
 }

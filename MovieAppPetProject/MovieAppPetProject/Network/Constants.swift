@@ -17,4 +17,11 @@ struct Constants {
         static let upcomingMoviesURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)"
         static let searchMoviesURL = "https://api.themoviedb.org/3/search/movie?query=fight%20club&include_adult=false&api_key=\(apiKey)"
     }
+
+    struct Identifiers {
+        static let goToMovieDetails = "goToMovieDetails"
+        static let tableCellReuseIdentifier = "reuseCell"
+        static let nibIdentifier = "SearchMovieTableViewCell"
+        static let reuseTableCell = "reuseTableCell"
+    }
 }

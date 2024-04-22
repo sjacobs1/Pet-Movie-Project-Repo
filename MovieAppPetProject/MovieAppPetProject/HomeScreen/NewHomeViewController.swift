@@ -20,17 +20,15 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToMovieDetails",
+        if segue.identifier == Constants.Identifiers.goToMovieDetails,
            let movieDetailsVC = segue.destination as? MovieDetailsViewController {
             if let selectedNowPlayingMovie = sender as? NowPlayingResults {
-                movieDetailsVC.selectedHomeScreenMovies = selectedNowPlayingMovie
-            } else if let selectedSearchMovie = sender as? SearchMoviesResults {
-                movieDetailsVC.selectedSearchMovie = selectedSearchMovie
+                movieDetailsVC.setMovieDetails(selectedHomeScreenMovies: selectedNowPlayingMovie)
             }
         }
     }
 
-    func fetchNowPlayingMovies() {
+    private func fetchNowPlayingMovies() {
         nowPlayingViewModel.fetchNowPlayingMovies { [weak self] result in
             switch result {
             case .success:
@@ -56,11 +54,19 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseTableCell", for: indexPath) as? NewTableViewCell else {
-            fatalError("Unable to dequeue NewTableViewCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.reuseTableCell, for: indexPath) as? NewTableViewCell else {
+            return fetchDefaultTableCell()
         }
         cell.configure(with: nowPlayingViewModel.nowPlayingMovies)
-        cell.parentViewController = self
+        cell.didSelectItem = { [weak self] movie in
+                guard let self = self else { return }
+                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie)
+            }
         return cell
+    }
+    
+    func fetchDefaultTableCell() -> UITableViewCell {
+        let defaultTableCell = UITableViewCell()
+        return defaultTableCell
     }
 }

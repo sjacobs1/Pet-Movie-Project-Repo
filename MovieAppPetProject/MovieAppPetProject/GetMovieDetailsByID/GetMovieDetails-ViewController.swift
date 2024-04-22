@@ -8,17 +8,22 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-    var selectedSearchMovie: SearchMoviesResults?
-    var selectedHomeScreenMovies: NowPlayingResults?
-
+    private var selectedSearchMovie: SearchMoviesResults?
+    private var selectedHomeScreenMovies: NowPlayingResults?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayMovieDetails()
     }
-
+    
+    func setMovieDetails(selectedSearchMovie: SearchMoviesResults? = nil, selectedHomeScreenMovies: NowPlayingResults? = nil) {
+        self.selectedSearchMovie = selectedSearchMovie
+        self.selectedHomeScreenMovies = selectedHomeScreenMovies
+    }
+    
     func displayMovieDetails() {
         if let nowPlayingMovie = selectedHomeScreenMovies {
             titleLabel.text = nowPlayingMovie.originalTitle
