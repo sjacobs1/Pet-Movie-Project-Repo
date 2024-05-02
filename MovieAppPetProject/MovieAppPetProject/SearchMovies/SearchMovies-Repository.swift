@@ -7,7 +7,11 @@
 
 import Foundation
 
-class SearchMoviesRepository {
+protocol SearchMoviesRepositoryType {
+    func fetchSearchedMovies(completion: @escaping (Result<SearchMovies, CustomError>) -> Void)
+}
+
+class SearchMoviesRepository: SearchMoviesRepositoryType {
     private let networkManager = NetworkManager()
 
     func fetchSearchedMovies(completion: @escaping (Result<SearchMovies, CustomError>) -> Void) {

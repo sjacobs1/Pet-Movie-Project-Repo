@@ -19,9 +19,11 @@ struct Constants {
     }
 
     struct Identifiers {
-        static let goToMovieDetails = "goToMovieDetails"
-        static let tableCellReuseIdentifier = "reuseCell"
-        static let nibIdentifier = "SearchMovieTableViewCell"
-        static let reuseTableCell = "reuseTableCell"
+        static let goToMovieDetails = "GoToMovieDetails"
+        static let homeScreenCollectionViewCell = "HomeScreenCollectionViewCell"
+        static let searchScreenTableViewCellNibIdentifier = "SearchMovieTableViewCell"
+        static let homeScreenTableCell = "HomeScreenTableCell"
+        static let searchScreenTableCell = "SearchScreenTableCell"
+        static let moviePosterPath = "https://image.tmdb.org/t/p/w500"
     }
 }

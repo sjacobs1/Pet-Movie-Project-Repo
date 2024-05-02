@@ -9,11 +9,14 @@ import UIKit
 
 class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    var nowPlayingMovies: [NowPlayingResults] = []
+    // MARK: - IBOutlets
+    @IBOutlet private weak var newCollectionView: UICollectionView!
+
+    // MARK: - Variables
     var didSelectItem: ((NowPlayingResults) -> Void)?
+    private var nowPlayingMovies: [NowPlayingResults] = []
 
-    @IBOutlet weak var newCollectionView: UICollectionView!
-
+    // MARK: - Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         newCollectionView.dataSource = self
@@ -32,12 +35,13 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return nowPlayingMovies.count
+        nowPlayingMovies.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.tableCellReuseIdentifier, for: indexPath) as? PosterCellCollectionViewCell else {
-            return fetchDefaultCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.homeScreenCollectionViewCell,
+                                                            for: indexPath) as? PosterCellCollectionViewCell else {
+            return UICollectionViewCell()
         }
         let movie = nowPlayingMovies[indexPath.item]
         let title = movie.originalTitle
@@ -53,10 +57,5 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = nowPlayingMovies[indexPath.item]
         didSelectItem?(selectedMovie)
-    }
-    
-    func fetchDefaultCell() -> UICollectionViewCell {
-        let defaultCell = UICollectionViewCell()
-        return defaultCell
     }
 }

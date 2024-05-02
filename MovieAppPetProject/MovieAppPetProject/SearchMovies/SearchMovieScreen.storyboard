@@ -52,7 +52,7 @@
                     </view>
                     <connections>
                         <outlet property="searchMovieTableView" destination="cuB-hT-vfd" id="rmt-gG-yvQ"/>
-                        <segue destination="bhS-sz-DdE" kind="show" identifier="goToMovieDetails" id="hKB-c6-435"/>
+                        <segue destination="bhS-sz-DdE" kind="show" identifier="GoToMovieDetails" id="hKB-c6-435"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
