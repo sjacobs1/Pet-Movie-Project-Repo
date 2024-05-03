@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchMoviesRepositoryType {
-    func fetchSearchedMovies(completion: @escaping (Result<SearchMovies, CustomError>) -> Void)
+    func fetchSearchedMovies(completion: @escaping Result<SearchMovies, CustomError>)
 }
 
 class SearchMoviesRepository: SearchMoviesRepositoryType {
