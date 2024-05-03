@@ -14,7 +14,15 @@ class MovieDetailsViewModel {
     typealias MovieDetailsCompletion = (Result<MovieDetails, CustomError>) -> Void
     private var selectedSearchMovie: SearchMoviesResults?
     private var selectedHomeScreenMovies: NowPlayingResults?
-    private let movieDetailsRepository = MovieDetailsRepository()
+    private let movieDetailsRepository: MovieDetailsRepositoryType?
+
+    // MARK: - Initializer
+    init(movieDetails: MovieDetails?, selectedSearchMovie: SearchMoviesResults?, selectedHomeScreenMovies: NowPlayingResults?, movieDetailsRepository: MovieDetailsRepositoryType) {
+        self.movieDetails = movieDetails
+        self.selectedSearchMovie = selectedSearchMovie
+        self.selectedHomeScreenMovies = selectedHomeScreenMovies
+        self.movieDetailsRepository = movieDetailsRepository
+    }
 
     // MARK: - Functions
     func setMovieDetails(selectedSearchMovie: SearchMoviesResults?, selectedHomeScreenMovies: NowPlayingResults?) {
@@ -43,7 +51,7 @@ class MovieDetailsViewModel {
     }
 
     func fetchMovieDetails(completion: @escaping MovieDetailsCompletion) {
-        movieDetailsRepository.fetchMovieDetails { result in
+        movieDetailsRepository?.fetchMovieDetails { result in
             switch result {
             case .success(let details):
                 self.movieDetails = details

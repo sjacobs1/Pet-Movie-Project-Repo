@@ -24,6 +24,9 @@ struct Constants {
         static let searchScreenTableViewCellNibIdentifier = "SearchMovieTableViewCell"
         static let homeScreenTableCell = "HomeScreenTableCell"
         static let searchScreenTableCell = "SearchScreenTableCell"
+    }
+
+    struct Path {
         static let moviePosterPath = "https://image.tmdb.org/t/p/w500"
     }
 }

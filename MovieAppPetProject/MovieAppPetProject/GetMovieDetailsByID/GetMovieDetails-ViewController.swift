@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieDetailsViewController: UIViewController {
 
@@ -14,14 +15,14 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var posterImageView: UIImageView!
 
     // MARK: - Variables
-    var viewModel = MovieDetailsViewModel()
     private var selectedSearchMovie: SearchMoviesResults?
     private var selectedHomeScreenMovies: NowPlayingResults?
+    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetails: nil, selectedSearchMovie: nil, selectedHomeScreenMovies: nil, movieDetailsRepository: MovieDetailsRepository())
 
-    // MARK: - Functions
+    // MARK: - Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.displayMovieDetails { [weak self] title, posterPath in
+        movieDetailsViewModel.displayMovieDetails { [weak self] title, posterPath in #warning("WIP: Will refactor this at a later stage with navigation functionality")
             self?.titleLabel.text = title
             if let posterPath = posterPath {
                 let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")

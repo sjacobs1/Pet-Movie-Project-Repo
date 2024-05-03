@@ -7,9 +7,16 @@
 
 import Foundation
 
-class NowPlayingRepository {
+protocol NowPlayingRepositoryType {
+    func fetchMovies(completion: @escaping (Result<NowPlaying, CustomError>) -> Void)
+}
+
+class NowPlayingRepository: NowPlayingRepositoryType {
+
+    // MARK: - Variable
     private let networkManager = NetworkManager()
 
+    // MARK: - Function
     func fetchMovies(completion: @escaping (Result<NowPlaying, CustomError>) -> Void) {
         guard let apiUrl = URL(string: Constants.URLs.nowPlayingURL) else {
             completion(.failure(.invalidUrl))

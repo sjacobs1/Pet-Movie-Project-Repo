@@ -39,7 +39,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
         let movie = searchMoviesViewModel.searchedMovies?[indexPath.row]
         let title = movie?.originalTitle
         if let posterPath = movie?.moviePoster {
-            let posterURL = URL(string: "\(Constants.Identifiers.moviePosterPath)\(posterPath)")
+            let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
             cell.configure(with: posterURL, placeholderImage: UIImage(named: "Me"), title: title)
         } else {
             cell.configure(with: nil, placeholderImage: UIImage(named: "Me"), title: title)
@@ -54,18 +54,6 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
         performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie)
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == Constants.Identifiers.goToMovieDetails,
-              let movieDetailsViewController = segue.destination as? MovieDetailsViewController,
-              let selectedSearchMovie = sender as? SearchMoviesResults else {
-            return
-        }
-
-        let viewModel = MovieDetailsViewModel()
-        viewModel.setMovieDetails(selectedSearchMovie: selectedSearchMovie, selectedHomeScreenMovies: nil)
-        movieDetailsViewController.viewModel = viewModel
-    }
-
     private func setupTableView() {
         let nib = UINib(nibName: Constants.Identifiers.searchScreenTableViewCellNibIdentifier, bundle: nil)
         searchMovieTableView.register(nib, forCellReuseIdentifier: Constants.Identifiers.searchScreenTableViewCellNibIdentifier)
@@ -74,8 +62,9 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     }
 }
 
+// MARK: - Delegate
 extension SearchMoviesViewController: ViewModelDelegate {
-  func reloadView() {
-      searchMovieTableView.reloadData()
-  }
+    func reloadView() {
+        searchMovieTableView.reloadData()
+    }
 }

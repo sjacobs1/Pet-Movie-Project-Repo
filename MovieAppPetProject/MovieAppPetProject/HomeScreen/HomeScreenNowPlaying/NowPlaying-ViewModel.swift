@@ -7,21 +7,33 @@
 
 import Foundation
 
+protocol NowPlayingViewModelDelegate: AnyObject {
+    func reloadView()
+}
+
 class NowPlayingViewModel {
-    private let nowPlayingRepository = NowPlayingRepository()
 
-    var nowPlayingMovies: [NowPlayingResults] = []
+    // MARK: - Variables
+    var nowPlayingMovies: [NowPlayingResults]?
+    private let nowPlayingRepository: NowPlayingRepositoryType?
+    private weak var delegate: NowPlayingViewModelDelegate?
 
-    func fetchNowPlayingMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {
-        nowPlayingRepository.fetchMovies { [weak self] result in
+    // MARK: - Initializer
+    init(nowPlayingRepository: NowPlayingRepositoryType, delegate: NowPlayingViewModelDelegate) {
+        self.nowPlayingRepository = nowPlayingRepository
+        self.nowPlayingMovies = []
+        self.delegate = delegate
+    }
+
+    // MARK: - Function
+    func fetchNowPlayingMovies() {
+        nowPlayingRepository?.fetchMovies { [weak self] result in
             switch result {
             case .success(let nowPlaying):
                 self?.nowPlayingMovies = nowPlaying.results ?? []
-                print("Now playing movies fetched successfully: \(self?.nowPlayingMovies ?? [])")
-                completion(.success(()))
+                self?.delegate?.reloadView()
             case .failure(let error):
-                print("Error fetching now playing movies: \(error)")
-                completion(.failure(error))
+                print(error)
             }
         }
     }
