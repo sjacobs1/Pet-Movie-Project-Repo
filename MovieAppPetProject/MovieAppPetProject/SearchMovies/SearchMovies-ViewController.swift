@@ -6,56 +6,65 @@
 //
 
 import UIKit
-import SDWebImage
 
 class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
-    private let searchMoviesViewModel = SearchMoviesViewModel()
-    
-    
-    @IBOutlet weak var searchMovieTableView: UITableView!
-    
+
+    // MARK: - IBOutlets
+    @IBOutlet private weak var searchMovieTableView: UITableView!
+
+    // MARK: - Variables
+    private lazy var searchMoviesViewModel = SearchMoviesViewModel(searchMoviesRepository: SearchMoviesRepository(), delegate: self)
+
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "SearchMovieTableViewCell", bundle: nil)
-        searchMovieTableView.register(nib, forCellReuseIdentifier: "reuseCell")
-        searchMovieTableView.dataSource = self
-        searchMovieTableView.delegate = self
-        searchMoviesViewModel.fetchSearchedMovies(completion: { [weak self] result in
-            // Handle result
-            DispatchQueue.main.async {
-                self?.searchMovieTableView.reloadData()
-            }
-        })
+        setupTableView()
+        searchMoviesViewModel.fetchSearchedMovies()
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("vase:\(searchMoviesViewModel.searchedMovies.count)")
-        
-        return searchMoviesViewModel.searchedMovies.count
-//        - Int(searchMoviesViewModel.searchedMovies.count/2)
+        searchMoviesViewModel.searchMoviesCount
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        180
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell", for: indexPath) as? SearchMovieTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.searchScreenTableViewCellNibIdentifier,
+                                                       for: indexPath) as? SearchMovieTableViewCell else {
             return UITableViewCell()
         }
-        
-        let movie = searchMoviesViewModel.searchedMovies[indexPath.row]
-        let title = movie.originalTitle
-        if let posterPath = movie.moviePoster {
-            let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+
+        let movie = searchMoviesViewModel.searchedMovies?[indexPath.row]
+        let title = movie?.originalTitle
+        if let posterPath = movie?.moviePoster {
+            let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
             cell.configure(with: posterURL, placeholderImage: UIImage(named: "Me"), title: title)
         } else {
             cell.configure(with: nil, placeholderImage: UIImage(named: "Me"), title: title)
-            
+
         }
-        
+
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedMovie = searchMoviesViewModel.searchedMovies?[indexPath.row]
+        performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie)
+    }
+
+    private func setupTableView() {
+        let nib = UINib(nibName: Constants.Identifiers.searchScreenTableViewCellNibIdentifier, bundle: nil)
+        searchMovieTableView.register(nib, forCellReuseIdentifier: Constants.Identifiers.searchScreenTableViewCellNibIdentifier)
+        searchMovieTableView.dataSource = self
+        searchMovieTableView.delegate = self
+    }
+}
+
+// MARK: - Delegate
+extension SearchMoviesViewController: ViewModelDelegate {
+    func reloadView() {
+        searchMovieTableView.reloadData()
     }
 }

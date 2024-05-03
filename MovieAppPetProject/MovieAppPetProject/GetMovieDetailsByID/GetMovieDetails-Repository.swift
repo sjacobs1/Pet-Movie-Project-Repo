@@ -7,9 +7,16 @@
 
 import Foundation
 
-class MovieDetailsRepository {
+protocol MovieDetailsRepositoryType {
+    func fetchMovieDetails(completion: @escaping (Result<MovieDetails, CustomError>) -> Void)
+}
+
+class MovieDetailsRepository: MovieDetailsRepositoryType {
+    
+    // MARK: - Variable
     private let networkManager = NetworkManager()
 
+    // MARK: - Function
     func fetchMovieDetails(completion: @escaping (Result<MovieDetails, CustomError>) -> Void) {
         guard let apiUrl = URL(string: Constants.URLs.movieDetailsURL) else {
             completion(.failure(.invalidUrl))

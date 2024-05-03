@@ -6,15 +6,17 @@
 //
 
 import UIKit
-import SDWebImage
 
 class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-//    private let nowPlayingViewModel = NowPlayingViewModel()
-    var nowPlayingMovies: [NowPlayingResults] = []
-    
-    @IBOutlet weak var newCollectionView: UICollectionView!
-    
+
+    // MARK: - IBOutlets
+    @IBOutlet private weak var newCollectionView: UICollectionView!
+
+    // MARK: - Variables
+    var didSelectItem: ((NowPlayingResults) -> Void)?
+    private var nowPlayingMovies: [NowPlayingResults] = []
+
+    // MARK: - Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         newCollectionView.dataSource = self
@@ -26,20 +28,20 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
         layout.minimumLineSpacing = 10
         newCollectionView.collectionViewLayout = layout
     }
-    
+
     func configure(with movies: [NowPlayingResults]) {
         nowPlayingMovies = movies
         newCollectionView.reloadData()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("tester: \(nowPlayingMovies.count)")
-        return nowPlayingMovies.count
+        nowPlayingMovies.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseCell", for: indexPath) as? PosterCellCollectionViewCell else {
-            fatalError("Unable to dequeue PosterCellCollectionViewCell.")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.homeScreenCollectionViewCell,
+                                                            for: indexPath) as? PosterCellCollectionViewCell else {
+            return UICollectionViewCell()
         }
         let movie = nowPlayingMovies[indexPath.item]
         let title = movie.originalTitle
@@ -50,5 +52,10 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
             cell.configure(with: nil, placeholderImage: UIImage(named: "Photo"), title: title)
         }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = nowPlayingMovies[indexPath.item]
+        didSelectItem?(selectedMovie)
     }
 }

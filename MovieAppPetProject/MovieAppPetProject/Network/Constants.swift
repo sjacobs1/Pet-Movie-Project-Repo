@@ -17,4 +17,16 @@ struct Constants {
         static let upcomingMoviesURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)"
         static let searchMoviesURL = "https://api.themoviedb.org/3/search/movie?query=fight%20club&include_adult=false&api_key=\(apiKey)"
     }
+
+    struct Identifiers {
+        static let goToMovieDetails = "GoToMovieDetails"
+        static let homeScreenCollectionViewCell = "HomeScreenCollectionViewCell"
+        static let searchScreenTableViewCellNibIdentifier = "SearchMovieTableViewCell"
+        static let homeScreenTableCell = "HomeScreenTableCell"
+        static let searchScreenTableCell = "SearchScreenTableCell"
+    }
+
+    struct Path {
+        static let moviePosterPath = "https://image.tmdb.org/t/p/w500"
+    }
 }
