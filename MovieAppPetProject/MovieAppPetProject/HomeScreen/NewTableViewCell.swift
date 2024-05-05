@@ -10,11 +10,12 @@ import UIKit
 class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     // MARK: - IBOutlets
+    @IBOutlet weak var sectionTitleLabel: UILabel!
     @IBOutlet private weak var newCollectionView: UICollectionView!
 
     // MARK: - Variables
-    var didSelectItem: ((NowPlayingResults) -> Void)?
-    private var nowPlayingMovies: [NowPlayingResults] = []
+    var didSelectItem: ((MovieData) -> Void)?
+    private var nowPlayingMovies: [MovieData] = []
 
     // MARK: - Functions
     override func awakeFromNib() {
@@ -29,8 +30,9 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
         newCollectionView.collectionViewLayout = layout
     }
 
-    func configure(with movies: [NowPlayingResults]) {
+    func configure(with movies: [MovieData], sectionTitle: String) {
         nowPlayingMovies = movies
+        sectionTitleLabel?.text = sectionTitle
         newCollectionView.reloadData()
     }
 
