@@ -18,7 +18,7 @@ class TopRatedMoviesRepository: TopRatedMoviesRepositoryType {
 
     // MARK: - Function
     func fetchMovies(completion: @escaping (Result<TopRatedMovies, CustomError>) -> Void) {
-        guard let apiUrl = URL(string: Constants.URLs.popularMoviesURL) else {
+        guard let apiUrl = URL(string: Constants.URLs.topRatedMoviesURL) else {
             completion(.failure(.invalidUrl))
             return
         }
