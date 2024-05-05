@@ -11,7 +11,7 @@ struct PopularMovies: Codable {
     let results: [PopularMovieResults]?
 }
 
-struct PopularMovieResults: Codable {
+struct PopularMovieResults: Codable, MovieData {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?

@@ -5,21 +5,36 @@
 //  Created by Sebastian Jacobs on 2024/04/09.
 //
 
+import Foundation
+
+protocol PopularMoviesViewModelDelegate: AnyObject {
+    func reloadView()
+}
+
 class PopularMoviesViewModel {
-    private let popularMoviesRepository = PopularMoviesRepository()
-    
-    var popularMovies: [PopularMovieResults] = []
-    
-    func fetchMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {
-        popularMoviesRepository.fetchMovies { [weak self] result in
+
+    // MARK: - Variables
+    var popularMovies: [PopularMovieResults]?
+    private let popularMoviesRepository: PopularMoviesRepositoryType?
+    private weak var delegate: PopularMoviesViewModelDelegate?
+
+    // MARK: - Initializer
+    init(popularMoviesRepository: PopularMoviesRepositoryType?, delegate: PopularMoviesViewModelDelegate) {
+        self.popularMovies = []
+        self.popularMoviesRepository = popularMoviesRepository
+        self.delegate = delegate
+    }
+
+    // MARK: - Function
+    func fetchMovies() {
+        popularMoviesRepository?.fetchMovies { [weak self] result in
             switch result {
             case .success(let popularMovies):
                 self?.popularMovies = popularMovies.results ?? []
-                completion(.success(()))
+                self?.delegate?.reloadView()
             case .failure(let error):
                 print(error)
             }
         }
     }
 }
-

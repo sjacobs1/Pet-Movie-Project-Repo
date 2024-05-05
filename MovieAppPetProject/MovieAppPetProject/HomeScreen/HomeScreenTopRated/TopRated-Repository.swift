@@ -7,9 +7,16 @@
 
 import Foundation
 
-class TopRatedMoviesRepository {
+protocol TopRatedMoviesRepositoryType {
+    func fetchMovies(completion: @escaping (Result<TopRatedMovies, CustomError>) -> Void)
+}
+
+class TopRatedMoviesRepository: TopRatedMoviesRepositoryType {
+
+    // MARK: - Variable
     private let networkManager = NetworkManager()
 
+    // MARK: - Function
     func fetchMovies(completion: @escaping (Result<TopRatedMovies, CustomError>) -> Void) {
         guard let apiUrl = URL(string: Constants.URLs.popularMoviesURL) else {
             completion(.failure(.invalidUrl))
