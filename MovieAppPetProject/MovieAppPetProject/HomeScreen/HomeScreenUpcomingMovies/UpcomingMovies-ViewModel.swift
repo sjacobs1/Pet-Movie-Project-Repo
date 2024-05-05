@@ -5,21 +5,36 @@
 //  Created by Sebastian Jacobs on 2024/04/09.
 //
 
+import Foundation
+
+protocol UpcomingMoviesViewModelDelegate: AnyObject {
+    func reloadView()
+}
+
 class UpcomingMoviesViewModel {
-    private let upcomingMoviesRepository = UpcomingMoviesRepository()
-    
-    var upcomingMovies: [UpcomingMoviesResults] = []
-    
-    func fetchMovies(completion: @escaping (Result<Void, CustomError>) -> Void) {
-        upcomingMoviesRepository.fetchMovies { [weak self] result in
+
+    // MARK: - Variables
+    var upcomingMovies: [UpcomingMoviesResults]?
+    private let upcomingMoviesRepository: UpcomingMoviesRepositoryType?
+    private weak var delegate: UpcomingMoviesViewModelDelegate?
+
+    // MARK: - Initializer
+    init(upcomingMoviesRepository: UpcomingMoviesRepositoryType?, delegate: UpcomingMoviesViewModelDelegate) {
+        self.upcomingMovies = []
+        self.upcomingMoviesRepository = upcomingMoviesRepository
+        self.delegate = delegate
+    }
+
+    // MARK: - Function
+    func fetchMovies() {
+        upcomingMoviesRepository?.fetchMovies { [weak self] result in
             switch result {
             case .success(let upcomingMovies):
                 self?.upcomingMovies = upcomingMovies.results ?? []
-                completion(.success(()))
+                self?.delegate?.reloadView()
             case .failure(let error):
-                completion(.failure(error))
+                print(error)
             }
         }
     }
 }
-

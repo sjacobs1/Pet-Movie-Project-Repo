@@ -7,11 +7,17 @@
 
 import Foundation
 
+protocol MovieData {
+    var movieID: Int? { get }
+    var originalTitle: String? { get }
+    var moviePoster: String? { get }
+}
+
 struct UpcomingMovies: Codable {
     let results: [UpcomingMoviesResults]?
 }
 
-struct UpcomingMoviesResults: Codable {
+struct UpcomingMoviesResults: Codable, MovieData {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?

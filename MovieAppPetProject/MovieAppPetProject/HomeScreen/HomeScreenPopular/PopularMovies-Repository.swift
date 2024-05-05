@@ -7,9 +7,16 @@
 
 import Foundation
 
-class PopularMoviesRepository {
+protocol PopularMoviesRepositoryType {
+    func fetchMovies(completion: @escaping (Result<PopularMovies, CustomError>) -> Void)
+}
+
+class PopularMoviesRepository: PopularMoviesRepositoryType {
+
+    // MARK: - Variable
     private let networkManager = NetworkManager()
 
+    // MARK: - Function
     func fetchMovies(completion: @escaping (Result<PopularMovies, CustomError>) -> Void) {
         guard let apiUrl = URL(string: Constants.URLs.popularMoviesURL) else {
             completion(.failure(.invalidUrl))
@@ -21,4 +28,3 @@ class PopularMoviesRepository {
         }
     }
 }
-
