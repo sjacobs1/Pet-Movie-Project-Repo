@@ -10,7 +10,7 @@ import UIKit
 class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
 
     // MARK: - IBOutlets
-    @IBOutlet weak var sectionTitleLabel: UILabel!
+    @IBOutlet private weak var sectionTitleLabel: UILabel!
     @IBOutlet private weak var newCollectionView: UICollectionView!
 
     // MARK: - Variables
