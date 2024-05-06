@@ -5,6 +5,11 @@
 //  Created by Sebastian Jacobs on 2024/05/05.
 //
 
+protocol LoginViewModelDelegate: AnyObject {
+    func navigateToHomeScreen()
+    func displayErros(message: String)
+}
+
 import Foundation
 
 class LoginViewModel {
@@ -24,7 +29,7 @@ class LoginViewModel {
         if login(username: username, password: password) {
             delegate?.navigateToHomeScreen()
         } else {
-            delegate?.displayErros(with: "The username or password is incorrect.")
+            delegate?.displayErros(message: "The username or password is incorrect.")
         }
     }
 

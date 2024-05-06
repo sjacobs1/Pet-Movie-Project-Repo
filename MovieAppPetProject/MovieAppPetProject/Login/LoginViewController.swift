@@ -5,11 +5,6 @@
 //  Created by Sebastian Jacobs on 2024/04/15.
 //
 
-protocol LoginViewModelDelegate: AnyObject {
-    func navigateToHomeScreen()
-    func displayErros(with message: String)
-}
-
 import UIKit
 
 class LoginViewController: UIViewController, LoginViewModelDelegate {
@@ -40,7 +35,7 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
         performSegue(withIdentifier: Constants.Identifiers.showHomeScreen, sender: self)
     }
 
-    func displayErros(with message: String) {
+    func displayErros(message: String) {
         showAlert(alertTitle: "Incorrect Credentials", alertMessage: message)
     }
 
