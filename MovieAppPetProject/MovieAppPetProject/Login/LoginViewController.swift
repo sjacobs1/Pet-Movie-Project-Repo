@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
         performSegue(withIdentifier: Constants.Identifiers.showHomeScreen, sender: self)
     }
 
-    func displayErros(message: String) {
+    func displayError(message: String) {
         showAlert(alertTitle: "Incorrect Credentials", alertMessage: message)
     }
 

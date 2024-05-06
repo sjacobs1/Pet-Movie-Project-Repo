@@ -7,7 +7,7 @@
 
 protocol LoginViewModelDelegate: AnyObject {
     func navigateToHomeScreen()
-    func displayErros(message: String)
+    func displayError(message: String)
 }
 
 import Foundation
@@ -29,7 +29,7 @@ class LoginViewModel {
         if login(username: username, password: password) {
             delegate?.navigateToHomeScreen()
         } else {
-            delegate?.displayErros(message: "The username or password is incorrect.")
+            delegate?.displayError(message: "The username or password is incorrect.")
         }
     }
 
