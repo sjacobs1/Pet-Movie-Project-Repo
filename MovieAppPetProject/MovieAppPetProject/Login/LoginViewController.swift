@@ -27,13 +27,10 @@ class LoginViewController: UIViewController {
         let username = usernameInput.text
         let password = passwordInput.text
 
-        loginViewModel.login(username: username, password: password) { [weak self] success in
-            guard let self = self else { return }
-            if success {
-                self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            } else {
-                self.showAlert(alertTitle: "Incorrect Credentials", alertMessage: "The username or password is incorrect.")
-            }
+        if loginViewModel.login(username: username, password: password) {
+            performSegue(withIdentifier: "showHomeScreen", sender: self)
+        } else {
+            showAlert(alertTitle: "Incorrect Credentials", alertMessage: "The username or password is incorrect.")
         }
     }
 
