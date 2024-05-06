@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         let password = passwordInput.text
 
         if loginViewModel.login(username: username, password: password) {
-            performSegue(withIdentifier: "showHomeScreen", sender: self)
+            performSegue(withIdentifier: Constants.Identifiers.showHomeScreen, sender: self)
         } else {
             showAlert(alertTitle: "Incorrect Credentials", alertMessage: "The username or password is incorrect.")
         }

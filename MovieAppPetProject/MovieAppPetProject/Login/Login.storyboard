@@ -51,7 +51,7 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Login"/>
                                                 <connections>
                                                     <action selector="loginTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7pw-jD-cH7"/>
-                                                    <segue destination="1LY-DS-VTl" kind="show" identifier="showHomeScreen" id="GUC-RC-Czo"/>
+                                                    <segue destination="1LY-DS-VTl" kind="show" identifier="ShowHomeScreen" id="GUC-RC-Czo"/>
                                                 </connections>
                                             </button>
                                         </subviews>
