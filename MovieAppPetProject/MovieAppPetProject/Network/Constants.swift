@@ -24,6 +24,7 @@ struct Constants {
         static let searchScreenTableViewCellNibIdentifier = "SearchMovieTableViewCell"
         static let homeScreenTableCell = "HomeScreenTableCell"
         static let searchScreenTableCell = "SearchScreenTableCell"
+        static let showHomeScreen = "ShowHomeScreen"
     }
 
     struct Path {

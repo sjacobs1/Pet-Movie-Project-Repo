@@ -7,51 +7,42 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewModelDelegate {
 
-    let username = "Admin"
-    let password = "DVTPassword"
+    // MARK: - Outlets
+    @IBOutlet private weak var usernameInput: UITextField!
+    @IBOutlet private weak var passwordInput: UITextField!
 
-    @IBOutlet weak var usernameInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
+    // MARK: - Variable
+    private var loginViewModel: LoginViewModel!
 
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    func showAlert(alertTitle: String, alertMessage: String) {
-
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        self.present(alert, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            alert.dismiss(animated: true)
-        }
-
+        loginViewModel = LoginViewModel(delegate: self)
+        usernameInput.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        passwordInput.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
 
-    func incorrectEntries(alertTitle: String, alertMessage: String) {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        self.present(alert, animated: true)
-        alert.addAction(UIAlertAction(title: "Try Again", style: .default))
-    }
-
-    @IBAction func loginTapped(_ sender: Any) {
-        guard let insertedUsername = usernameInput.text, !insertedUsername.isEmpty else {
-            showAlert(alertTitle: "Username Required", alertMessage: "")
+    @IBAction private func loginTapped(_ sender: Any) {
+        guard let username = usernameInput.text, let password = passwordInput.text else {
             return
         }
-
-        guard let insertedPassword = passwordInput.text, !insertedPassword.isEmpty else {
-            showAlert(alertTitle: "Password Required", alertMessage: "")
-            return
-        }
-
-//        if insertedUsername == username && insertedPassword == password {
-//            performseg
-//        } else {
-//            incorrectEntries(alertTitle: "Incorrect Username or Password", alertMessage: "")
-//        }
+        loginViewModel.attemptLogin(username: username, password: password)
     }
 
+    func navigateToHomeScreen() {
+        performSegue(withIdentifier: Constants.Identifiers.showHomeScreen, sender: self)
+    }
+
+    func displayError(message: String) {
+        showAlert(alertTitle: "Incorrect Credentials", alertMessage: message)
+    }
+
+    private func showAlert(alertTitle: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
