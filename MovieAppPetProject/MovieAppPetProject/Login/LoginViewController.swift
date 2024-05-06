@@ -5,33 +5,43 @@
 //  Created by Sebastian Jacobs on 2024/04/15.
 //
 
+protocol LoginViewModelDelegate: AnyObject {
+    func navigateToHomeScreen()
+    func displayErros(with message: String)
+}
+
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginViewModelDelegate {
 
     // MARK: - Outlets
     @IBOutlet private weak var usernameInput: UITextField!
     @IBOutlet private weak var passwordInput: UITextField!
 
     // MARK: - Variable
-    private let loginViewModel = LoginViewModel()
+    private var loginViewModel: LoginViewModel!
 
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginViewModel = LoginViewModel(delegate: self)
         usernameInput.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         passwordInput.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
 
     @IBAction private func loginTapped(_ sender: Any) {
-        let username = usernameInput.text
-        let password = passwordInput.text
-
-        if loginViewModel.login(username: username, password: password) {
-            performSegue(withIdentifier: Constants.Identifiers.showHomeScreen, sender: self)
-        } else {
-            showAlert(alertTitle: "Incorrect Credentials", alertMessage: "The username or password is incorrect.")
+        guard let username = usernameInput.text, let password = passwordInput.text else {
+            return
         }
+        loginViewModel.attemptLogin(username: username, password: password)
+    }
+
+    func navigateToHomeScreen() {
+        performSegue(withIdentifier: Constants.Identifiers.showHomeScreen, sender: self)
+    }
+
+    func displayErros(with message: String) {
+        showAlert(alertTitle: "Incorrect Credentials", alertMessage: message)
     }
 
     private func showAlert(alertTitle: String, alertMessage: String) {
