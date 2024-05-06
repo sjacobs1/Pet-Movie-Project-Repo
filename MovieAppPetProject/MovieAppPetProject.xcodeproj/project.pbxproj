@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80105622BE7DBD10079C2BB /* Login-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80105612BE7DBD10079C2BB /* Login-ViewModel.swift */; };
 		D80C32802BC6667F00CCE1A0 /* SearchMovies-ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C327F2BC6667F00CCE1A0 /* SearchMovies-ViewController.swift */; };
 		D80C32822BC6668F00CCE1A0 /* SearchMovies-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C32812BC6668F00CCE1A0 /* SearchMovies-ViewModel.swift */; };
 		D80C32842BC6669F00CCE1A0 /* SearchMovies-Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80C32832BC6669F00CCE1A0 /* SearchMovies-Repository.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D80105612BE7DBD10079C2BB /* Login-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login-ViewModel.swift"; sourceTree = "<group>"; };
 		D80C327F2BC6667F00CCE1A0 /* SearchMovies-ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMovies-ViewController.swift"; sourceTree = "<group>"; };
 		D80C32812BC6668F00CCE1A0 /* SearchMovies-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMovies-ViewModel.swift"; sourceTree = "<group>"; };
 		D80C32832BC6669F00CCE1A0 /* SearchMovies-Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMovies-Repository.swift"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			children = (
 				D8DC6F452BCCFD1D00FF4B61 /* Login.storyboard */,
 				D8DC6F472BCCFD4A00FF4B61 /* LoginViewController.swift */,
+				D80105612BE7DBD10079C2BB /* Login-ViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D885DCD62BC5148D00C2CFBE /* UpcomingMovies-Model.swift in Sources */,
+				D80105622BE7DBD10079C2BB /* Login-ViewModel.swift in Sources */,
 				D8A8B9402BC3F99900EB2D13 /* GetMovieDetails-Repository.swift in Sources */,
 				D885DCC82BC50B5400C2CFBE /* PopularMovies-Model.swift in Sources */,
 				D8A8B92A2BC3E62F00EB2D13 /* NowPlaying-ViewModel.swift in Sources */,
