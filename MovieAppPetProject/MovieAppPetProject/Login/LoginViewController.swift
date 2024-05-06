@@ -17,6 +17,12 @@ class LoginViewController: UIViewController {
     private let loginViewModel = LoginViewModel()
 
     // MARK: - Functions
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        usernameInput.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        passwordInput.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+    }
+
     @IBAction private func loginTapped(_ sender: Any) {
         let username = usernameInput.text
         let password = passwordInput.text
