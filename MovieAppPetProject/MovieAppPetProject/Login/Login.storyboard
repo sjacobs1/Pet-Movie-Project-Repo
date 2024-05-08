@@ -52,7 +52,7 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Login"/>
                                                 <connections>
                                                     <action selector="loginTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7pw-jD-cH7"/>
-                                                    <segue destination="iMU-ft-I4d" kind="show" id="1a1-O1-cpz"/>
+                                                    <segue destination="iMU-ft-I4d" kind="show" identifier="ShowHomeScreen" id="1a1-O1-cpz"/>
                                                 </connections>
                                             </button>
                                         </subviews>
