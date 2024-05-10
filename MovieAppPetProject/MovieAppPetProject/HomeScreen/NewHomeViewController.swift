@@ -17,6 +17,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     private lazy var upcomingMoviesViewModel = UpcomingMoviesViewModel(upcomingMoviesRepository: UpcomingMoviesRepository(), delegate: self)
     private lazy var popularMoviesViewModel = PopularMoviesViewModel(popularMoviesRepository: PopularMoviesRepository(), delegate: self)
     private lazy var topRatedMoviesViewModel = TopRatedViewModel(topRatedMoviesRepository: TopRatedMoviesRepository(), delegate: self)
+
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.configure(with: nowPlayingViewModel.nowPlayingMovies ?? [], sectionTitle: " Now Playing")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie)
+                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
             }
             return cell
         case 1:
@@ -57,7 +58,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.configure(with: popularMoviesViewModel.popularMovies ?? [], sectionTitle: " Popular")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie)
+                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
             }
             return cell
         case 2:
@@ -67,7 +68,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.configure(with: topRatedMoviesViewModel.topRatedMovies ?? [], sectionTitle: " Top Rated")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie)
+                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
             }
             return cell
         case 3:
@@ -77,11 +78,19 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.configure(with: upcomingMoviesViewModel.upcomingMovies ?? [], sectionTitle: " Upcoming")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie)
+                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
             }
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToMovieDetails",
+            let movieDetailsVC = segue.destination as? MovieDetailsViewController,
+            let movieId = sender as? Int {
+            movieDetailsVC.movieID = movieId
         }
     }
 }

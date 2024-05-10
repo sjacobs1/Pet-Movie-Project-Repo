@@ -13,21 +13,33 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
 
     // MARK: - Variables
-    private var selectedSearchMovie: SearchMoviesResults?
-    private var selectedHomeScreenMovies: NowPlayingResults?
-    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetails: nil, selectedSearchMovie: nil, selectedHomeScreenMovies: nil, movieDetailsRepository: MovieDetailsRepository())
+    var movieID: Int?
+    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieID: movieID ?? 0, movieDetailsRepository: MovieDetailsRepository())
 
-    // MARK: - Function
+    // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieDetailsViewModel.displayMovieDetails { [weak self] title, posterPath in #warning("WIP: Will refactor this at a later stage with navigation functionality")
-            self?.titleLabel.text = title
-            if let posterPath = posterPath {
-                let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-                self?.posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "Me"))
-            }
+        updateUI()
+        movieDetailsViewModel.fetchMovieDetails()
+        viewModelHasDetails()
+    }
+
+    private func viewModelHasDetails() {
+        movieDetailsViewModel.didUpdateDetails = { [weak self] in
+            self?.updateUI()
+        }
+    }
+
+    private func updateUI() {
+        titleLabel.text = movieDetailsViewModel.originalTitle()
+        overviewLabel.text = movieDetailsViewModel.overview()
+        releaseDateLabel.text = movieDetailsViewModel.releaseDate()
+        if let posterURL = movieDetailsViewModel.moviePosterURL() {
+            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder"))
         }
     }
 }

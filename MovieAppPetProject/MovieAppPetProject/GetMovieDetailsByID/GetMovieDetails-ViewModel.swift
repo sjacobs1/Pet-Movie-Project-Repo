@@ -10,54 +10,48 @@ import Foundation
 class MovieDetailsViewModel {
 
     // MARK: - Variables
-    var movieDetails: MovieDetails?
-    typealias MovieDetailsCompletion = (Result<MovieDetails, CustomError>) -> Void
-    private var selectedSearchMovie: SearchMoviesResults?
-    private var selectedHomeScreenMovies: NowPlayingResults?
-    private let movieDetailsRepository: MovieDetailsRepositoryType?
+    private let movieDetailsRepository: MovieDetailsRepositoryType
+    private let movieID: Int
+    var movieDetails: MovieDetails? {
+        didSet {
+            didUpdateDetails?()
+        }
+    }
+
+    // MARK: - Computed properties
+    func originalTitle() -> String? {
+        movieDetails?.originalTitle
+    }
+
+    func overview() -> String? {
+        movieDetails?.overview
+    }
+
+    func releaseDate() -> String? {
+        movieDetails.map { "Release Date: \($0.releaseDate ?? "")" }
+    }
+
+    func moviePosterURL() -> URL? {
+        movieDetails.flatMap { URL(string: "https://image.tmdb.org/t/p/w500\($0.moviePoster ?? "")") }
+    }
+
+    // MARK: - Closure
+    var didUpdateDetails: (() -> Void)?
 
     // MARK: - Initializer
-    init(movieDetails: MovieDetails?, selectedSearchMovie: SearchMoviesResults?, selectedHomeScreenMovies: NowPlayingResults?, movieDetailsRepository: MovieDetailsRepositoryType) {
-        self.movieDetails = movieDetails
-        self.selectedSearchMovie = selectedSearchMovie
-        self.selectedHomeScreenMovies = selectedHomeScreenMovies
+    init(movieID: Int, movieDetailsRepository: MovieDetailsRepositoryType) {
+        self.movieID = movieID
         self.movieDetailsRepository = movieDetailsRepository
     }
 
     // MARK: - Functions
-    func setMovieDetails(selectedSearchMovie: SearchMoviesResults?, selectedHomeScreenMovies: NowPlayingResults?) {
-        self.selectedSearchMovie = selectedSearchMovie
-        self.selectedHomeScreenMovies = selectedHomeScreenMovies
-    }
-
-    func displayMovieDetails(completion: @escaping (String?, URL?) -> Void) {
-        if let nowPlayingMovie = selectedHomeScreenMovies {
-            let title = nowPlayingMovie.originalTitle
-            if let posterPath = nowPlayingMovie.moviePoster {
-                let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-                completion(title, posterURL)
-            } else {
-                completion(title, nil)
-            }
-        } else if let searchMovie = selectedSearchMovie {
-            let title = searchMovie.originalTitle
-            if let posterPath = searchMovie.moviePoster {
-                let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-                completion(title, posterURL)
-            } else {
-                completion(title, nil)
-            }
-        }
-    }
-
-    func fetchMovieDetails(completion: @escaping MovieDetailsCompletion) {
-        movieDetailsRepository?.fetchMovieDetails { result in
+    func fetchMovieDetails() {
+        movieDetailsRepository.fetchMovieDetails(movieID: movieID) { [weak self] result in
             switch result {
             case .success(let details):
-                self.movieDetails = details
-                completion(.success(details))
+                self?.movieDetails = details
             case .failure(let error):
-                completion(.failure(error))
+                print(error)
             }
         }
     }

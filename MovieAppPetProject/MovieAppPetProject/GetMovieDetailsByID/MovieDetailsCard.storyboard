@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -28,22 +29,42 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JX-BJ-mNl">
+                                        <rect key="frame" x="0.0" y="344" width="393" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="eRO-AM-WDn" firstAttribute="top" secondItem="SRY-W3-FV9" secondAttribute="top" constant="8" id="5kp-zQ-XoU"/>
+                                    <constraint firstAttribute="trailing" secondItem="3JX-BJ-mNl" secondAttribute="trailing" id="6ag-22-fWt"/>
                                     <constraint firstAttribute="trailing" secondItem="ROI-Ko-h2y" secondAttribute="trailing" id="8vW-Pp-9UG"/>
                                     <constraint firstItem="ROI-Ko-h2y" firstAttribute="top" secondItem="eRO-AM-WDn" secondAttribute="bottom" constant="65" id="Ifx-Rb-nDe"/>
+                                    <constraint firstItem="3JX-BJ-mNl" firstAttribute="leading" secondItem="SRY-W3-FV9" secondAttribute="leading" id="Ja1-Xa-6QL"/>
                                     <constraint firstItem="ROI-Ko-h2y" firstAttribute="top" secondItem="eRO-AM-WDn" secondAttribute="bottom" constant="65" id="Nqf-0v-uPL"/>
                                     <constraint firstAttribute="trailing" secondItem="eRO-AM-WDn" secondAttribute="trailing" constant="122" id="S3I-Uh-xzj"/>
+                                    <constraint firstItem="3JX-BJ-mNl" firstAttribute="leading" secondItem="SRY-W3-FV9" secondAttribute="leading" id="VPc-Xo-gYQ"/>
+                                    <constraint firstItem="3JX-BJ-mNl" firstAttribute="top" secondItem="ROI-Ko-h2y" secondAttribute="bottom" constant="42" id="fCR-RL-gb5"/>
                                     <constraint firstAttribute="bottom" secondItem="ROI-Ko-h2y" secondAttribute="bottom" constant="63" id="mhO-9z-2L3"/>
+                                    <constraint firstItem="3JX-BJ-mNl" firstAttribute="top" secondItem="ROI-Ko-h2y" secondAttribute="bottom" constant="42" id="vcA-sD-vZO"/>
                                     <constraint firstItem="ROI-Ko-h2y" firstAttribute="leading" secondItem="SRY-W3-FV9" secondAttribute="leading" id="wfh-sJ-KJ3"/>
                                     <constraint firstItem="eRO-AM-WDn" firstAttribute="leading" secondItem="SRY-W3-FV9" secondAttribute="leading" constant="122" id="xAM-Xx-YXh"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mk-0T-oVa">
+                                <rect key="frame" x="0.0" y="528" width="393" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3Mk-0T-oVa" firstAttribute="top" secondItem="SRY-W3-FV9" secondAttribute="bottom" constant="10" id="8Tx-NS-G1p"/>
+                            <constraint firstItem="3Mk-0T-oVa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XN5-3V-UJq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="3Mk-0T-oVa" secondAttribute="trailing" id="l2V-N8-DAL"/>
                             <constraint firstItem="SRY-W3-FV9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="mq1-jf-1q6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="SRY-W3-FV9" secondAttribute="bottom" constant="300" id="vtC-ML-4O4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SRY-W3-FV9" secondAttribute="trailing" id="xZl-ma-F4K"/>
@@ -52,7 +73,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Yqt-XA-ERZ"/>
                     <connections>
+                        <outlet property="overviewLabel" destination="3JX-BJ-mNl" id="d5s-aC-j15"/>
                         <outlet property="posterImageView" destination="eRO-AM-WDn" id="KwX-sl-LaW"/>
+                        <outlet property="releaseDateLabel" destination="3Mk-0T-oVa" id="Yv6-NI-j30"/>
                         <outlet property="titleLabel" destination="ROI-Ko-h2y" id="nWe-SM-nbV"/>
                     </connections>
                 </viewController>
