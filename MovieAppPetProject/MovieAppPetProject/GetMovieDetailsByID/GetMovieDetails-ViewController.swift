@@ -13,8 +13,8 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var posterImageView: UIImageView!
-    @IBOutlet weak var overviewLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet private weak var overviewLabel: UILabel!
+    @IBOutlet private weak var releaseDateLabel: UILabel!
 
     // MARK: - Variables
     var movieID: Int?
@@ -25,10 +25,10 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         updateUI()
         movieDetailsViewModel.fetchMovieDetails()
-        viewModelHasDetails()
+        setupViewModelObserver()
     }
 
-    private func viewModelHasDetails() {
+    private func setupViewModelObserver() {
         movieDetailsViewModel.didUpdateDetails = { [weak self] in
             self?.updateUI()
         }
