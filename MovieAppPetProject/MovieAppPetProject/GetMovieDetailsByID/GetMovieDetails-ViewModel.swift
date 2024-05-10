@@ -19,19 +19,19 @@ class MovieDetailsViewModel {
     }
 
     // MARK: - Computed properties
-    func originalTitle() -> String? {
+    var originalTitle: String? {
         movieDetails?.originalTitle
     }
 
-    func overview() -> String? {
+    var overview: String? {
         movieDetails?.overview
     }
 
-    func releaseDate() -> String? {
+    var releaseDate: String? {
         movieDetails.map { "Release Date: \($0.releaseDate ?? "")" }
     }
 
-    func moviePosterURL() -> URL? {
+    var moviePosterURL: URL? {
         movieDetails.flatMap { URL(string: "https://image.tmdb.org/t/p/w500\($0.moviePoster ?? "")") }
     }
 

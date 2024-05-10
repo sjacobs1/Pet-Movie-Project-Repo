@@ -35,10 +35,10 @@ class MovieDetailsViewController: UIViewController {
     }
 
     private func updateUI() {
-        titleLabel.text = movieDetailsViewModel.originalTitle()
-        overviewLabel.text = movieDetailsViewModel.overview()
-        releaseDateLabel.text = movieDetailsViewModel.releaseDate()
-        if let posterURL = movieDetailsViewModel.moviePosterURL() {
+        titleLabel.text = movieDetailsViewModel.originalTitle
+        overviewLabel.text = movieDetailsViewModel.overview
+        releaseDateLabel.text = movieDetailsViewModel.releaseDate
+        if let posterURL = movieDetailsViewModel.moviePosterURL {
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder"))
         }
     }

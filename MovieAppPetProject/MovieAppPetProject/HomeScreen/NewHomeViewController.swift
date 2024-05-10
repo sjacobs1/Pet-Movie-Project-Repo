@@ -87,7 +87,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToMovieDetails",
+        if segue.identifier == Constants.Identifiers.goToMovieDetails,
             let movieDetailsVC = segue.destination as? MovieDetailsViewController,
             let movieId = sender as? Int {
             movieDetailsVC.movieID = movieId
