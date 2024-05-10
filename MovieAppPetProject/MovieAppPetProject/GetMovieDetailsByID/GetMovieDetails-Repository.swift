@@ -8,17 +8,18 @@
 import Foundation
 
 protocol MovieDetailsRepositoryType {
-    func fetchMovieDetails(completion: @escaping (Result<MovieDetails, CustomError>) -> Void)
+    func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetails, CustomError>) -> Void)
 }
 
 class MovieDetailsRepository: MovieDetailsRepositoryType {
-    
+
     // MARK: - Variable
     private let networkManager = NetworkManager()
 
     // MARK: - Function
-    func fetchMovieDetails(completion: @escaping (Result<MovieDetails, CustomError>) -> Void) {
-        guard let apiUrl = URL(string: Constants.URLs.movieDetailsURL) else {
+    func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetails, CustomError>) -> Void) {
+        let movieDetailsURL = Constants.URLs.movieDetailsURL(movieID: movieID)
+        guard let apiUrl = URL(string: movieDetailsURL) else {
             completion(.failure(.invalidUrl))
             return
         }
