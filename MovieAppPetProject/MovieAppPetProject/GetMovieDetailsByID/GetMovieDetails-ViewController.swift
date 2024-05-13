@@ -15,10 +15,12 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var overviewLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
+    @IBOutlet private weak var runTime: UILabel!
+    @IBOutlet private weak var voteAverage: UILabel!
+    @IBOutlet private weak var status: UILabel!
 
     // MARK: - Variables
-    var movieID: Int?
-    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieID: movieID ?? 0, movieDetailsRepository: MovieDetailsRepository())
+    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository())
 
     // MARK: - Functions
     override func viewDidLoad() {
@@ -26,6 +28,10 @@ class MovieDetailsViewController: UIViewController {
         updateUI()
         movieDetailsViewModel.fetchMovieDetails()
         setupViewModelObserver()
+    }
+
+    func setMovieID(movieID: Int) {
+        movieDetailsViewModel.updateMovieID(movieID: movieID)
     }
 
     private func setupViewModelObserver() {
@@ -36,8 +42,11 @@ class MovieDetailsViewController: UIViewController {
 
     private func updateUI() {
         titleLabel.text = movieDetailsViewModel.originalTitle
-        overviewLabel.text = movieDetailsViewModel.overview
+        overviewLabel?.text = movieDetailsViewModel.overview
         releaseDateLabel.text = movieDetailsViewModel.releaseDate
+        runTime.text = movieDetailsViewModel.runTime.map { "\($0) mins" }
+        voteAverage.text = movieDetailsViewModel.voteAverage.map { "Rating: \(String(format: "%.1f", $0)) / 10" }
+        status.text = movieDetailsViewModel.status.map { "Release status: \($0)"}
         if let posterURL = movieDetailsViewModel.moviePosterURL {
             posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder"))
         }

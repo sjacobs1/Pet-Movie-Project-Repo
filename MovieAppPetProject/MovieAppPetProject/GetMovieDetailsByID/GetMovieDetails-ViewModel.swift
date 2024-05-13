@@ -11,7 +11,8 @@ class MovieDetailsViewModel {
 
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
-    private let movieID: Int
+//    private let movieID: Int
+    private var movieID: Int = 0
     var movieDetails: MovieDetails? {
         didSet {
             didUpdateDetails?()
@@ -28,19 +29,30 @@ class MovieDetailsViewModel {
     }
 
     var releaseDate: String? {
-        movieDetails.map { "Release Date: \($0.releaseDate ?? "")" }
+        movieDetails?.releaseDate
+    }
+
+    var runTime: Int? {
+        movieDetails?.runtime
     }
 
     var moviePosterURL: URL? {
         movieDetails.flatMap { URL(string: "https://image.tmdb.org/t/p/w500\($0.moviePoster ?? "")") }
     }
 
+    var voteAverage: Double? {
+        movieDetails?.voteAverage
+    }
+
+    var status: String? {
+        movieDetails?.status
+    }
+
     // MARK: - Closure
     var didUpdateDetails: (() -> Void)?
 
     // MARK: - Initializer
-    init(movieID: Int, movieDetailsRepository: MovieDetailsRepositoryType) {
-        self.movieID = movieID
+    init(movieDetailsRepository: MovieDetailsRepositoryType) {
         self.movieDetailsRepository = movieDetailsRepository
     }
 
@@ -54,5 +66,10 @@ class MovieDetailsViewModel {
                 print(error)
             }
         }
+    }
+
+    func updateMovieID(movieID: Int) {
+            self.movieID = movieID
+            fetchMovieDetails()
     }
 }
