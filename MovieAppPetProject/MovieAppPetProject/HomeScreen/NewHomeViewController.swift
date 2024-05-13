@@ -90,7 +90,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == Constants.Identifiers.goToMovieDetails,
             let movieDetailsVC = segue.destination as? MovieDetailsViewController,
             let movieId = sender as? Int {
-            movieDetailsVC.movieID = movieId
+            movieDetailsVC.setMovieID(movieID: movieId)
         }
     }
 }
