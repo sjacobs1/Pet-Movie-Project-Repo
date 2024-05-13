@@ -11,7 +11,6 @@ class MovieDetailsViewModel {
 
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
-//    private let movieID: Int
     private var movieID: Int = 0
     var movieDetails: MovieDetails? {
         didSet {
@@ -37,7 +36,7 @@ class MovieDetailsViewModel {
     }
 
     var moviePosterURL: URL? {
-        movieDetails.flatMap { URL(string: "https://image.tmdb.org/t/p/w500\($0.moviePoster ?? "")") }
+        movieDetails.flatMap { URL(string: "\(Constants.Path.moviePosterPath)\($0.moviePoster ?? "")") }
     }
 
     var voteAverage: Double? {
