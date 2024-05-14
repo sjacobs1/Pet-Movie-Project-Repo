@@ -72,6 +72,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txd-3e-xbM">
+                                                        <rect key="frame" x="310" y="177.33333333333337" width="75" height="34.333333333333343"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <connections>
+                                                            <action selector="addToWatchlistTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="D4F-xT-R3f"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -82,7 +90,10 @@
                                                     <constraint firstItem="XHc-w5-Vf2" firstAttribute="top" secondItem="SeK-wg-va9" secondAttribute="bottom" constant="5" id="BKT-If-oso"/>
                                                     <constraint firstItem="Alm-He-NWa" firstAttribute="leading" secondItem="TaB-SZ-E0q" secondAttribute="leading" constant="259" id="Bfd-3b-3xN"/>
                                                     <constraint firstItem="lhH-aJ-vTh" firstAttribute="leading" secondItem="TaB-SZ-E0q" secondAttribute="leading" id="EFI-he-TqZ"/>
+                                                    <constraint firstItem="txd-3e-xbM" firstAttribute="leading" secondItem="TaB-SZ-E0q" secondAttribute="leading" constant="310" id="Ity-NA-m0S"/>
                                                     <constraint firstItem="2Zk-6K-gHe" firstAttribute="top" secondItem="lhH-aJ-vTh" secondAttribute="bottom" constant="8" id="Iy8-OY-ExM"/>
+                                                    <constraint firstItem="txd-3e-xbM" firstAttribute="top" secondItem="XHc-w5-Vf2" secondAttribute="bottom" id="L9J-3f-efU"/>
+                                                    <constraint firstAttribute="trailing" secondItem="txd-3e-xbM" secondAttribute="trailing" constant="8" id="OMA-v3-oQX"/>
                                                     <constraint firstItem="Alm-He-NWa" firstAttribute="leading" secondItem="2Zk-6K-gHe" secondAttribute="trailing" constant="158" id="UU4-Eb-hKc"/>
                                                     <constraint firstItem="SeK-wg-va9" firstAttribute="leading" secondItem="TaB-SZ-E0q" secondAttribute="leading" constant="8" id="Vf1-fb-v9x"/>
                                                     <constraint firstAttribute="trailing" secondItem="lhH-aJ-vTh" secondAttribute="trailing" id="XKR-WJ-oU2"/>

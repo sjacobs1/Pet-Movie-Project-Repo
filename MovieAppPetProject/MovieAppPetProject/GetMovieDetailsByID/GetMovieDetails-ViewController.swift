@@ -19,6 +19,11 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var voteAverage: UILabel!
     @IBOutlet private weak var status: UILabel!
 
+    // MARK: - IBAction
+    @IBAction func addToWatchlistTapped(_ sender: UIButton) {
+        movieDetailsViewModel.addToWatchlist()
+    }
+
     // MARK: - Variables
     private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository())
 
