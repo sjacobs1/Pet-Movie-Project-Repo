@@ -10,7 +10,7 @@ import UIKit
 class WatchlistScreenViewController: UIViewController {
 
     // MARK: - Variable
-    private let watchlistViewModel = WatchlistViewModel()
+    private let watchlistViewModel = WatchlistViewModel(coreDataManager: CoreDataManager())
 
     // MARK: - Function
     override func viewDidLoad() {

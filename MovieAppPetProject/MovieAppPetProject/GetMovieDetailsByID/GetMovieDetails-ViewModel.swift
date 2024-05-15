@@ -12,7 +12,7 @@ class MovieDetailsViewModel {
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
     private let coreDataManager = CoreDataManager()
-    private var movieID: Int = 0
+    private var movieID = 0
     var movieDetails: MovieDetails? {
         didSet {
             didUpdateDetails?()

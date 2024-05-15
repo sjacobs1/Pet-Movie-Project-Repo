@@ -20,9 +20,7 @@ class CoreDataManager {
     // MARK: - Functions
     func getAllWatchlistItems() -> [WatchList] {
         do {
-            guard let context = context else {
-                throw CoreDataError.noContext
-            }
+            guard let context = context else { throw CoreDataError.noContext }
             return try context.fetch(WatchList.fetchRequest())
         } catch {
             print("Error fetching watchlist items: \(error)")
@@ -32,10 +30,7 @@ class CoreDataManager {
 
     func createItem(movieDetails: MovieDetails) {
         do {
-            guard let context = context else {
-                throw CoreDataError.noContext
-            }
-
+            guard let context = context else { throw CoreDataError.noContext }
             let newItem = WatchList(context: context)
             newItem.originalTitle = movieDetails.originalTitle
             try context.save()

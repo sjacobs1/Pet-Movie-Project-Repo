@@ -10,13 +10,14 @@ import Foundation
 class WatchlistViewModel {
 
     // MARK: - Variable
-    private let coreDataManager = CoreDataManager()
+    private let coreDataManager: CoreDataManager
+
+    init(coreDataManager: CoreDataManager) {
+        self.coreDataManager = coreDataManager
+    }
 
     // MARK: - Function
-    func fetchAndDisplayWatchlistItems() {
-        let watchlistItems = coreDataManager.getAllWatchlistItems()
-        for item in watchlistItems {
-            print("Original Title: \(item.originalTitle ?? "N/A")")
-        }
+    func fetchAndDisplayWatchlistItems() -> [WatchList] {
+        coreDataManager.getAllWatchlistItems()
     }
 }
