@@ -11,7 +11,6 @@ class MovieDetailsViewModel {
 
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
-    private let coreDataManager = CoreDataManager()
     private var movieID = 0
     var movieDetails: MovieDetails? {
         didSet {
@@ -75,6 +74,6 @@ class MovieDetailsViewModel {
 
     func addToWatchlist() {
         guard let movieDetails = movieDetails else { return }
-        coreDataManager.createItem(movieDetails: movieDetails)
+        movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
     }
 }

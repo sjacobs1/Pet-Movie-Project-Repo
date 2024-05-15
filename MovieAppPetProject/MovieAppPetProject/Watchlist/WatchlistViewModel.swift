@@ -10,14 +10,15 @@ import Foundation
 class WatchlistViewModel {
 
     // MARK: - Variable
-    private let coreDataManager: CoreDataManager
+    private let watchlistRepository: WatchlistRepositoryType
 
-    init(coreDataManager: CoreDataManager) {
-        self.coreDataManager = coreDataManager
+    // MARK: - Initializer
+    init(watchlistRepository: WatchlistRepositoryType) {
+        self.watchlistRepository = watchlistRepository
     }
 
     // MARK: - Function
     func fetchAndDisplayWatchlistItems() -> [WatchList] {
-        coreDataManager.getAllWatchlistItems()
+        watchlistRepository.getAllWatchlistItems()
     }
 }

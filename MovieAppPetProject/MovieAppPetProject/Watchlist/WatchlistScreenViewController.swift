@@ -10,11 +10,11 @@ import UIKit
 class WatchlistScreenViewController: UIViewController {
 
     // MARK: - Variable
-    private let watchlistViewModel = WatchlistViewModel(coreDataManager: CoreDataManager())
+    private lazy var watchlistViewModel = WatchlistViewModel(watchlistRepository: WatchlistRepository(coreDataManager: CoreDataManager()))
 
     // MARK: - Function
     override func viewDidLoad() {
         super.viewDidLoad()
-        watchlistViewModel.fetchAndDisplayWatchlistItems() 
+        watchlistViewModel.fetchAndDisplayWatchlistItems()
     }
 }
