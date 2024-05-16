@@ -14,14 +14,12 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     @IBOutlet private weak var passwordInput: UITextField!
 
     // MARK: - Variable
-    private var loginViewModel: LoginViewModel!
+    private lazy var loginViewModel = LoginViewModel(delegate: self)
 
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginViewModel = LoginViewModel(delegate: self)
-        usernameInput.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        passwordInput.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        setUpPlaceHolderText()
     }
 
     @IBAction private func loginTapped(_ sender: Any) {
@@ -37,6 +35,11 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
 
     func displayError(message: String) {
         showAlert(alertTitle: "Incorrect Credentials", alertMessage: message)
+    }
+    
+    private func setUpPlaceHolderText() {
+        usernameInput.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        passwordInput.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
     }
 
     private func showAlert(alertTitle: String, alertMessage: String) {
