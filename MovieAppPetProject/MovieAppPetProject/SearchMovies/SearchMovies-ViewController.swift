@@ -11,6 +11,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 
     // MARK: - IBOutlets
     @IBOutlet private weak var searchMovieTableView: UITableView!
+    @IBOutlet private weak var searchMovie: UISearchBar!
 
     // MARK: - Variables
     private lazy var searchMoviesViewModel = SearchMoviesViewModel(searchMoviesRepository: SearchMoviesRepository(), delegate: self)
@@ -51,7 +52,15 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMovie = searchMoviesViewModel.searchedMovies?[indexPath.row]
-        performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie)
+        performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie?.movieID)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Identifiers.goToMovieDetails,
+            let movieDetailsViewCcontroller = segue.destination as? MovieDetailsViewController,
+            let movieId = sender as? Int {
+            movieDetailsViewCcontroller.setMovieID(movieID: movieId)
+        }
     }
 
     private func setupTableView() {

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,11 +18,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-hT-vfd">
-                                <rect key="frame" x="0.0" y="120" width="393" height="698"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="yZL-03-lsW">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="Y6W-OH-hqX" id="fwQ-KB-znq"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseCell" rowHeight="129" id="2Zo-xY-Jy8" customClass="SearchMovieTableViewCell" customModule="MovieAppPetProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="129"/>
+                                        <rect key="frame" x="0.0" y="106" width="393" height="129"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2Zo-xY-Jy8" id="tf3-gq-qLh">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="129"/>
@@ -30,27 +39,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yZL-03-lsW">
-                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="fwQ-KB-znq"/>
-                                </connections>
-                            </searchBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0J-sP-7bh">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="Search" id="n7V-HI-dg6"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="cuB-hT-vfd" firstAttribute="top" secondItem="h0J-sP-7bh" secondAttribute="bottom" id="0eq-dg-L7O"/>
                             <constraint firstItem="cuB-hT-vfd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3KJ-WM-rT8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cuB-hT-vfd" secondAttribute="bottom" id="7ht-sF-DS7"/>
-                            <constraint firstItem="cuB-hT-vfd" firstAttribute="top" secondItem="yZL-03-lsW" secondAttribute="bottom" constant="5" id="Bz9-yu-UOg"/>
-                            <constraint firstItem="yZL-03-lsW" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qGd-44-PSu"/>
-                            <constraint firstItem="yZL-03-lsW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rYn-R1-0wX"/>
+                            <constraint firstItem="h0J-sP-7bh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="baS-KQ-Wdo"/>
+                            <constraint firstItem="h0J-sP-7bh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cDI-eC-Rbx"/>
+                            <constraint firstItem="h0J-sP-7bh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="mu6-DL-dtY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cuB-hT-vfd" secondAttribute="trailing" id="x57-1c-KFu"/>
-                            <constraint firstItem="yZL-03-lsW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="xPA-RR-zsp"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchMovie" destination="yZL-03-lsW" id="Wir-KX-87b"/>
                         <outlet property="searchMovieTableView" destination="cuB-hT-vfd" id="rmt-gG-yvQ"/>
                         <segue destination="bhS-sz-DdE" kind="show" identifier="GoToMovieDetails" id="hKB-c6-435"/>
                     </connections>

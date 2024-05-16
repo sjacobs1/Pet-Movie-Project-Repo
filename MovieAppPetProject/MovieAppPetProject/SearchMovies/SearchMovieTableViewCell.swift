@@ -9,21 +9,12 @@ import UIKit
 
 class SearchMovieTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var nibCell: UIView!
-    @IBOutlet weak var posterCover: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    // MARK: - IBOutlets
+    @IBOutlet private weak var nibCell: UIView!
+    @IBOutlet private weak var posterCover: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    // MARK: - Function
     func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?) {
         if let imageURL = imageURL {
             posterCover?.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
