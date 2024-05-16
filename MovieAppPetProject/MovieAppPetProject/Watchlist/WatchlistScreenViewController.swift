@@ -30,7 +30,7 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistTableViewCell", for: indexPath) as? WatchlistTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.savedMovieTableViewCell, for: indexPath) as? WatchlistTableViewCell else {
             return UITableViewCell()
         }
 
