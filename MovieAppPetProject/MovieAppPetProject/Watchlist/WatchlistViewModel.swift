@@ -12,6 +12,11 @@ class WatchlistViewModel {
     // MARK: - Variable
     private let watchlistRepository: WatchlistRepositoryType
 
+    // MARK: - Computed Variable
+    var savedMoviesCount: Int {
+        watchlistRepository.getAllWatchlistItems().count
+    }
+
     // MARK: - Initializer
     init(watchlistRepository: WatchlistRepositoryType) {
         self.watchlistRepository = watchlistRepository
@@ -20,5 +25,9 @@ class WatchlistViewModel {
     // MARK: - Function
     func fetchAndDisplayWatchlistItems() -> [WatchList] {
         watchlistRepository.getAllWatchlistItems()
+    }
+
+    func deleteItem(item: WatchList) {
+        watchlistRepository.deleteItem(item: item)
     }
 }

@@ -32,9 +32,20 @@ class CoreDataManager {
             guard let context = context else { throw CoreDataError.noContext }
             let newItem = WatchList(context: context)
             newItem.originalTitle = movieDetails.originalTitle
+            newItem.moviePoster = movieDetails.moviePoster
             try context.save()
         } catch {
             print("Error creating item: \(error)")
+        }
+    }
+
+    func deleteItem(item: WatchList) {
+        guard let context = context else { return }
+        context.delete(item)
+        do {
+            try context.save()
+        } catch {
+            print("Error deleting item: \(error)")
         }
     }
 }

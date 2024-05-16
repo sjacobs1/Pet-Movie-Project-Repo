@@ -48,6 +48,8 @@
 		D8D285522BF3A7080020F370 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D285512BF3A7080020F370 /* CoreDataManager.swift */; };
 		D8D285542BF3A7930020F370 /* WatchlistScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8D285532BF3A7930020F370 /* WatchlistScreen.storyboard */; };
 		D8D285562BF4D8720020F370 /* WatchlistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D285552BF4D8720020F370 /* WatchlistRepository.swift */; };
+		D8D285592BF5E8FB0020F370 /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D285572BF5E8FB0020F370 /* WatchlistTableViewCell.swift */; };
+		D8D2855A2BF5E8FB0020F370 /* WatchlistTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8D285582BF5E8FB0020F370 /* WatchlistTableViewCell.xib */; };
 		D8D403452BC955A6009FAE0F /* NewHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D403442BC955A6009FAE0F /* NewHomeViewController.swift */; };
 		D8D403472BC95630009FAE0F /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D403462BC95630009FAE0F /* NewTableViewCell.swift */; };
 		D8DC6F462BCCFD1D00FF4B61 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8DC6F452BCCFD1D00FF4B61 /* Login.storyboard */; };
@@ -109,6 +111,8 @@
 		D8D285512BF3A7080020F370 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		D8D285532BF3A7930020F370 /* WatchlistScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WatchlistScreen.storyboard; sourceTree = "<group>"; };
 		D8D285552BF4D8720020F370 /* WatchlistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistRepository.swift; sourceTree = "<group>"; };
+		D8D285572BF5E8FB0020F370 /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
+		D8D285582BF5E8FB0020F370 /* WatchlistTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistTableViewCell.xib; sourceTree = "<group>"; };
 		D8D403442BC955A6009FAE0F /* NewHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeViewController.swift; sourceTree = "<group>"; };
 		D8D403462BC95630009FAE0F /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		D8DC6F452BCCFD1D00FF4B61 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				D8D2854F2BF3A20E0020F370 /* WatchlistViewModel.swift */,
 				D8D285552BF4D8720020F370 /* WatchlistRepository.swift */,
 				D8D285532BF3A7930020F370 /* WatchlistScreen.storyboard */,
+				D8D285572BF5E8FB0020F370 /* WatchlistTableViewCell.swift */,
+				D8D285582BF5E8FB0020F370 /* WatchlistTableViewCell.xib */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				D81618622BBBD42000644A0B /* Main.storyboard in Resources */,
 				D8FE9F002BCFC6AC00C9BDC8 /* SearchMovieTableViewCell.xib in Resources */,
 				D80C32882BC66ADB00CCE1A0 /* SearchMovieScreen.storyboard in Resources */,
+				D8D2855A2BF5E8FB0020F370 /* WatchlistTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D885DCD62BC5148D00C2CFBE /* UpcomingMovies-Model.swift in Sources */,
+				D8D285592BF5E8FB0020F370 /* WatchlistTableViewCell.swift in Sources */,
 				D80105622BE7DBD10079C2BB /* LoginViewModel.swift in Sources */,
 				D8D285502BF3A20E0020F370 /* WatchlistViewModel.swift in Sources */,
 				D8A8B9402BC3F99900EB2D13 /* GetMovieDetails-Repository.swift in Sources */,

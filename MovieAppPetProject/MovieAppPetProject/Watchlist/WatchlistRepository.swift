@@ -9,6 +9,7 @@ import Foundation
 
 protocol WatchlistRepositoryType {
     func getAllWatchlistItems() -> [WatchList]
+    func deleteItem(item: WatchList)
 }
 
 class WatchlistRepository: WatchlistRepositoryType {
@@ -23,5 +24,9 @@ class WatchlistRepository: WatchlistRepositoryType {
     // MARK: - Function
     func getAllWatchlistItems() -> [WatchList] {
         coreDataManager.fetchAllWatchlistItems()
+    }
+
+    func deleteItem(item: WatchList) {
+        coreDataManager.deleteItem(item: item)
     }
 }
