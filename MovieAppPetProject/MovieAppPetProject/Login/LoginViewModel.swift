@@ -26,6 +26,10 @@ class LoginViewModel {
 
     // MARK: - Function
     func attemptLogin(username: String, password: String) {
+        if username.isEmpty || password.isEmpty {
+            delegate?.displayError(message: "Username and password required.")
+            return
+        }
         if login(username: username, password: password) {
             delegate?.navigateToHomeScreen()
         } else {
