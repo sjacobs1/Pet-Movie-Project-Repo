@@ -14,10 +14,13 @@ class SearchMovieTableViewCell: UITableViewCell {
     @IBOutlet private weak var posterCover: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
 
+    // MARK: - Variable
+    private lazy var imageLoader = APIImageLoader()
+
     // MARK: - Function
     func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?) {
         if let imageURL = imageURL {
-            posterCover?.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
+            imageLoader.loadImage(from: imageURL, imageView: posterCover)
         } else {
             posterCover?.image = placeholderImage
         }
