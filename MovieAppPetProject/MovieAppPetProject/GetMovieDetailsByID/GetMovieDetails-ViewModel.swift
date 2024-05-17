@@ -49,7 +49,7 @@ class MovieDetailsViewModel {
     }
 
     // MARK: - Initializer
-    init(movieDetailsRepository: MovieDetailsRepositoryType, delegate: MovieDetailsViewModelDelegate?) {
+    init(movieDetailsRepository: MovieDetailsRepositoryType, delegate: MovieDetailsViewModelType?) {
         self.movieDetailsRepository = movieDetailsRepository
         self.delegate = delegate
     }

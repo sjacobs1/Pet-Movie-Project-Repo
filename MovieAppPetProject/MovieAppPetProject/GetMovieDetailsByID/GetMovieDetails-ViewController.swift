@@ -39,7 +39,7 @@ class MovieDetailsViewController: UIViewController {
     }
 }
 
-extension MovieDetailsViewController: MovieDetailsViewModelDelegate {
+extension MovieDetailsViewController: MovieDetailsViewModelType {
     func didUpdateMovieDetails() {
             DispatchQueue.main.async {
                 self.updateUI()
