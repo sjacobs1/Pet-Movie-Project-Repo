@@ -11,7 +11,7 @@ class MovieDetailsViewModel {
 
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
-    private var movieID: Int = 0
+    private var movieID = 0
     var movieDetails: MovieDetails? {
         didSet {
             didUpdateDetails?()
@@ -68,7 +68,12 @@ class MovieDetailsViewModel {
     }
 
     func updateMovieID(movieID: Int) {
-            self.movieID = movieID
-            fetchMovieDetails()
+        self.movieID = movieID
+        fetchMovieDetails()
+    }
+
+    func addToWatchlist() {
+        guard let movieDetails = movieDetails else { return }
+        movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
     }
 }

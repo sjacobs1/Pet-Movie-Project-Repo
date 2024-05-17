@@ -9,12 +9,19 @@ import Foundation
 
 protocol MovieDetailsRepositoryType {
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetails, CustomError>) -> Void)
+    func addToWatchlist(movieDetails: MovieDetails)
 }
 
 class MovieDetailsRepository: MovieDetailsRepositoryType {
 
     // MARK: - Variable
     private let networkManager = NetworkManager()
+    private let coreDataManager: CoreDataManager
+
+    // MARK: - Initializer
+    init(coreDataManager: CoreDataManager) {
+        self.coreDataManager = coreDataManager
+    }
 
     // MARK: - Function
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetails, CustomError>) -> Void) {
@@ -27,5 +34,9 @@ class MovieDetailsRepository: MovieDetailsRepositoryType {
         networkManager.request(path: apiUrl, model: MovieDetails.self) { result in
             completion(result)
         }
+    }
+
+    func addToWatchlist(movieDetails: MovieDetails) {
+        coreDataManager.createItem(movieDetails: movieDetails)
     }
 }
