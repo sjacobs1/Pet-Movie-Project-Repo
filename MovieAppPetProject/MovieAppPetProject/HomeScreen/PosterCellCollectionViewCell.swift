@@ -8,12 +8,12 @@
 import UIKit
 
 class PosterCellCollectionViewCell: UICollectionViewCell {
-    
-    
-  
-    @IBOutlet weak var posterCover: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    
+
+    // MARK: - IBOutlets
+    @IBOutlet private weak var posterCover: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+
+    // MARK: - Function
     func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?) {
         if let imageURL = imageURL {
             posterCover?.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
@@ -21,7 +21,5 @@ class PosterCellCollectionViewCell: UICollectionViewCell {
             posterCover.image = placeholderImage
         }
         titleLabel.text = title
-        
     }
-    
 }
