@@ -10,6 +10,9 @@ import Foundation
 protocol MovieDetailsViewModelType {
     func fetchMovieDetails()
 }
+protocol MovieDetailsView: AnyObject {
+    func updateUI()
+}
 
 class MovieDetailsViewModel: MovieDetailsViewModelType {
 

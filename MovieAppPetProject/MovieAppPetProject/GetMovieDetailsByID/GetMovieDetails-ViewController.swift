@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol MovieDetailsView: AnyObject {
-    func updateUI()
-}
-
 class MovieDetailsViewController: UIViewController {
 
     // MARK: - IBOutlets
