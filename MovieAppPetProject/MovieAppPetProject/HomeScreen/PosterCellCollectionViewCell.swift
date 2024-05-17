@@ -15,7 +15,7 @@ class PosterCellCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Function
     func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?) {
-        if let imageURL = imageURL {
+        if let imageURL {
             posterCover?.sd_setImage(with: imageURL, placeholderImage: placeholderImage)
         } else {
             posterCover.image = placeholderImage
