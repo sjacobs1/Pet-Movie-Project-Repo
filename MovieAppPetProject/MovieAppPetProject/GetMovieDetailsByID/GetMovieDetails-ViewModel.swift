@@ -7,16 +7,17 @@
 
 import Foundation
 
-class MovieDetailsViewModel {
+protocol MovieDetailsViewModelType {
+    func fetchMovieDetails()
+}
+
+class MovieDetailsViewModel: MovieDetailsViewModelType {
 
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
     private var movieID = 0
-    var movieDetails: MovieDetails? {
-        didSet {
-            didUpdateDetails?()
-        }
-    }
+    var movieDetails: MovieDetails?
+    weak var view: MovieDetailsView?
 
     // MARK: - Computed properties
     var originalTitle: String? {
@@ -47,9 +48,6 @@ class MovieDetailsViewModel {
         movieDetails?.status
     }
 
-    // MARK: - Closure
-    var didUpdateDetails: (() -> Void)?
-
     // MARK: - Initializer
     init(movieDetailsRepository: MovieDetailsRepositoryType) {
         self.movieDetailsRepository = movieDetailsRepository
@@ -61,6 +59,7 @@ class MovieDetailsViewModel {
             switch result {
             case .success(let details):
                 self?.movieDetails = details
+                self?.view?.updateUI()
             case .failure(let error):
                 print(error)
             }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MovieDetailsView: AnyObject {
+    func updateUI()
+}
+
 class MovieDetailsViewController: UIViewController {
 
     // MARK: - IBOutlets
@@ -30,22 +34,17 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
         movieDetailsViewModel.fetchMovieDetails()
-        setupViewModelObserver()
+        movieDetailsViewModel.view = self
     }
 
     func setMovieID(movieID: Int) {
         movieDetailsViewModel.updateMovieID(movieID: movieID)
     }
+}
 
-    private func setupViewModelObserver() {
-        movieDetailsViewModel.didUpdateDetails = { [weak self] in
-            self?.updateUI()
-        }
-    }
-
-    private func updateUI() {
+extension MovieDetailsViewController: MovieDetailsView {
+    func updateUI() {
         titleLabel.text = movieDetailsViewModel.originalTitle
         overviewLabel?.text = movieDetailsViewModel.overview
         releaseDateLabel.text = movieDetailsViewModel.releaseDate
