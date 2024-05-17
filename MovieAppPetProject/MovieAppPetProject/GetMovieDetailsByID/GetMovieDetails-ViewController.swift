@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class MovieDetailsViewController: UIViewController {
 
@@ -26,6 +25,7 @@ class MovieDetailsViewController: UIViewController {
 
     // MARK: - Variables
     private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository(coreDataManager: CoreDataManager()))
+    private lazy var imageLoader = APIImageLoader()
 
     // MARK: - Functions
     override func viewDidLoad() {
@@ -52,8 +52,9 @@ class MovieDetailsViewController: UIViewController {
         runTime.text = movieDetailsViewModel.runTime.map { "\($0) mins" }
         voteAverage.text = movieDetailsViewModel.voteAverage.map { "Rating: \(String(format: "%.1f", $0)) / 10" }
         status.text = movieDetailsViewModel.status.map { "Release status: \($0)"}
+
         if let posterURL = movieDetailsViewModel.moviePosterURL {
-            posterImageView.sd_setImage(with: posterURL, placeholderImage: UIImage(named: "placeholder"))
+            imageLoader.loadImage(from: posterURL, imageView: posterImageView)
         }
     }
 }
