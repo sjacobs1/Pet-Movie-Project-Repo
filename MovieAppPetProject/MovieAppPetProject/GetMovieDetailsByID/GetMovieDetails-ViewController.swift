@@ -24,14 +24,14 @@ class MovieDetailsViewController: UIViewController {
     }
 
     // MARK: - Variables
-    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository(coreDataManager: CoreDataManager()))
+    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository(coreDataManager: CoreDataManager()), delegate: self)
     private lazy var imageLoader = APIImageLoader()
 
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         movieDetailsViewModel.fetchMovieDetails()
-        movieDetailsViewModel.view = self
+        updateUI()
     }
 
     func setMovieID(movieID: Int) {
@@ -39,8 +39,14 @@ class MovieDetailsViewController: UIViewController {
     }
 }
 
-extension MovieDetailsViewController: MovieDetailsView {
-    func updateUI() {
+extension MovieDetailsViewController: MovieDetailsViewModelDelegate {
+    func didUpdateMovieDetails() {
+            DispatchQueue.main.async {
+                self.updateUI()
+            }
+        }
+
+    private func updateUI() {
         titleLabel.text = movieDetailsViewModel.originalTitle
         overviewLabel?.text = movieDetailsViewModel.overview
         releaseDateLabel.text = movieDetailsViewModel.releaseDate
