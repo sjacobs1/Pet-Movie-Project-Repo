@@ -15,7 +15,7 @@ struct MovieDetails: Codable {
     let runtime: Int?
     let status: String?
     let voteAverage: Double?
-    
+
     enum CodingKeys: String, CodingKey {
         case overview, runtime, status
         case originalTitle = "original_title"
