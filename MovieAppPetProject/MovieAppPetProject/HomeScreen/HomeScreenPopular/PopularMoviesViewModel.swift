@@ -1,5 +1,5 @@
 //
-//  PopularMovies-ViewModel.swift
+//  PopularMoviesViewModel.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/09.

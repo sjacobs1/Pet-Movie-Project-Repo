@@ -1,5 +1,5 @@
 //
-//  SearchMovies-Repository.swift
+//  SearchMoviesRepository.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/10.

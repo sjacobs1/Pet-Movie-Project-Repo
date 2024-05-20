@@ -1,5 +1,5 @@
 //
-//  UpcomingMovies-Model.swift
+//  TopRatedModel.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/09.
@@ -7,17 +7,11 @@
 
 import Foundation
 
-protocol MovieData {
-    var movieID: Int? { get }
-    var originalTitle: String? { get }
-    var moviePoster: String? { get }
+struct TopRatedMovies: Codable {
+    let results: [TopRatedMoviesResults]?
 }
 
-struct UpcomingMovies: Codable {
-    let results: [UpcomingMoviesResults]?
-}
-
-struct UpcomingMoviesResults: Codable, MovieData {
+struct TopRatedMoviesResults: Codable, MovieData {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?

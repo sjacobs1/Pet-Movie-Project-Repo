@@ -1,5 +1,5 @@
 //
-//  NowPlaying-ViewModel.swift
+//  NowPlayingViewModel.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/08.
