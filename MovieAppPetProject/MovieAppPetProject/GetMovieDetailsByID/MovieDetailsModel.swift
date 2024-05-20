@@ -15,14 +15,12 @@ struct MovieDetails: Codable {
     let runtime: Int?
     let status: String?
     let voteAverage: Double?
-    
+
     enum CodingKeys: String, CodingKey {
+        case overview, runtime, status
         case originalTitle = "original_title"
-        case overview
         case moviePoster = "poster_path"
         case releaseDate = "release_date"
-        case runtime
-        case status
         case voteAverage = "vote_average"
     }
 }
