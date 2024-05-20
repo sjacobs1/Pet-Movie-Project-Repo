@@ -7,16 +7,17 @@
 
 import Foundation
 
+protocol MovieDetailsViewModelType: AnyObject {
+    func didUpdateMovieDetails()
+}
+
 class MovieDetailsViewModel {
 
     // MARK: - Variables
     private let movieDetailsRepository: MovieDetailsRepositoryType
     private var movieID = 0
-    var movieDetails: MovieDetails? {
-        didSet {
-            didUpdateDetails?()
-        }
-    }
+    var movieDetails: MovieDetails?
+    weak var delegate: MovieDetailsViewModelType?
 
     // MARK: - Computed properties
     var originalTitle: String? {
@@ -47,12 +48,10 @@ class MovieDetailsViewModel {
         movieDetails?.status
     }
 
-    // MARK: - Closure
-    var didUpdateDetails: (() -> Void)?
-
     // MARK: - Initializer
-    init(movieDetailsRepository: MovieDetailsRepositoryType) {
+    init(movieDetailsRepository: MovieDetailsRepositoryType, delegate: MovieDetailsViewModelType?) {
         self.movieDetailsRepository = movieDetailsRepository
+        self.delegate = delegate
     }
 
     // MARK: - Functions
@@ -61,6 +60,7 @@ class MovieDetailsViewModel {
             switch result {
             case .success(let details):
                 self?.movieDetails = details
+                self?.delegate?.didUpdateMovieDetails()
             case .failure(let error):
                 print(error)
             }
