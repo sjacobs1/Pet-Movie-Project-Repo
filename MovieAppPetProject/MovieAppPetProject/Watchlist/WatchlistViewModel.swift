@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WatchlistViewModelType: AnyObject {
-    func didUpdateWatchlist()
+    func updateWatchlist()
 }
 
 class WatchlistViewModel {
@@ -20,7 +20,7 @@ class WatchlistViewModel {
 
     // MARK: - Computed Variable
     var savedMoviesCount: Int {
-        watchlistRepository.getAllWatchlistItems().count
+        watchlistItems.count
     }
 
     // MARK: - Initializer
@@ -31,8 +31,8 @@ class WatchlistViewModel {
 
     // MARK: - Function
     func fetchAndDisplayWatchlistItems() {
-        watchlistItems = watchlistRepository.getAllWatchlistItems()
-        delegate?.didUpdateWatchlist()
+        watchlistItems = watchlistRepository.fetchAllWatchlistItems()
+        delegate?.updateWatchlist()
     }
 
     func deleteItem(item: WatchList) {

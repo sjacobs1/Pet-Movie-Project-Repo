@@ -16,14 +16,9 @@ class WatchlistScreenViewController: UIViewController {
     private lazy var watchlistViewModel = WatchlistViewModel(watchlistRepository: WatchlistRepository(coreDataManager: CoreDataManager()), delegate: self)
 
     // MARK: - Functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTableView()
-        watchlistViewModel.fetchAndDisplayWatchlistItems()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupTableView()
         watchlistViewModel.fetchAndDisplayWatchlistItems()
     }
 }
@@ -55,7 +50,7 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
 }
 
 extension WatchlistScreenViewController: WatchlistViewModelType {
-    func didUpdateWatchlist() {
+    func updateWatchlist() {
         watchlistTableView.reloadData()
     }
 }
