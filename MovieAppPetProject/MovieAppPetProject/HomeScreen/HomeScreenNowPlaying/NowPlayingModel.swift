@@ -1,21 +1,21 @@
 //
-//  PopularMovies-Model.swift
+//  NowPlayingModel.swift
 //  MovieAppPetProject
 //
-//  Created by Sebastian Jacobs on 2024/04/09.
+//  Created by Sebastian Jacobs on 2024/04/08.
 //
 
 import Foundation
 
-struct PopularMovies: Codable {
-    let results: [PopularMovieResults]?
+struct NowPlaying: Codable {
+    let results: [NowPlayingResults]?
 }
 
-struct PopularMovieResults: Codable, MovieData {
+struct NowPlayingResults: Codable, MovieData {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case movieID = "id"
         case originalTitle = "original_title"

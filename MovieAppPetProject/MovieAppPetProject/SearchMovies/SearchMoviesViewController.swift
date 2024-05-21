@@ -1,5 +1,5 @@
 //
-//  SearchMovies-ViewController.swift
+//  SearchMoviesViewController.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/10.
