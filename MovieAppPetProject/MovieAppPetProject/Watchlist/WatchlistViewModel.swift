@@ -7,9 +7,15 @@
 
 import Foundation
 
+protocol WatchlistViewModelType: AnyObject {
+    func didUpdateWatchlist()
+}
+
 class WatchlistViewModel {
 
     // MARK: - Variable
+    var watchlistItems: [WatchList] = []
+    weak var delegate: WatchlistViewModelType?
     private let watchlistRepository: WatchlistRepositoryType
 
     // MARK: - Computed Variable
@@ -18,16 +24,19 @@ class WatchlistViewModel {
     }
 
     // MARK: - Initializer
-    init(watchlistRepository: WatchlistRepositoryType) {
+    init(watchlistRepository: WatchlistRepositoryType, delegate: WatchlistViewModelType) {
         self.watchlistRepository = watchlistRepository
+        self.delegate = delegate
     }
 
     // MARK: - Function
-    func fetchAndDisplayWatchlistItems() -> [WatchList] {
-        watchlistRepository.getAllWatchlistItems()
+    func fetchAndDisplayWatchlistItems() {
+        watchlistItems = watchlistRepository.getAllWatchlistItems()
+        delegate?.didUpdateWatchlist()
     }
 
     func deleteItem(item: WatchList) {
         watchlistRepository.deleteItem(item: item)
+        fetchAndDisplayWatchlistItems()
     }
 }

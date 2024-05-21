@@ -13,12 +13,17 @@ class WatchlistScreenViewController: UIViewController {
     @IBOutlet private weak var watchlistTableView: UITableView!
 
     // MARK: - Variable
-    private lazy var watchlistViewModel = WatchlistViewModel(watchlistRepository: WatchlistRepository(coreDataManager: CoreDataManager()))
+    private lazy var watchlistViewModel = WatchlistViewModel(watchlistRepository: WatchlistRepository(coreDataManager: CoreDataManager()), delegate: self)
 
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        watchlistViewModel.fetchAndDisplayWatchlistItems()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         watchlistViewModel.fetchAndDisplayWatchlistItems()
     }
 }
@@ -34,9 +39,9 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
             return UITableViewCell()
         }
 
-        let watchlistItems = watchlistViewModel.fetchAndDisplayWatchlistItems()
-        let watchlistItem = watchlistItems[indexPath.row]
+        let watchlistItem = watchlistViewModel.watchlistItems[indexPath.row]
         cell.configure(with: watchlistItem.originalTitle, item: watchlistItem)
+        cell.delegate = self
 
         return cell
     }
@@ -46,5 +51,17 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
         watchlistTableView.register(nib, forCellReuseIdentifier: Constants.Identifiers.savedMovieTableViewCell)
         watchlistTableView.dataSource = self
         watchlistTableView.delegate = self
+    }
+}
+
+extension WatchlistScreenViewController: WatchlistViewModelType {
+    func didUpdateWatchlist() {
+        watchlistTableView.reloadData()
+    }
+}
+
+extension WatchlistScreenViewController: WatchlistTableViewCellType {
+    func didRemoveItem(item: WatchList) {
+        watchlistViewModel.deleteItem(item: item)
     }
 }
