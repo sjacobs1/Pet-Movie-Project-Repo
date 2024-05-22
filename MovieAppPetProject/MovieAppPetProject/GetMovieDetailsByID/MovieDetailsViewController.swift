@@ -41,10 +41,16 @@ class MovieDetailsViewController: UIViewController {
 
 extension MovieDetailsViewController: MovieDetailsViewModelType {
     func didUpdateMovieDetails() {
-            DispatchQueue.main.async {
-                self.updateUI()
-            }
+        DispatchQueue.main.async {
+            self.updateUI()
         }
+    }
+
+    func displayError(with message: String) {
+        let alert = UIAlertController(title: "Already Saved!", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
     private func updateUI() {
         titleLabel.text = movieDetailsViewModel.originalTitle

@@ -9,6 +9,7 @@ import Foundation
 
 protocol MovieDetailsViewModelType: AnyObject {
     func didUpdateMovieDetails()
+    func displayError(with message: String)
 }
 
 class MovieDetailsViewModel {
@@ -73,7 +74,11 @@ class MovieDetailsViewModel {
     }
 
     func addToWatchlist() {
-        guard let movieDetails = movieDetails else { return }
-        movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
+        guard let movieDetails = movieDetails, let originalTitle = movieDetails.originalTitle else { return }
+        if movieDetailsRepository.isMovieSaved(movieTitle: originalTitle) {
+            delegate?.displayError(with: "Movie is already in the watchlist.")
+        } else {
+            movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
+        }
     }
 }
