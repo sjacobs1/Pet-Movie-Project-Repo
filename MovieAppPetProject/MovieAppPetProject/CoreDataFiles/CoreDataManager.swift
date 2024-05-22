@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK: - Enum
 enum CoreDataError: Error {
@@ -46,6 +47,21 @@ class CoreDataManager {
             try context.save()
         } catch {
             print("Error deleting item: \(error)")
+        }
+    }
+}
+
+// MARK: - CoreDataManager Extension
+extension CoreDataManager {
+    func isMovieSaved(movieTitle: String) -> Bool {
+        do {
+            guard let context = context else { throw CoreDataError.noContext }
+            let fetchRequest: NSFetchRequest<WatchList> = WatchList.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "originalTitle == %@", movieTitle)
+            let items = try context.fetch(fetchRequest)
+            return !items.isEmpty
+        } catch {
+            return false
         }
     }
 }

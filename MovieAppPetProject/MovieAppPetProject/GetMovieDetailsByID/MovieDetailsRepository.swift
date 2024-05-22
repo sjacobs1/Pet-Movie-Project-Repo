@@ -10,6 +10,7 @@ import Foundation
 protocol MovieDetailsRepositoryType {
     func fetchMovieDetails(movieID: Int, completion: @escaping (Result<MovieDetails, CustomError>) -> Void)
     func addToWatchlist(movieDetails: MovieDetails)
+    func isMovieSaved(movieTitle: String) -> Bool
 }
 
 class MovieDetailsRepository: MovieDetailsRepositoryType {
@@ -38,5 +39,12 @@ class MovieDetailsRepository: MovieDetailsRepositoryType {
 
     func addToWatchlist(movieDetails: MovieDetails) {
         coreDataManager.createItem(movieDetails: movieDetails)
+    }
+}
+
+// MARK: - MovieDetailsRespository Extension
+extension MovieDetailsRepository {
+    func isMovieSaved(movieTitle: String) -> Bool {
+        coreDataManager.isMovieSaved(movieTitle: movieTitle)
     }
 }
