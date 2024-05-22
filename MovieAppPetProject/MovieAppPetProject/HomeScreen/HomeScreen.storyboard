@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RlD-ec-rSh">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -78,16 +79,16 @@
             </objects>
             <point key="canvasLocation" x="1649.6183206106869" y="-58.450704225352112"/>
         </scene>
-        <!--New Home View Controller-->
+        <!--Home-->
         <scene sceneID="GGb-8L-5fb">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="RlD-ec-rSh" customClass="NewHomeViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" modalPresentationStyle="fullScreen" id="RlD-ec-rSh" customClass="NewHomeViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zCg-bX-OcF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Nxx-mR-Ql6">
-                                <rect key="frame" x="0.0" y="109" width="393" height="709"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeScreenTableCell" rowHeight="322" id="3DD-EY-jpP" customClass="NewTableViewCell" customModule="MovieAppPetProject" customModuleProvider="target">
@@ -171,22 +172,11 @@
                                     <outlet property="delegate" destination="RlD-ec-rSh" id="t8G-ok-NEs"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ha-Cd-zKC">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <navigationItem title="Home" id="uIy-gK-Pdi"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zfB-7x-YsW"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0ha-Cd-zKC" firstAttribute="trailing" secondItem="Nxx-mR-Ql6" secondAttribute="trailing" id="EBd-dk-o5r"/>
-                            <constraint firstItem="Nxx-mR-Ql6" firstAttribute="top" secondItem="zfB-7x-YsW" secondAttribute="top" constant="50" id="KHG-P2-B0n"/>
-                            <constraint firstItem="0ha-Cd-zKC" firstAttribute="top" secondItem="zfB-7x-YsW" secondAttribute="top" id="Qcl-Q4-vkh"/>
-                            <constraint firstItem="0ha-Cd-zKC" firstAttribute="leading" secondItem="Nxx-mR-Ql6" secondAttribute="leading" id="WHO-0b-pYg"/>
+                            <constraint firstItem="Nxx-mR-Ql6" firstAttribute="top" secondItem="zfB-7x-YsW" secondAttribute="top" id="Cp1-7d-EJm"/>
                             <constraint firstItem="Nxx-mR-Ql6" firstAttribute="leading" secondItem="zfB-7x-YsW" secondAttribute="leading" id="efa-0n-6tb"/>
                             <constraint firstItem="zfB-7x-YsW" firstAttribute="trailing" secondItem="Nxx-mR-Ql6" secondAttribute="trailing" id="ibN-UE-Mkj"/>
                             <constraint firstItem="zfB-7x-YsW" firstAttribute="bottom" secondItem="Nxx-mR-Ql6" secondAttribute="bottom" id="y1P-zR-9LD"/>

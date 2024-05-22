@@ -9,16 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Watchlist Screen View Controller-->
+        <!--Watchlist-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="WatchlistScreenViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Watchlist" id="Y6W-OH-hqX" customClass="WatchlistScreenViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BMx-Vt-ORm">
-                                <rect key="frame" x="0.0" y="113" width="393" height="705"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedMovieCell" id="r78-zr-c7h">
@@ -31,22 +31,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AI5-jc-niY">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <items>
-                                    <navigationItem title="Watchlist" id="Cvc-N0-Oei"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BMx-Vt-ORm" secondAttribute="bottom" id="4Kf-Bm-3GN"/>
-                            <constraint firstItem="AI5-jc-niY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="67s-RR-HRu"/>
+                            <constraint firstItem="BMx-Vt-ORm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Eyt-VN-PSR"/>
                             <constraint firstItem="BMx-Vt-ORm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZPp-MP-Cwj"/>
-                            <constraint firstItem="AI5-jc-niY" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="jNL-hG-exT"/>
-                            <constraint firstItem="BMx-Vt-ORm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="54" id="lcF-jY-h3E"/>
-                            <constraint firstItem="AI5-jc-niY" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="sQD-bH-UVi"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BMx-Vt-ORm" secondAttribute="trailing" id="w2h-eW-dnc"/>
                         </constraints>
                     </view>

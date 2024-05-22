@@ -9,16 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search Movies View Controller-->
+        <!--Search-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="SearchMoviesViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" id="Y6W-OH-hqX" customClass="SearchMoviesViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cuB-hT-vfd">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="yZL-03-lsW">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
@@ -39,22 +39,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0J-sP-7bh">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <items>
-                                    <navigationItem title="Search" id="n7V-HI-dg6"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cuB-hT-vfd" firstAttribute="top" secondItem="h0J-sP-7bh" secondAttribute="bottom" id="0eq-dg-L7O"/>
                             <constraint firstItem="cuB-hT-vfd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3KJ-WM-rT8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cuB-hT-vfd" secondAttribute="bottom" id="7ht-sF-DS7"/>
-                            <constraint firstItem="h0J-sP-7bh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="baS-KQ-Wdo"/>
-                            <constraint firstItem="h0J-sP-7bh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cDI-eC-Rbx"/>
-                            <constraint firstItem="h0J-sP-7bh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="mu6-DL-dtY"/>
+                            <constraint firstItem="cuB-hT-vfd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="cfe-Mq-hdM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cuB-hT-vfd" secondAttribute="trailing" id="x57-1c-KFu"/>
                         </constraints>
                     </view>
