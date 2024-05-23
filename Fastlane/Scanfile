@@ -4,7 +4,7 @@
 workspace "MovieAppPetProject/MovieAppPetProject.xcodeproj/project.xcworkspace"
 scheme "MovieAppPetProject"
 sdk "iphonesimulator"
-device "iPhone 14"
+device "iPhone 15"
 code_coverage true
 xcargs '-parallelizeTargets'
 prelaunch_simulator true
