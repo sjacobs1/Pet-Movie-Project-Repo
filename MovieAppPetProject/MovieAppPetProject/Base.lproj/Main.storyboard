@@ -35,8 +35,8 @@
             <objects>
                 <navigationController id="bwr-37-jZc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house.circle.fill" catalog="system" id="OQg-DP-sAH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FFQ-qF-BQf">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="FFQ-qF-BQf">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -62,8 +62,8 @@
             <objects>
                 <navigationController id="p4E-VN-UiG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle.fill" catalog="system" id="Iwo-K4-0N3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F1F-8l-OED">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="F1F-8l-OED">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -79,8 +79,8 @@
             <objects>
                 <navigationController id="vGD-DL-K23" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Watchlist" image="popcorn.circle.fill" catalog="system" id="eqH-pI-hVC"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WuT-gn-w2e">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WuT-gn-w2e">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
