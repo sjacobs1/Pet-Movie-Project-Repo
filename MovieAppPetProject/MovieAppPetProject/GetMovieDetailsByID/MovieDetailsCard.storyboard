@@ -20,11 +20,16 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Wl2-NN-tD3" userLabel="Main Stack View">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-MA-mQS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-MA-mQS">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="285"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="285" id="5B9-Fd-dEz"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-9m-sHY" userLabel="Details Stack View">
                                         <rect key="frame" x="0.0" y="292" width="393" height="467"/>
@@ -132,7 +137,7 @@
                             <constraint firstItem="Wl2-NN-tD3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ptu-MY-GK6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Yqt-XA-ERZ"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Yqt-XA-ERZ"/>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
                         <outlet property="overviewLabel" destination="0yS-45-pBG" id="0bv-Kg-VHr"/>
