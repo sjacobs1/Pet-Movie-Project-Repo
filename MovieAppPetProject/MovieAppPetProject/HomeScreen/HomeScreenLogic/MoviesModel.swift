@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct NowPlaying: Codable {
-    let results: [NowPlayingResults]?
+struct MovieResponse: Codable {
+    let results: [Movie]?
 }
 
-struct NowPlayingResults: Codable, MovieData {
+struct Movie: Codable {
     let movieID: Int?
     let originalTitle: String?
     let moviePoster: String?

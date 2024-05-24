@@ -13,18 +13,18 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet private weak var newTableView: UITableView!
 
     // MARK: - Variables
-    private lazy var nowPlayingViewModel = NowPlayingViewModel(nowPlayingRepository: NowPlayingRepository(), delegate: self)
-    private lazy var upcomingMoviesViewModel = UpcomingMoviesViewModel(upcomingMoviesRepository: UpcomingMoviesRepository(), delegate: self)
-    private lazy var popularMoviesViewModel = PopularMoviesViewModel(popularMoviesRepository: PopularMoviesRepository(), delegate: self)
-    private lazy var topRatedMoviesViewModel = TopRatedViewModel(topRatedMoviesRepository: TopRatedMoviesRepository(), delegate: self)
+    private lazy var nowPlayingMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .nowPlaying, delegate: self)
+    private lazy var popularMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .popular, delegate: self)
+    private lazy var upcomingMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .upcoming, delegate: self)
+    private lazy var topRatedMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .topRated, delegate: self)
 
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        popularMoviesViewModel.fetchMovies()
-        nowPlayingViewModel.fetchNowPlayingMovies()
-        upcomingMoviesViewModel.fetchMovies()
-        topRatedMoviesViewModel.fetchMovies()
+        popularMovies.fetchMovies()
+        nowPlayingMovies.fetchMovies()
+        upcomingMovies.fetchMovies()
+        topRatedMovies.fetchMovies()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,7 +45,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: nowPlayingViewModel.nowPlayingMovies ?? [], sectionTitle: "  Now Playing")
+            cell.configure(with: nowPlayingMovies.movies ?? [], sectionTitle: "  Now Playing")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
                 self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
@@ -55,7 +55,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: popularMoviesViewModel.popularMovies ?? [], sectionTitle: "  Popular")
+            cell.configure(with: popularMovies.movies ?? [], sectionTitle: "  Popular")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
                 self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
@@ -65,7 +65,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: topRatedMoviesViewModel.topRatedMovies ?? [], sectionTitle: "  Top Rated")
+            cell.configure(with: topRatedMovies.movies ?? [], sectionTitle: "  Top Rated")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
                 self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
@@ -75,7 +75,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
                 return UITableViewCell()
             }
-            cell.configure(with: upcomingMoviesViewModel.upcomingMovies ?? [], sectionTitle: "  Upcoming")
+            cell.configure(with: upcomingMovies.movies ?? [], sectionTitle: "  Upcoming")
             cell.didSelectItem = { [weak self] movie in
                 guard let self = self else { return }
                 self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
@@ -88,15 +88,15 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Identifiers.goToMovieDetails,
-            let movieDetailsVC = segue.destination as? MovieDetailsViewController,
-            let movieId = sender as? Int {
+           let movieDetailsVC = segue.destination as? MovieDetailsViewController,
+           let movieId = sender as? Int {
             movieDetailsVC.setMovieID(movieID: movieId)
         }
     }
 }
 
 // MARK: - Delegate
-extension NewHomeViewController: NowPlayingViewModelDelegate, UpcomingMoviesViewModelDelegate, PopularMoviesViewModelDelegate, TopRatedMoviesViewModelDelegate {
+extension NewHomeViewController: MoviesViewModelType {
     func reloadView() {
         newTableView.reloadData()
     }

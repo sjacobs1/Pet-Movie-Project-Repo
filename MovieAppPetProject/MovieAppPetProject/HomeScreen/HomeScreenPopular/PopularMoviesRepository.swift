@@ -1,30 +1,30 @@
+////
+////  PopularMoviesRepository.swift
+////  MovieAppPetProject
+////
+////  Created by Sebastian Jacobs on 2024/04/09.
+////
 //
-//  PopularMoviesRepository.swift
-//  MovieAppPetProject
+//import Foundation
 //
-//  Created by Sebastian Jacobs on 2024/04/09.
+//protocol PopularMoviesRepositoryType {
+//    func fetchMovies(completion: @escaping (Result<PopularMovies, CustomError>) -> Void)
+//}
 //
-
-import Foundation
-
-protocol PopularMoviesRepositoryType {
-    func fetchMovies(completion: @escaping (Result<PopularMovies, CustomError>) -> Void)
-}
-
-class PopularMoviesRepository: PopularMoviesRepositoryType {
-
-    // MARK: - Variable
-    private let networkManager = NetworkManager()
-
-    // MARK: - Function
-    func fetchMovies(completion: @escaping (Result<PopularMovies, CustomError>) -> Void) {
-        guard let apiUrl = URL(string: Constants.URLs.popularMoviesURL) else {
-            completion(.failure(.invalidUrl))
-            return
-        }
-
-        networkManager.request(path: apiUrl, model: PopularMovies.self) { result in
-            completion(result)
-        }
-    }
-}
+//class PopularMoviesRepository: PopularMoviesRepositoryType {
+//
+//    // MARK: - Variable
+//    private let networkManager = NetworkManager()
+//
+//    // MARK: - Function
+//    func fetchMovies(completion: @escaping (Result<PopularMovies, CustomError>) -> Void) {
+//        guard let apiUrl = URL(string: Constants.URLs.popularMoviesURL) else {
+//            completion(.failure(.invalidUrl))
+//            return
+//        }
+//
+//        networkManager.request(path: apiUrl, model: PopularMovies.self) { result in
+//            completion(result)
+//        }
+//    }
+//}
