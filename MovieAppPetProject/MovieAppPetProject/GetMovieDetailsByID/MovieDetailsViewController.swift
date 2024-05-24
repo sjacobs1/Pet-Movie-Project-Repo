@@ -33,16 +33,16 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewModelType {
         super.viewDidLoad()
         movieDetailsViewModel.fetchMovieDetails()
         updateUI()
-        updateWatchlistButton()
+        updateWatchlistButtonTitle()
     }
 
     func setMovieID(movieID: Int) {
         movieDetailsViewModel.updateMovieID(movieID: movieID)
     }
 
-    func didUpdateMovieDetails() {
+    func updateMovieDetailsUI() {
         self.updateUI()
-        self.updateWatchlistButton()
+        self.updateWatchlistButtonTitle()
     }
 
     func displayError(with message: String) {
@@ -51,7 +51,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewModelType {
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func updateWatchlistButton() {
+    private func updateWatchlistButtonTitle() {
         if movieDetailsViewModel.isMovieSaved {
             addToWatchlistButton.setTitle("✓ Saved", for: .normal)
         }

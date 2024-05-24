@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MovieDetailsViewModelType: AnyObject {
-    func didUpdateMovieDetails()
+    func updateMovieDetailsUI()
     func displayError(with message: String)
 }
 
@@ -63,7 +63,7 @@ class MovieDetailsViewModel {
             case .success(let details):
                 self?.movieDetails = details
                 self?.isMovieSaved = self?.movieDetailsRepository.isMovieSaved(movieTitle: details.originalTitle ?? "") ?? false
-                self?.delegate?.didUpdateMovieDetails()
+                self?.delegate?.updateMovieDetailsUI()
             case .failure(let error):
                 print(error)
             }
@@ -82,7 +82,7 @@ class MovieDetailsViewModel {
         } else {
             movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
             isMovieSaved = true
-            delegate?.didUpdateMovieDetails()
+            delegate?.updateMovieDetailsUI()
         }
     }
 }
