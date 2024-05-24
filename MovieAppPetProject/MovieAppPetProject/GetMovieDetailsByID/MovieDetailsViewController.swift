@@ -62,9 +62,9 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewModelType {
         overviewLabel?.text = movieDetailsViewModel.overview
         releaseDateLabel.text = movieDetailsViewModel.releaseDate
 
-        runTime.text = movieDetailsViewModel.runTime.map { "\($0) mins" }
-        voteAverage.text = movieDetailsViewModel.voteAverage.map { "Rating: \(String(format: "%.1f", $0)) / 10" }
-        status.text = movieDetailsViewModel.status.map { "Release status: \($0)"}
+        runTime.text = movieDetailsViewModel.runTime.map {"\($0) mins"}
+        voteAverage.text = movieDetailsViewModel.voteAverage.map {"Rating: \(String(format: "%.1f", $0)) / 10"}
+        status.text = movieDetailsViewModel.status.map {"Release status: \($0)"}
 
         if let posterURL = movieDetailsViewModel.moviePosterURL {
             imageLoader.loadImage(from: posterURL, imageView: posterImageView)
