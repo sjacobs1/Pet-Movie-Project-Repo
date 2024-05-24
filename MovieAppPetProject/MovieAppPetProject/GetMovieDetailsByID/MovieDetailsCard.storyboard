@@ -20,11 +20,16 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Wl2-NN-tD3" userLabel="Main Stack View">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-MA-mQS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cBM-MA-mQS">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="285"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="285" id="5B9-Fd-dEz"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-9m-sHY" userLabel="Details Stack View">
                                         <rect key="frame" x="0.0" y="292" width="393" height="467"/>
@@ -41,6 +46,12 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <color key="textColor" name="LabelText"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alm-He-NWa">
                                                         <rect key="frame" x="259" y="51" width="126" height="20.333333333333329"/>
@@ -134,9 +145,10 @@
                             <constraint firstItem="Wl2-NN-tD3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ptu-MY-GK6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Yqt-XA-ERZ"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Yqt-XA-ERZ"/>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="addToWatchlistButton" destination="txd-3e-xbM" id="swO-r3-btu"/>
                         <outlet property="overviewLabel" destination="0yS-45-pBG" id="0bv-Kg-VHr"/>
                         <outlet property="posterImageView" destination="cBM-MA-mQS" id="ib4-FL-7W5"/>
                         <outlet property="releaseDateLabel" destination="Alm-He-NWa" id="Pam-bW-JxG"/>

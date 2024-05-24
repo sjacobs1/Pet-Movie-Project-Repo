@@ -8,17 +8,18 @@
 import Foundation
 
 protocol MovieDetailsViewModelType: AnyObject {
-    func didUpdateMovieDetails()
+    func updateMovieDetailsUI()
     func displayError(with message: String)
 }
 
 class MovieDetailsViewModel {
 
     // MARK: - Variables
-    private let movieDetailsRepository: MovieDetailsRepositoryType
-    private var movieID = 0
+    var isMovieSaved = false
     var movieDetails: MovieDetails?
     weak var delegate: MovieDetailsViewModelType?
+    private let movieDetailsRepository: MovieDetailsRepositoryType
+    private var movieID = 0
 
     // MARK: - Computed properties
     var originalTitle: String? {
@@ -30,7 +31,8 @@ class MovieDetailsViewModel {
     }
 
     var releaseDate: String? {
-        movieDetails?.releaseDate
+        guard let date = movieDetails?.releaseDate else { return nil }
+        return String(date.prefix(4))
     }
 
     var runTime: Int? {
@@ -61,7 +63,8 @@ class MovieDetailsViewModel {
             switch result {
             case .success(let details):
                 self?.movieDetails = details
-                self?.delegate?.didUpdateMovieDetails()
+                self?.isMovieSaved = self?.movieDetailsRepository.isMovieSaved(movieTitle: details.originalTitle ?? "") ?? false
+                self?.delegate?.updateMovieDetailsUI()
             case .failure(let error):
                 print(error)
             }
@@ -79,6 +82,8 @@ class MovieDetailsViewModel {
             delegate?.displayError(with: "Movie is already in the watchlist.")
         } else {
             movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
+            isMovieSaved = true
+            delegate?.updateMovieDetailsUI()
         }
     }
 }
