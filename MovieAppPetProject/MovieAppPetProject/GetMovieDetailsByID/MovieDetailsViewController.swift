@@ -60,7 +60,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewModelType {
     private func updateUI() {
         titleLabel.text = movieDetailsViewModel.originalTitle
         overviewLabel?.text = movieDetailsViewModel.overview
-        releaseDateLabel.text = String(movieDetailsViewModel.releaseDate?.prefix(4) ?? "")
+        releaseDateLabel.text = movieDetailsViewModel.releaseDate
 
         runTime.text = movieDetailsViewModel.runTime.map { "\($0) mins" }
         voteAverage.text = movieDetailsViewModel.voteAverage.map { "Rating: \(String(format: "%.1f", $0)) / 10" }

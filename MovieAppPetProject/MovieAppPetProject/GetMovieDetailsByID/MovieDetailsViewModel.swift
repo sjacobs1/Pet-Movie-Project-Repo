@@ -31,7 +31,8 @@ class MovieDetailsViewModel {
     }
 
     var releaseDate: String? {
-        movieDetails?.releaseDate
+        guard let date = movieDetails?.releaseDate else { return nil }
+        return String(date.prefix(4))
     }
 
     var runTime: Int? {
