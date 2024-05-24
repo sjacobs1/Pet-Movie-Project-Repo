@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+class MovieDetailsViewController: UIViewController, MovieDetailsViewModelType {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
@@ -39,9 +39,7 @@ class MovieDetailsViewController: UIViewController {
     func setMovieID(movieID: Int) {
         movieDetailsViewModel.updateMovieID(movieID: movieID)
     }
-}
 
-extension MovieDetailsViewController: MovieDetailsViewModelType {
     func didUpdateMovieDetails() {
         self.updateUI()
         self.updateWatchlistButton()

@@ -16,10 +16,10 @@ class MovieDetailsViewModel {
 
     // MARK: - Variables
     var isMovieSaved = false
-    private let movieDetailsRepository: MovieDetailsRepositoryType
-    private var movieID = 0
     var movieDetails: MovieDetails?
     weak var delegate: MovieDetailsViewModelType?
+    private let movieDetailsRepository: MovieDetailsRepositoryType
+    private var movieID = 0
 
     // MARK: - Computed properties
     var originalTitle: String? {
