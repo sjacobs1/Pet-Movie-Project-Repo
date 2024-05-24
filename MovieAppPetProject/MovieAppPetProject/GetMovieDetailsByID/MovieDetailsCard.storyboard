@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,12 +34,12 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhH-aJ-vTh">
                                                         <rect key="frame" x="0.0" y="8" width="393" height="35"/>
-                                                        <color key="backgroundColor" red="0.16412460740000001" green="0.16147407120000001" blue="0.38938160770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" name="LabelBackground"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="PgU-i1-RuE"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" name="LabelText"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alm-He-NWa">
@@ -87,7 +87,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="ViewBackgrounds"/>
                                                 <constraints>
                                                     <constraint firstItem="txd-3e-xbM" firstAttribute="leading" secondItem="SeK-wg-va9" secondAttribute="trailing" constant="8" id="0d4-qP-0DH"/>
                                                     <constraint firstItem="lhH-aJ-vTh" firstAttribute="top" secondItem="TaB-SZ-E0q" secondAttribute="top" constant="8" id="3OB-U0-gfP"/>
@@ -112,6 +112,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <color key="backgroundColor" name="ViewBackgrounds"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="TaB-SZ-E0q" secondAttribute="bottom" id="Gny-It-HpL"/>
                                             <constraint firstAttribute="trailing" secondItem="TaB-SZ-E0q" secondAttribute="trailing" id="TLo-RG-cVS"/>
@@ -120,11 +121,12 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" name="ViewBackgrounds"/>
                                 <variation key="heightClass=compact" axis="horizontal"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="ViewBackgrounds"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Wl2-NN-tD3" secondAttribute="trailing" id="3CI-X1-Jro"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Wl2-NN-tD3" secondAttribute="bottom" id="X4j-a2-qcn"/>
@@ -150,8 +152,14 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="LabelBackground">
+            <color red="0.1647058874" green="0.1607843041" blue="0.38823530080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="LabelText">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="ViewBackgrounds">
+            <color red="0.94901967050000002" green="0.94901967050000002" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>
