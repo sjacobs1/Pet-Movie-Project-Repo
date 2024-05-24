@@ -15,6 +15,7 @@ protocol MovieDetailsViewModelType: AnyObject {
 class MovieDetailsViewModel {
 
     // MARK: - Variables
+    var isMovieSaved = false
     private let movieDetailsRepository: MovieDetailsRepositoryType
     private var movieID = 0
     var movieDetails: MovieDetails?
@@ -61,6 +62,7 @@ class MovieDetailsViewModel {
             switch result {
             case .success(let details):
                 self?.movieDetails = details
+                self?.isMovieSaved = self?.movieDetailsRepository.isMovieSaved(movieTitle: details.originalTitle ?? "") ?? false
                 self?.delegate?.didUpdateMovieDetails()
             case .failure(let error):
                 print(error)
@@ -79,6 +81,8 @@ class MovieDetailsViewModel {
             delegate?.displayError(with: "Movie is already in the watchlist.")
         } else {
             movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
+            isMovieSaved = true
+            delegate?.didUpdateMovieDetails()
         }
     }
 }

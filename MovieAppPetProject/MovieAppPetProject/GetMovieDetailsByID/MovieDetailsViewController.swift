@@ -17,6 +17,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var runTime: UILabel!
     @IBOutlet private weak var voteAverage: UILabel!
     @IBOutlet private weak var status: UILabel!
+    @IBOutlet private weak var addToWatchlistButton: UIButton!
 
     // MARK: - IBAction
     @IBAction private func addToWatchlistTapped(_ sender: UIButton) {
@@ -32,6 +33,7 @@ class MovieDetailsViewController: UIViewController {
         super.viewDidLoad()
         movieDetailsViewModel.fetchMovieDetails()
         updateUI()
+        updateWatchlistButton()
     }
 
     func setMovieID(movieID: Int) {
@@ -41,15 +43,20 @@ class MovieDetailsViewController: UIViewController {
 
 extension MovieDetailsViewController: MovieDetailsViewModelType {
     func didUpdateMovieDetails() {
-        DispatchQueue.main.async {
-            self.updateUI()
-        }
+        self.updateUI()
+        self.updateWatchlistButton()
     }
 
     func displayError(with message: String) {
         let alert = UIAlertController(title: "Already Saved!", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func updateWatchlistButton() {
+        if movieDetailsViewModel.isMovieSaved {
+            addToWatchlistButton.setTitle("✓ Saved", for: .normal)
+        }
     }
 
     private func updateUI() {
