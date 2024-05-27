@@ -1,5 +1,5 @@
 //
-//  NowPlayingRepository.swift
+//  MovieRepository.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/08.
@@ -32,11 +32,11 @@ enum MovieCategory {
 }
 
 // MARK: - Protocol
-protocol MoviesRepositoryType {
+protocol MovieRepositoryType {
     func fetchMovies(for category: MovieCategory, completion: @escaping FetchMoviesCompletion)
 }
 
-class MoviesRepository: MoviesRepositoryType {
+class MovieRepository: MovieRepositoryType {
 
     // MARK: - Variable
     private let networkManager = NetworkManager()

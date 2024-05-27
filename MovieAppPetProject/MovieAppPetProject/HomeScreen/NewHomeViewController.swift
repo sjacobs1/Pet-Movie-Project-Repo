@@ -13,18 +13,15 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet private weak var newTableView: UITableView!
 
     // MARK: - Variables
-    private lazy var nowPlayingMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .nowPlaying, delegate: self)
-    private lazy var popularMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .popular, delegate: self)
-    private lazy var upcomingMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .upcoming, delegate: self)
-    private lazy var topRatedMovies = MoviesViewModel(moviesRepository: MoviesRepository(), category: .topRated, delegate: self)
+    private lazy var movieViewModel = MovieViewModel(movieRepository: MovieRepository(), delegate: self)
 
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        popularMovies.fetchMovies()
-        nowPlayingMovies.fetchMovies()
-        upcomingMovies.fetchMovies()
-        topRatedMovies.fetchMovies()
+        movieViewModel.fetchMovies(for: .nowPlaying)
+        movieViewModel.fetchMovies(for: .popular)
+        movieViewModel.fetchMovies(for: .topRated)
+        movieViewModel.fetchMovies(for: .upcoming)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,50 +37,27 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
+            return UITableViewCell()
+        }
+
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(with: nowPlayingMovies.movies ?? [], sectionTitle: "  Now Playing")
-            cell.didSelectItem = { [weak self] movie in
-                guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
-            }
-            return cell
+            cell.configure(with: movieViewModel.nowPlayingMovies, sectionTitle: "  Now Playing")
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(with: popularMovies.movies ?? [], sectionTitle: "  Popular")
-            cell.didSelectItem = { [weak self] movie in
-                guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
-            }
-            return cell
+            cell.configure(with: movieViewModel.popularMovies, sectionTitle: "  Popular")
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(with: topRatedMovies.movies ?? [], sectionTitle: "  Top Rated")
-            cell.didSelectItem = { [weak self] movie in
-                guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
-            }
-            return cell
+            cell.configure(with: movieViewModel.topRatedMovies, sectionTitle: "  Top Rated")
         case 3:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.homeScreenTableCell, for: indexPath) as? NewTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(with: upcomingMovies.movies ?? [], sectionTitle: "  Upcoming")
-            cell.didSelectItem = { [weak self] movie in
-                guard let self = self else { return }
-                self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
-            }
-            return cell
+            cell.configure(with: movieViewModel.upcomingMovies, sectionTitle: "  Upcoming")
         default:
             return UITableViewCell()
         }
+        cell.didSelectItem = { [weak self] movie in
+            guard let self = self else { return }
+            self.performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: movie.movieID)
+        }
+        return cell
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,7 +70,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
 }
 
 // MARK: - Delegate
-extension NewHomeViewController: MoviesViewModelType {
+extension NewHomeViewController: MovieViewModelType {
     func reloadView() {
         newTableView.reloadData()
     }
