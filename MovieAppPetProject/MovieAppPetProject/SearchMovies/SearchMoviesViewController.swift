@@ -37,21 +37,23 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
 
-        let movie = searchMoviesViewModel.searchedMovies?[indexPath.row]
-        let title = movie?.originalTitle
-        if let posterPath = movie?.moviePoster {
-            let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
-            cell.configure(with: posterURL, placeholderImage: UIImage(named: "Me"), title: title)
-        } else {
-            cell.configure(with: nil, placeholderImage: UIImage(named: "Me"), title: title)
+        if let movie = searchMoviesViewModel.movie(at: indexPath.row) {
+            let title = movie.originalTitle
+            let voteAverage = searchMoviesViewModel.formattedVoteAverage(for: movie)
+            let releaseDate = searchMoviesViewModel.formattedReleaseDate(for: movie)
 
+            if let posterPath = movie.moviePoster {
+                let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
+                cell.configure(with: posterURL, placeholderImage: UIImage(named: "Me"), title: title, voteAverage: voteAverage, releaseDate: releaseDate)
+            } else {
+                cell.configure(with: nil, placeholderImage: UIImage(named: "Me"), title: title, voteAverage: voteAverage, releaseDate: releaseDate)
+            }
         }
-
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedMovie = searchMoviesViewModel.searchedMovies?[indexPath.row]
+        let selectedMovie = searchMoviesViewModel.movie(at: indexPath.row)
         performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie?.movieID)
     }
 

@@ -13,18 +13,45 @@ protocol ViewModelDelegate: AnyObject {
 
 class SearchMoviesViewModel {
 
+    // MARK: - Variables
     private let searchMoviesRepository: SearchMoviesRepositoryType?
-    var searchedMovies: [SearchMoviesResults]?
+    private var searchedMovies: [SearchMoviesResults]?
     private weak var delegate: ViewModelDelegate?
 
+    // MARK: - Computed Variable
+    var searchMoviesCount: Int {
+        searchedMovies?.count ?? 0
+    }
+
+    // MARK: - Initializer
     init(searchMoviesRepository: SearchMoviesRepositoryType, delegate: ViewModelDelegate) {
         self.searchedMovies = []
         self.searchMoviesRepository = searchMoviesRepository
         self.delegate = delegate
     }
 
-    var searchMoviesCount: Int {
-        searchedMovies?.count ?? 0
+    // MARK: - Functions
+    func movie(at index: Int) -> SearchMoviesResults? {
+        guard index >= 0 && index < searchedMovies?.count ?? 0 else {
+            return nil
+        }
+        return searchedMovies?[index]
+    }
+
+    func formattedVoteAverage(for movie: SearchMoviesResults?) -> String {
+        if let voteAverage = movie?.voteAverage {
+            return String(format: "Rating: %.1f/10", voteAverage)
+        } else {
+            return "Rating: N/A"
+        }
+    }
+
+    func formattedReleaseDate(for movie: SearchMoviesResults?) -> String {
+        if let releaseDate = movie?.releaseDate, releaseDate.count >= 4 {
+            return "Release year: \(releaseDate.prefix(4))"
+        } else {
+            return "Release year: N/A"
+        }
     }
 
     func fetchSearchedMovies() {
