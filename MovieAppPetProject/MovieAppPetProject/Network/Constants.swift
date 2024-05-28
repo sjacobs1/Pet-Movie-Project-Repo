@@ -15,9 +15,15 @@ struct Constants {
         static let popularMoviesURL = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
         static let topRatedMoviesURL = "https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)"
         static let upcomingMoviesURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)"
-        static let searchMoviesURL = "https://api.themoviedb.org/3/search/movie?query=oppenheimer&include_adult=false&api_key=\(apiKey)"
+        static let searchMoviesBaseURL = "https://api.themoviedb.org/3/search/movie"
+
         static func movieDetailsURL(movieID: Int) -> String {
             return "\(baseURL)\(movieID)?api_key=\(apiKey)"
+        }
+
+        static func searchMoviesURL(query: String) -> String {
+            let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            return "\(searchMoviesBaseURL)?query=\(encodedQuery)&include_adult=false&api_key=\(apiKey)"
         }
     }
 

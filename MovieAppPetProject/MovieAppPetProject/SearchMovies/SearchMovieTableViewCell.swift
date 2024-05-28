@@ -13,18 +13,21 @@ class SearchMovieTableViewCell: UITableViewCell {
     @IBOutlet private weak var nibCell: UIView!
     @IBOutlet private weak var posterCover: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var voteAverageLabel: UILabel!
+    @IBOutlet private weak var releaseDateLabel: UILabel!
 
     // MARK: - Variable
-    private lazy var imageLoader = APIImageLoader()
+    private var imageLoader = APIImageLoader()
 
     // MARK: - Function
-    func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?) {
+    func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?, voteAverage: String, releaseDate: String) {
         if let imageURL = imageURL {
             imageLoader.loadImage(from: imageURL, imageView: posterCover)
         } else {
             posterCover?.image = placeholderImage
         }
-        titleLabel.text = title
+        titleLabel?.text = title
+        voteAverageLabel?.text = voteAverage
+        releaseDateLabel?.text = releaseDate
     }
-
 }
