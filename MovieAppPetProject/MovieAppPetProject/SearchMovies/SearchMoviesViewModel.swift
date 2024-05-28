@@ -9,6 +9,8 @@ import Foundation
 
 protocol ViewModelDelegate: AnyObject {
     func reloadView()
+    func showNoResultsMessage()
+    func hideNoResultsMessage()
 }
 
 class SearchMoviesViewModel {
@@ -54,15 +56,26 @@ class SearchMoviesViewModel {
         }
     }
 
-    func fetchSearchedMovies() {
-        searchMoviesRepository?.fetchSearchedMovies { [weak self] result in
+    func fetchSearchedMovies(with query: String) {
+        searchMoviesRepository?.fetchSearchedMovies(query: query) { [weak self] result in
             switch result {
             case .success(let searchedMovie):
                 self?.searchedMovies = searchedMovie.results ?? []
+                if self?.searchedMovies?.isEmpty ?? true {
+                    self?.delegate?.showNoResultsMessage()
+                } else {
+                    self?.delegate?.hideNoResultsMessage()
+                }
                 self?.delegate?.reloadView()
             case .failure(let error):
                 print(error)
             }
         }
+    }
+
+    func clearSearchResults() {
+        searchedMovies = []
+        delegate?.reloadView()
+        delegate?.showNoResultsMessage()
     }
 }

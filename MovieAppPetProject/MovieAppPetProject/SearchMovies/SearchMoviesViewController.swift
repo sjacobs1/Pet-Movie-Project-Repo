@@ -7,11 +7,12 @@
 
 import UIKit
 
-class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var searchMovieTableView: UITableView!
     @IBOutlet private weak var searchMovie: UISearchBar!
+    @IBOutlet weak var noResultsLabel: UILabel!
 
     // MARK: - Variables
     private lazy var searchMoviesViewModel = SearchMoviesViewModel(searchMoviesRepository: SearchMoviesRepository(), delegate: self)
@@ -20,7 +21,26 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        searchMoviesViewModel.fetchSearchedMovies()
+        setupSearchBar()
+        noResultsLabel.isHidden = true
+    }
+
+    private func setupSearchBar() {
+        searchMovie.delegate = self
+        searchMovie.showsCancelButton = true
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text, !query.isEmpty else { return }
+        searchMoviesViewModel.fetchSearchedMovies(with: query)
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchMoviesViewModel.clearSearchResults()
+        noResultsLabel.isHidden = true
+        searchBar.resignFirstResponder()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,5 +97,13 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 extension SearchMoviesViewController: ViewModelDelegate {
     func reloadView() {
         searchMovieTableView.reloadData()
+    }
+
+    func showNoResultsMessage() {
+        noResultsLabel.isHidden = false
+    }
+
+    func hideNoResultsMessage() {
+        noResultsLabel.isHidden = true
     }
 }
