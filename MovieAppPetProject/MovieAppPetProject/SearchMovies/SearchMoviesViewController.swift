@@ -12,7 +12,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - IBOutlets
     @IBOutlet private weak var searchMovieTableView: UITableView!
     @IBOutlet private weak var searchMovie: UISearchBar!
-    @IBOutlet weak var noResultsLabel: UILabel!
+    @IBOutlet private weak var noResultsLabel: UILabel!
 
     // MARK: - Variables
     private lazy var searchMoviesViewModel = SearchMoviesViewModel(searchMoviesRepository: SearchMoviesRepository(), delegate: self)
@@ -23,11 +23,6 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
         setupTableView()
         setupSearchBar()
         noResultsLabel.isHidden = true
-    }
-
-    private func setupSearchBar() {
-        searchMovie.delegate = self
-        searchMovie.showsCancelButton = true
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -90,6 +85,13 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
         searchMovieTableView.register(nib, forCellReuseIdentifier: Constants.Identifiers.searchScreenTableViewCellNibIdentifier)
         searchMovieTableView.dataSource = self
         searchMovieTableView.delegate = self
+    }
+
+    private func setupSearchBar() {
+        searchMovie.delegate = self
+        if let cancelButton = searchMovie.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.setTitle("Clear", for: .normal)
+        }
     }
 }
 
