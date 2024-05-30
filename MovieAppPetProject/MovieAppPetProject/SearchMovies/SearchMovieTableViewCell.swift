@@ -23,8 +23,6 @@ class SearchMovieTableViewCell: UITableViewCell {
     func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?, voteAverage: String, releaseDate: String) {
         if let imageURL = imageURL {
             imageLoader.loadImage(from: imageURL, imageView: posterCover)
-        } else {
-            posterCover?.image = placeholderImage
         }
         titleLabel?.text = title
         voteAverageLabel?.text = voteAverage

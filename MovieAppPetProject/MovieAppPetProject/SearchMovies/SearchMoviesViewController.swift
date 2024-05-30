@@ -13,6 +13,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet private weak var searchMovieTableView: UITableView!
     @IBOutlet private weak var searchMovie: UISearchBar!
     @IBOutlet private weak var noResultsLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - Variables
     private lazy var searchMoviesViewModel = SearchMoviesViewModel(searchMoviesRepository: SearchMoviesRepository(), delegate: self)
@@ -23,10 +24,13 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
         setupTableView()
         setupSearchBar()
         noResultsLabel.isHidden = true
+        activityIndicator.isHidden = true
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text, !query.isEmpty else { return }
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
         searchMoviesViewModel.fetchSearchedMovies(with: query)
         searchBar.resignFirstResponder()
     }
@@ -98,10 +102,14 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 // MARK: - Delegate
 extension SearchMoviesViewController: ViewModelDelegate {
     func reloadView() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
         searchMovieTableView.reloadData()
     }
 
     func showNoResultsMessage() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
         noResultsLabel.isHidden = false
     }
 
