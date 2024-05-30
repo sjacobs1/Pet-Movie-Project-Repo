@@ -72,7 +72,6 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     private func loadMovies() {
-        activityIndicator.startAnimating()
         movieViewModel.fetchMovies(for: .nowPlaying)
         movieViewModel.fetchMovies(for: .popular)
         movieViewModel.fetchMovies(for: .topRated)
@@ -82,8 +81,15 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 // MARK: - Delegate
 extension NewHomeViewController: MovieViewModelType {
-    func reloadView() {
+    func startLoadingIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopLoadingIndicator() {
         activityIndicator.stopAnimating()
+    }
+    
+    func reloadView() {
         newTableView.reloadData()
     }
 }

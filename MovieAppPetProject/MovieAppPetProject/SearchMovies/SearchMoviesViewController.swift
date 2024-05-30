@@ -29,8 +29,6 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text, !query.isEmpty else { return }
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
         searchMoviesViewModel.fetchSearchedMovies(with: query)
         searchBar.resignFirstResponder()
     }
@@ -101,15 +99,21 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 
 // MARK: - Delegate
 extension SearchMoviesViewController: ViewModelDelegate {
-    func reloadView() {
+    func startLoadingIndicator() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    func stopLoadingIndicator() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
+    }
+    
+    func reloadView() {
         searchMovieTableView.reloadData()
     }
 
     func showNoResultsMessage() {
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
         noResultsLabel.isHidden = false
     }
 
