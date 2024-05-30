@@ -14,7 +14,7 @@ class PosterCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
 
     // MARK: - Variable
-    private lazy var imageLoader = APIImageLoader()
+    private var imageLoader = APIImageLoader()
 
     // MARK: - Function
     func configure(with imageURL: URL?, placeholderImage: UIImage?, title: String?) {

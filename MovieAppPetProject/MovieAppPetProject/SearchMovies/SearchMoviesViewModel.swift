@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ViewModelDelegate: AnyObject {
+protocol ViewModelType: AnyObject {
     func reloadView()
     func showNoResultsMessage()
     func hideNoResultsMessage()
@@ -20,7 +20,7 @@ class SearchMoviesViewModel {
     // MARK: - Variables
     private let searchMoviesRepository: SearchMoviesRepositoryType?
     private var searchedMovies: [SearchMoviesResults]?
-    private weak var delegate: ViewModelDelegate?
+    private weak var delegate: ViewModelType?
 
     // MARK: - Computed Variable
     var searchMoviesCount: Int {
@@ -28,7 +28,7 @@ class SearchMoviesViewModel {
     }
 
     // MARK: - Initializer
-    init(searchMoviesRepository: SearchMoviesRepositoryType, delegate: ViewModelDelegate) {
+    init(searchMoviesRepository: SearchMoviesRepositoryType, delegate: ViewModelType) {
         self.searchedMovies = []
         self.searchMoviesRepository = searchMoviesRepository
         self.delegate = delegate

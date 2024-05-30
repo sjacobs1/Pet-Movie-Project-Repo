@@ -98,7 +98,7 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
 }
 
 // MARK: - Delegate
-extension SearchMoviesViewController: ViewModelDelegate {
+extension SearchMoviesViewController: ViewModelType {
     func startLoadingIndicator() {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
