@@ -35,6 +35,8 @@ struct Constants {
         static let searchScreenTableCell = "SearchScreenTableCell"
         static let showHomeScreen = "ShowHomeScreen"
         static let savedMovieTableViewCell = "WatchlistTableViewCell"
+        static let loginViewController = "LoginViewController"
+        static let loginIdentifier = "Login"
     }
 
     struct Path {
