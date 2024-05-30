@@ -11,6 +11,8 @@ protocol ViewModelDelegate: AnyObject {
     func reloadView()
     func showNoResultsMessage()
     func hideNoResultsMessage()
+    func startLoadingIndicator()
+    func stopLoadingIndicator()
 }
 
 class SearchMoviesViewModel {
@@ -57,6 +59,7 @@ class SearchMoviesViewModel {
     }
 
     func fetchSearchedMovies(with query: String) {
+        delegate?.startLoadingIndicator()
         searchMoviesRepository?.fetchSearchedMovies(query: query) { [weak self] result in
             switch result {
             case .success(let searchedMovie):
@@ -70,6 +73,7 @@ class SearchMoviesViewModel {
             case .failure(let error):
                 print(error)
             }
+            self?.delegate?.stopLoadingIndicator()
         }
     }
 

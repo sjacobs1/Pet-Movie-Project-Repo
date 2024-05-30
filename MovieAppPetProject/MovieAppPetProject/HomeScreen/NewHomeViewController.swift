@@ -11,6 +11,7 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // MARK: - IBOutlets
     @IBOutlet private weak var newTableView: UITableView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - Variables
     private lazy var movieViewModel = MovieViewModel(movieRepository: MovieRepository(), delegate: self)
@@ -18,10 +19,8 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieViewModel.fetchMovies(for: .nowPlaying)
-        movieViewModel.fetchMovies(for: .popular)
-        movieViewModel.fetchMovies(for: .topRated)
-        movieViewModel.fetchMovies(for: .upcoming)
+        setupActivityIndicator()
+        loadMovies()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,10 +66,29 @@ class NewHomeViewController: UIViewController, UITableViewDelegate, UITableViewD
             movieDetailsVC.setMovieID(movieID: movieId)
         }
     }
+
+    private func setupActivityIndicator() {
+        activityIndicator.hidesWhenStopped = true
+    }
+
+    private func loadMovies() {
+        movieViewModel.fetchMovies(for: .nowPlaying)
+        movieViewModel.fetchMovies(for: .popular)
+        movieViewModel.fetchMovies(for: .topRated)
+        movieViewModel.fetchMovies(for: .upcoming)
+    }
 }
 
 // MARK: - Delegate
 extension NewHomeViewController: MovieViewModelType {
+    func startLoadingIndicator() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopLoadingIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
     func reloadView() {
         newTableView.reloadData()
     }

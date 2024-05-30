@@ -10,6 +10,8 @@ import Foundation
 // MARK: - Protocol
 protocol MovieViewModelType: AnyObject {
     func reloadView()
+    func startLoadingIndicator()
+    func stopLoadingIndicator()
 }
 
 class MovieViewModel {
@@ -47,6 +49,7 @@ class MovieViewModel {
 
     // MARK: - Function
     func fetchMovies(for category: MovieCategory) {
+        delegate?.startLoadingIndicator()
         movieRepository.fetchMovies(for: category) { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -66,6 +69,7 @@ class MovieViewModel {
             case .failure(let error):
                 print(error)
             }
+            delegate?.stopLoadingIndicator()
         }
     }
 }
