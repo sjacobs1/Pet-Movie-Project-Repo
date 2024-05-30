@@ -103,12 +103,12 @@ extension SearchMoviesViewController: ViewModelDelegate {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
     }
-    
+
     func stopLoadingIndicator() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
     }
-    
+
     func reloadView() {
         searchMovieTableView.reloadData()
     }
