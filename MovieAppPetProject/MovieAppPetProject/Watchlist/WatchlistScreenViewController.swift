@@ -11,6 +11,8 @@ class WatchlistScreenViewController: UIViewController {
 
     // MARK: - IBOutlet
     @IBOutlet private weak var watchlistTableView: UITableView!
+
+    // MARK: - IBAction
     @IBAction private func logoutButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: Constants.Identifiers.loginIdentifier, bundle: nil)
         if let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.Identifiers.loginViewController) as? LoginViewController {
@@ -43,13 +45,9 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.savedMovieTableViewCell, for: indexPath) as? WatchlistTableViewCell else {
             return UITableViewCell()
         }
-
         let watchlistItem = watchlistViewModel.watchlistItems[indexPath.row]
         cell.configure(with: watchlistItem.originalTitle, item: watchlistItem)
         cell.delegate = self
-        
-        cell.selectionStyle = .none
-
         return cell
     }
 

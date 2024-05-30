@@ -84,12 +84,18 @@ extension NewHomeViewController: MovieViewModelType {
     func startLoadingIndicator() {
         activityIndicator.startAnimating()
     }
-    
+
     func stopLoadingIndicator() {
         activityIndicator.stopAnimating()
     }
-    
+
     func reloadView() {
         newTableView.reloadData()
+    }
+
+    func handleFetchError(error: Error) {
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
     }
 }

@@ -12,6 +12,8 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     // MARK: - Outlets
     @IBOutlet private weak var usernameInput: UITextField!
     @IBOutlet private weak var passwordInput: UITextField!
+
+    // MARK: - IBAction
     @IBAction private func loginTapped(_ sender: Any) {
         guard let username = usernameInput.text, let password = passwordInput.text else {
             return

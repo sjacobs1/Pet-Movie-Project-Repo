@@ -11,6 +11,32 @@ import CoreData
 // MARK: - Enum
 enum CoreDataError: Error {
     case noContext
+    case fetchError(Error)
+    case createError(Error)
+    case deleteError(Error)
+}
+
+var persistentContainer: NSPersistentContainer = {
+    let container = NSPersistentContainer(name: "Model")
+    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        if let error = error as NSError? {
+            fatalError("Unresolved error \(error), \(error.userInfo)")
+        }
+    })
+    return container
+}()
+
+// MARK: - Core Data Saving support
+func saveContext () {
+    let context = persistentContainer.viewContext
+    if context.hasChanges {
+        do {
+            try context.save()
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
 }
 
 // MARK: - CoreData Class
@@ -18,35 +44,34 @@ class CoreDataManager {
     let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
 
     // MARK: - Functions
-    func fetchAllWatchlistItems() -> [WatchList] {
+    func fetchAllWatchlistItems() throws -> [WatchList] {
+        guard let context = context else { throw CoreDataError.noContext }
         do {
-            guard let context = context else { throw CoreDataError.noContext }
             return try context.fetch(WatchList.fetchRequest())
         } catch {
-            print("Error fetching watchlist items: \(error)")
-            return []
+            throw CoreDataError.fetchError(error)
         }
     }
 
-    func createItem(movieDetails: MovieDetails) {
+    func createItem(movieDetails: MovieDetails) throws {
+        guard let context = context else { throw CoreDataError.noContext }
         do {
-            guard let context = context else { throw CoreDataError.noContext }
             let newItem = WatchList(context: context)
             newItem.originalTitle = movieDetails.originalTitle
             newItem.moviePoster = movieDetails.moviePoster
-            try context.save()
+            saveContext()
         } catch {
-            print("Error creating item: \(error)")
+            throw CoreDataError.createError(error)
         }
     }
 
-    func deleteItem(item: WatchList) {
-        guard let context = context else { return }
+    func deleteItem(item: WatchList) throws {
+        guard let context = context else { throw CoreDataError.noContext }
         context.delete(item)
         do {
-            try context.save()
+            saveContext()
         } catch {
-            print("Error deleting item: \(error)")
+            throw CoreDataError.deleteError(error)
         }
     }
 }
