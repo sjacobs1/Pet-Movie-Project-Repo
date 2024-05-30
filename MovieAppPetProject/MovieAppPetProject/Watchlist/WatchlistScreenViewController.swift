@@ -37,6 +37,8 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
         let watchlistItem = watchlistViewModel.watchlistItems[indexPath.row]
         cell.configure(with: watchlistItem.originalTitle, item: watchlistItem)
         cell.delegate = self
+        
+        cell.selectionStyle = .none
 
         return cell
     }

@@ -74,11 +74,11 @@
             </objects>
             <point key="canvasLocation" x="-384" y="574"/>
         </scene>
-        <!--Watchlist-->
+        <!--My Page-->
         <scene sceneID="AL8-WJ-8GN">
             <objects>
                 <navigationController id="vGD-DL-K23" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Watchlist" image="popcorn.circle.fill" catalog="system" id="eqH-pI-hVC"/>
+                    <tabBarItem key="tabBarItem" title="My Page" image="person.circle.fill" catalog="system" id="eqH-pI-hVC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WuT-gn-w2e">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -115,12 +115,12 @@
     <resources>
         <image name="house.circle.fill" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="popcorn.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="TabBarItemBackground">
-            <color red="0.94901967050000002" green="0.94901967050000002" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TabBarSelectedImage">
-            <color red="0.34509804840000002" green="0.33725491169999999" blue="0.81176471709999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.3449999988079071" green="0.33700001239776611" blue="0.81199997663497925" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>
