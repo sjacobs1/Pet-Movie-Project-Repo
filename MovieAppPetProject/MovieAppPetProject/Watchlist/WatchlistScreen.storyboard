@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BMx-Vt-ORm">
-                                <rect key="frame" x="0.0" y="93" width="393" height="725"/>
+                                <rect key="frame" x="0.0" y="93" width="393" height="658"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedMovieCell" id="r78-zr-c7h">
@@ -48,24 +48,39 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTa-21-Vl4">
-                                <rect key="frame" x="299" y="105" width="78" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVQ-cj-KRx">
+                                <rect key="frame" x="-2" y="770" width="397" height="41"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="VTf-We-r2O"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Logout">
-                                    <color key="baseForegroundColor" name="MovieTitleText"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout" cornerStyle="small">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8MM-iW-Q48"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BMx-Vt-ORm" secondAttribute="bottom" id="4Kf-Bm-3GN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="uVQ-cj-KRx" secondAttribute="bottom" constant="7" id="0aq-3X-c6d"/>
                             <constraint firstItem="BMx-Vt-ORm" firstAttribute="top" secondItem="9LW-Nx-kBF" secondAttribute="bottom" constant="5" id="5Tz-Gd-wCz"/>
                             <constraint firstItem="9LW-Nx-kBF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="CUo-ax-cLQ"/>
+                            <constraint firstItem="uVQ-cj-KRx" firstAttribute="top" secondItem="BMx-Vt-ORm" secondAttribute="bottom" constant="19" id="JR1-n8-ZQl"/>
                             <constraint firstItem="BMx-Vt-ORm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZPp-MP-Cwj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="uVQ-cj-KRx" secondAttribute="trailing" constant="-2" id="bdt-qV-MBM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9LW-Nx-kBF" secondAttribute="trailing" id="cqZ-rW-sad"/>
                             <constraint firstItem="9LW-Nx-kBF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ini-YO-1pZ"/>
+                            <constraint firstItem="uVQ-cj-KRx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="-2" id="pcg-zq-xjr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BMx-Vt-ORm" secondAttribute="trailing" id="w2h-eW-dnc"/>
                         </constraints>
                     </view>
@@ -84,9 +99,6 @@
         </namedColor>
         <namedColor name="LabelText">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="MovieTitleText">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
