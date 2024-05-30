@@ -25,8 +25,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewModelType {
     }
 
     // MARK: - Variables
-    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository(coreDataManager: CoreDataManager()), delegate: self)
-    private lazy var imageLoader = APIImageLoader()
+    private lazy var movieDetailsViewModel = MovieDetailsViewModel(movieDetailsRepository: MovieDetailsRepository(coreDataManager: CoreDataManager(), networkManager: NetworkManager()), delegate: self)
+    private var imageLoader = APIImageLoader()
 
     // MARK: - Functions
     override func viewDidLoad() {

@@ -18,7 +18,7 @@ class SearchMoviesRepository: SearchMoviesRepositoryType {
 
     func fetchSearchedMovies(query: String, completion: @escaping SearchMoviesCompletion) {
         let urlString = Constants.URLs.searchMoviesURL(query: query)
-        
+
         guard let apiUrl = URL(string: urlString) else {
             completion(.failure(.invalidUrl))
             return
