@@ -68,6 +68,8 @@ class MovieViewModelTests: XCTestCase {
 
         viewModelUnderTest.fetchMovies(for: category)
 
+        XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
+        XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.reloadViewCalled, "reloadView should be called")
         XCTAssertNotNil(getMoviesForCategory(category), "\(category) movies should not be nil")
         XCTAssertEqual(getMoviesForCategory(category)?.count ?? 0, 2, "\(category) movies count should be 2")
@@ -110,8 +112,10 @@ class MovieViewModelTests: XCTestCase {
 
         viewModelUnderTest.fetchMovies(for: category)
 
-        XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
+        XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
+        XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.reloadViewCalled, "reloadView should be called")
+        XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
         XCTAssertNotNil(getMoviesForCategory(category), "\(category) movies should not be nil")
         XCTAssertEqual(getMoviesForCategory(category)?.count ?? 0, 0, "\(category) movies count should be 0")
     }
@@ -140,14 +144,25 @@ class MovieViewModelTests: XCTestCase {
 
         viewModelUnderTest.fetchMovies(for: category)
 
+        XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
+        XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
         XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
         XCTAssertFalse(mockDelegate.reloadViewCalled, "reloadView should not be called")
     }
 }
 
 class MockDelegate: MovieViewModelType {
-
+    var startLoadingIndicatorCalled = false
+    var stopLoadingIndicatorCalled = false
     var reloadViewCalled = false
+
+    func startLoadingIndicator() {
+        startLoadingIndicatorCalled = true
+    }
+
+    func stopLoadingIndicator() {
+        stopLoadingIndicatorCalled = true
+    }
 
     func reloadView() {
         reloadViewCalled = true
