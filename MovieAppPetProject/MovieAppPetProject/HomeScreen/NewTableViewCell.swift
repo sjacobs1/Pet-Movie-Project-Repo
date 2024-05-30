@@ -14,8 +14,8 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
     @IBOutlet private weak var newCollectionView: UICollectionView!
 
     // MARK: - Variables
-    var didSelectItem: ((MovieData) -> Void)?
-    private var nowPlayingMovies: [MovieData] = []
+    var didSelectItem: ((Movie) -> Void)?
+    private var movies: [Movie] = []
 
     // MARK: - Functions
     override func awakeFromNib() {
@@ -30,22 +30,21 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
         newCollectionView.collectionViewLayout = layout
     }
 
-    func configure(with movies: [MovieData], sectionTitle: String) {
-        nowPlayingMovies = movies
+    func configure(with movies: [Movie], sectionTitle: String) {
+        self.movies = movies
         sectionTitleLabel?.text = sectionTitle
         newCollectionView.reloadData()
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        nowPlayingMovies.count
+        movies.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.homeScreenCollectionViewCell,
-                                                            for: indexPath) as? PosterCellCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.homeScreenCollectionViewCell, for: indexPath) as? PosterCellCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let movie = nowPlayingMovies[indexPath.item]
+        let movie = movies[indexPath.item]
         let title = movie.originalTitle
         if let posterPath = movie.moviePoster {
             let posterURL = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
@@ -57,7 +56,7 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedMovie = nowPlayingMovies[indexPath.item]
+        let selectedMovie = movies[indexPath.item]
         didSelectItem?(selectedMovie)
     }
 }

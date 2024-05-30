@@ -8,9 +8,9 @@
 import XCTest
 @testable import MovieAppPetProject
 
-class NowPlayingViewModelTests: XCTestCase {
+class MovieViewModelTests: XCTestCase {
 
-    var viewModelUnderTest: NowPlayingViewModel!
+    var viewModelUnderTest: MovieViewModel!
     var mockRepository: MockRepository!
     var mockDelegate: MockDelegate!
 
@@ -18,7 +18,7 @@ class NowPlayingViewModelTests: XCTestCase {
         super.setUp()
         mockRepository = MockRepository()
         mockDelegate = MockDelegate()
-        viewModelUnderTest = NowPlayingViewModel(nowPlayingRepository: mockRepository, delegate: mockDelegate)
+        viewModelUnderTest = MovieViewModel(movieRepository: mockRepository, delegate: mockDelegate)
     }
 
     override func tearDown() {
@@ -28,66 +28,124 @@ class NowPlayingViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    class MockRepository: NowPlayingRepositoryType {
+    class MockRepository: MovieRepositoryType {
         var shouldFail = false
         var shouldReturnEmptyArray = false
 
-        func fetchMovies(completion: @escaping (Result<NowPlaying, CustomError>) -> Void) {
+        func fetchMovies(for category: MovieCategory, completion: @escaping FetchMoviesCompletion) {
             if shouldFail {
                 completion(.failure(.internalError))
             } else {
-                let mockNowPlaying = NowPlaying(results: shouldReturnEmptyArray ? nil : [
-                    NowPlayingResults(movieID: 1, originalTitle: "Mock Movie 1", moviePoster: "poster1"),
-                    NowPlayingResults(movieID: 2, originalTitle: "Mock Movie 2", moviePoster: "poster2")
+                let mockResponse = MovieResponse(results: shouldReturnEmptyArray ? nil : [
+                    Movie(movieID: 1, originalTitle: "Mock Movie 1", moviePoster: "poster1"),
+                    Movie(movieID: 2, originalTitle: "Mock Movie 2", moviePoster: "poster2")
                 ])
-                completion(.success(mockNowPlaying))
+                completion(.success(mockResponse))
             }
         }
     }
 
     func testFetchNowPlayingMoviesSuccessWithPopulatedArray() {
+        fetchMoviesAndAssert(for: .nowPlaying)
+    }
 
+    func testFetchPopularMoviesSuccessWithPopulatedArray() {
+        fetchMoviesAndAssert(for: .popular)
+    }
+
+    func testFetchTopRatedMoviesSuccessWithPopulatedArray() {
+        fetchMoviesAndAssert(for: .topRated)
+    }
+
+    func testFetchUpcomingMoviesSuccessWithPopulatedArray() {
+        fetchMoviesAndAssert(for: .upcoming)
+    }
+
+    private func fetchMoviesAndAssert(for category: MovieCategory) {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
 
-        viewModelUnderTest.fetchNowPlayingMovies()
+        viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.reloadViewCalled, "reloadView should be called")
-        XCTAssertNotNil(viewModelUnderTest.nowPlayingMovies, "nowPlayingMovies should not be nil")
-        XCTAssertEqual(viewModelUnderTest.nowPlayingMovies?.count, 2, "nowPlayingMovies count should be 2")
+        XCTAssertNotNil(getMoviesForCategory(category), "\(category) movies should not be nil")
+        XCTAssertEqual(getMoviesForCategory(category)?.count ?? 0, 2, "\(category) movies count should be 2")
+    }
+
+    private func getMoviesForCategory(_ category: MovieCategory) -> [Movie]? {
+        switch category {
+        case .nowPlaying:
+            return viewModelUnderTest.nowPlayingMovies
+        case .popular:
+            return viewModelUnderTest.popularMovies
+        case .topRated:
+            return viewModelUnderTest.topRatedMovies
+        case .upcoming:
+            return viewModelUnderTest.upcomingMovies
+        }
     }
 
     func testFetchNowPlayingMoviesSuccessWithEmptyArray() {
+        fetchMoviesWithEmptyArray(for: .nowPlaying)
+    }
 
+    func testFetchPopularMoviesSuccessWithEmptyArray() {
+        fetchMoviesWithEmptyArray(for: .popular)
+    }
+
+    func testFetchTopRatedMoviesSuccessWithEmptyArray() {
+        fetchMoviesWithEmptyArray(for: .topRated)
+    }
+
+    func testFetchUpcomingMoviesSuccessWithEmptyArray() {
+        fetchMoviesWithEmptyArray(for: .upcoming)
+    }
+
+    private func fetchMoviesWithEmptyArray(for category: MovieCategory) {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
         mockRepository.shouldReturnEmptyArray = true
 
-        viewModelUnderTest.fetchNowPlayingMovies()
+        viewModelUnderTest.fetchMovies(for: category)
 
-        XCTAssertTrue(viewModelUnderTest.nowPlayingMovies?.isEmpty ?? false, "nowPlayingMovies should be empty")
+        XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
         XCTAssertTrue(mockDelegate.reloadViewCalled, "reloadView should be called")
-        XCTAssertNotNil(viewModelUnderTest.nowPlayingMovies, "nowPlayingMovies should not be nil")
-        XCTAssertEqual(viewModelUnderTest.nowPlayingMovies?.count, 0, "nowPlayingMovies count should be 0")
+        XCTAssertNotNil(getMoviesForCategory(category), "\(category) movies should not be nil")
+        XCTAssertEqual(getMoviesForCategory(category)?.count ?? 0, 0, "\(category) movies count should be 0")
     }
 
     func testFetchNowPlayingMoviesFailure() {
+        fetchMoviesWithFailure(for: .nowPlaying)
+    }
 
+    func testFetchPopularMoviesFailure() {
+        fetchMoviesWithFailure(for: .popular)
+    }
+
+    func testFetchTopRatedMoviesFailure() {
+        fetchMoviesWithFailure(for: .topRated)
+    }
+
+    func testFetchUpcomingMoviesFailure() {
+        fetchMoviesWithFailure(for: .upcoming)
+    }
+
+    private func fetchMoviesWithFailure(for category: MovieCategory) {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
         mockRepository.shouldFail = true
 
-        viewModelUnderTest.fetchNowPlayingMovies()
+        viewModelUnderTest.fetchMovies(for: category)
 
-        XCTAssertTrue(viewModelUnderTest.nowPlayingMovies?.isEmpty ?? false, "nowPlayingMovies should be empty")
+        XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
         XCTAssertFalse(mockDelegate.reloadViewCalled, "reloadView should not be called")
     }
 }
 
-class MockDelegate: NowPlayingViewModelDelegate {
+class MockDelegate: MovieViewModelType {
 
     var reloadViewCalled = false
 
