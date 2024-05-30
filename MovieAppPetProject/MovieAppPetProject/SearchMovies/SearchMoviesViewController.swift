@@ -7,11 +7,12 @@
 
 import UIKit
 
-class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var searchMovieTableView: UITableView!
     @IBOutlet private weak var searchMovie: UISearchBar!
+    @IBOutlet private weak var noResultsLabel: UILabel!
 
     // MARK: - Variables
     private lazy var searchMoviesViewModel = SearchMoviesViewModel(searchMoviesRepository: SearchMoviesRepository(), delegate: self)
@@ -20,7 +21,21 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        searchMoviesViewModel.fetchSearchedMovies()
+        setupSearchBar()
+        noResultsLabel.isHidden = true
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text, !query.isEmpty else { return }
+        searchMoviesViewModel.fetchSearchedMovies(with: query)
+        searchBar.resignFirstResponder()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchMoviesViewModel.clearSearchResults()
+        noResultsLabel.isHidden = true
+        searchBar.resignFirstResponder()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,21 +52,23 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
             return UITableViewCell()
         }
 
-        let movie = searchMoviesViewModel.searchedMovies?[indexPath.row]
-        let title = movie?.originalTitle
-        if let posterPath = movie?.moviePoster {
-            let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
-            cell.configure(with: posterURL, placeholderImage: UIImage(named: "Me"), title: title)
-        } else {
-            cell.configure(with: nil, placeholderImage: UIImage(named: "Me"), title: title)
+        if let movie = searchMoviesViewModel.movie(at: indexPath.row) {
+            let title = movie.originalTitle
+            let voteAverage = searchMoviesViewModel.formattedVoteAverage(for: movie)
+            let releaseDate = searchMoviesViewModel.formattedReleaseDate(for: movie)
 
+            if let posterPath = movie.moviePoster {
+                let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
+                cell.configure(with: posterURL, placeholderImage: UIImage(named: "Me"), title: title, voteAverage: voteAverage, releaseDate: releaseDate)
+            } else {
+                cell.configure(with: nil, placeholderImage: UIImage(named: "Me"), title: title, voteAverage: voteAverage, releaseDate: releaseDate)
+            }
         }
-
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedMovie = searchMoviesViewModel.searchedMovies?[indexPath.row]
+        let selectedMovie = searchMoviesViewModel.movie(at: indexPath.row)
         performSegue(withIdentifier: Constants.Identifiers.goToMovieDetails, sender: selectedMovie?.movieID)
     }
 
@@ -69,11 +86,26 @@ class SearchMoviesViewController: UIViewController, UITableViewDelegate, UITable
         searchMovieTableView.dataSource = self
         searchMovieTableView.delegate = self
     }
+
+    private func setupSearchBar() {
+        searchMovie.delegate = self
+        if let cancelButton = searchMovie.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.setTitle("Clear", for: .normal)
+        }
+    }
 }
 
 // MARK: - Delegate
 extension SearchMoviesViewController: ViewModelDelegate {
     func reloadView() {
         searchMovieTableView.reloadData()
+    }
+
+    func showNoResultsMessage() {
+        noResultsLabel.isHidden = false
+    }
+
+    func hideNoResultsMessage() {
+        noResultsLabel.isHidden = true
     }
 }

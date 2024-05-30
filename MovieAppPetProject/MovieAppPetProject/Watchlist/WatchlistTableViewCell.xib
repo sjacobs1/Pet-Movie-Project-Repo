@@ -31,7 +31,7 @@
                         <color key="tintColor" red="0.16412460740000001" green="0.16147407120000001" blue="0.38938160770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="filled" title="Remove">
-                            <color key="baseBackgroundColor" red="0.16412460740000001" green="0.16147407120000001" blue="0.38938160770000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="baseBackgroundColor" red="0.34136152600000003" green="0.33584869579999999" blue="0.80987185240000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </buttonConfiguration>
                         <connections>
                             <action selector="removeFromWatchlistTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XRu-mR-bf1"/>
