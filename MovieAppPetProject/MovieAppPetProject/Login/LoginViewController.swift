@@ -12,6 +12,12 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     // MARK: - Outlets
     @IBOutlet private weak var usernameInput: UITextField!
     @IBOutlet private weak var passwordInput: UITextField!
+    @IBAction private func loginTapped(_ sender: Any) {
+        guard let username = usernameInput.text, let password = passwordInput.text else {
+            return
+        }
+        loginViewModel.attemptLogin(username: username, password: password)
+    }
 
     // MARK: - Variable
     private lazy var loginViewModel = LoginViewModel(delegate: self)
@@ -20,13 +26,14 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpPlaceHolderText()
-    }
-
-    @IBAction private func loginTapped(_ sender: Any) {
-        guard let username = usernameInput.text, let password = passwordInput.text else {
-            return
-        }
-        loginViewModel.attemptLogin(username: username, password: password)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
 
     func navigateToHomeScreen() {
@@ -36,7 +43,21 @@ class LoginViewController: UIViewController, LoginViewModelDelegate {
     func displayError(message: String) {
         showAlert(alertTitle: "Incorrect Credentials", alertMessage: message)
     }
-    
+
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= 280
+            }
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+
     private func setUpPlaceHolderText() {
         usernameInput.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         passwordInput.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
