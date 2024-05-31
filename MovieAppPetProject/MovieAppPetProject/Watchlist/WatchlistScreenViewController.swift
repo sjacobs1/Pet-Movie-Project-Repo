@@ -11,6 +11,8 @@ class WatchlistScreenViewController: UIViewController {
 
     // MARK: - IBOutlet
     @IBOutlet private weak var watchlistTableView: UITableView!
+    
+    // MARK: - IBAction
     @IBAction private func logoutButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: Constants.Identifiers.loginIdentifier, bundle: nil)
         if let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.Identifiers.loginViewController) as? LoginViewController {
