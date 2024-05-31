@@ -92,4 +92,10 @@ extension NewHomeViewController: MovieViewModelType {
     func reloadView() {
         newTableView.reloadData()
     }
+    
+    func handleFetchError(_ error: Error) {
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
+    }
 }

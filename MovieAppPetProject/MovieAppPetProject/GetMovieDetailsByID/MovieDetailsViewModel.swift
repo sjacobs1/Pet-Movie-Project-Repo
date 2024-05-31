@@ -66,7 +66,7 @@ class MovieDetailsViewModel {
                 self?.isMovieSaved = self?.movieDetailsRepository.isMovieSaved(movieTitle: details.originalTitle ?? "") ?? false
                 self?.delegate?.updateMovieDetailsUI()
             case .failure(let error):
-                print(error)
+                self?.delegate?.displayError(with: error.localizedDescription)
             }
         }
     }
