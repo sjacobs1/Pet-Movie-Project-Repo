@@ -36,12 +36,42 @@ class MovieViewModelTests: XCTestCase {
             if shouldFail {
                 completion(.failure(.internalError))
             } else {
-                let mockResponse = MovieResponse(results: shouldReturnEmptyArray ? nil : [
+                let mockResponse = MovieResponse(results: shouldReturnEmptyArray ? [] : [
                     Movie(movieID: 1, originalTitle: "Mock Movie 1", moviePoster: "poster1"),
                     Movie(movieID: 2, originalTitle: "Mock Movie 2", moviePoster: "poster2")
                 ])
                 completion(.success(mockResponse))
             }
+        }
+    }
+
+    class MockDelegate: MovieViewModelType {
+        var startLoadingIndicatorCalled = false
+        var stopLoadingIndicatorCalled = false
+        var reloadViewCalled = false
+        var handleFetchErrorCalled = false
+
+        func startLoadingIndicator() {
+            startLoadingIndicatorCalled = true
+        }
+
+        func stopLoadingIndicator() {
+            stopLoadingIndicatorCalled = true
+        }
+
+        func reloadView() {
+            reloadViewCalled = true
+        }
+
+        func handleFetchError(_ error: Error) {
+            handleFetchErrorCalled = true
+        }
+
+        func reset() {
+            startLoadingIndicatorCalled = false
+            stopLoadingIndicatorCalled = false
+            reloadViewCalled = false
+            handleFetchErrorCalled = false
         }
     }
 
@@ -65,7 +95,9 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
-
+        
+        mockDelegate.reset()
+        
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
@@ -108,6 +140,8 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
+        
+        mockDelegate.reset()
         mockRepository.shouldReturnEmptyArray = true
 
         viewModelUnderTest.fetchMovies(for: category)
@@ -140,6 +174,8 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
+        
+        mockDelegate.reset()
         mockRepository.shouldFail = true
 
         viewModelUnderTest.fetchMovies(for: category)
@@ -147,24 +183,7 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
         XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
+        XCTAssertTrue(mockDelegate.handleFetchErrorCalled, "handleFetchError should be called")
         XCTAssertFalse(mockDelegate.reloadViewCalled, "reloadView should not be called")
-    }
-}
-
-class MockDelegate: MovieViewModelType {
-    var startLoadingIndicatorCalled = false
-    var stopLoadingIndicatorCalled = false
-    var reloadViewCalled = false
-
-    func startLoadingIndicator() {
-        startLoadingIndicatorCalled = true
-    }
-
-    func stopLoadingIndicator() {
-        stopLoadingIndicatorCalled = true
-    }
-
-    func reloadView() {
-        reloadViewCalled = true
     }
 }
