@@ -13,6 +13,7 @@ protocol ViewModelType: AnyObject {
     func hideNoResultsMessage()
     func startLoadingIndicator()
     func stopLoadingIndicator()
+    func displayError(with message: String)
 }
 
 class SearchMoviesViewModel {
@@ -71,7 +72,7 @@ class SearchMoviesViewModel {
                 }
                 self?.delegate?.reloadView()
             case .failure(let error):
-                print(error)
+                self?.delegate?.displayError(with: error.localizedDescription)
             }
             self?.delegate?.stopLoadingIndicator()
         }

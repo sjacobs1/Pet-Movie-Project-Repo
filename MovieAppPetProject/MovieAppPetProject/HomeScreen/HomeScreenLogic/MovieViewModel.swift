@@ -12,6 +12,7 @@ protocol MovieViewModelType: AnyObject {
     func reloadView()
     func startLoadingIndicator()
     func stopLoadingIndicator()
+    func handleFetchError(_ error: Error)
 }
 
 class MovieViewModel {
@@ -67,9 +68,9 @@ class MovieViewModel {
                 }
                 self.delegate?.reloadView()
             case .failure(let error):
-                print(error)
+                self.delegate?.handleFetchError(error)
             }
-            delegate?.stopLoadingIndicator()
+            self.delegate?.stopLoadingIndicator()
         }
     }
 }

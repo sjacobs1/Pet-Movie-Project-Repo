@@ -1,5 +1,5 @@
 //
-//  Login-ViewModel.swift
+//  LoginViewModel.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/05/05.

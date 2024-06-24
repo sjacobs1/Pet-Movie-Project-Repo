@@ -1,5 +1,5 @@
 //
-//  GetMovieDetails-ViewModel.swift
+//  MovieDetailsViewModel.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/08.
@@ -66,7 +66,7 @@ class MovieDetailsViewModel {
                 self?.isMovieSaved = self?.movieDetailsRepository.isMovieSaved(movieTitle: details.originalTitle ?? "") ?? false
                 self?.delegate?.updateMovieDetailsUI()
             case .failure(let error):
-                print(error)
+                self?.delegate?.displayError(with: error.localizedDescription)
             }
         }
     }

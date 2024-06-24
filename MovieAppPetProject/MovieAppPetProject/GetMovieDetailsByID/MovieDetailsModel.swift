@@ -1,5 +1,5 @@
 //
-//  GetMovieDetails-Model.swift
+//  MovieDetailsModel.swift
 //  MovieAppPetProject
 //
 //  Created by Sebastian Jacobs on 2024/04/08.
