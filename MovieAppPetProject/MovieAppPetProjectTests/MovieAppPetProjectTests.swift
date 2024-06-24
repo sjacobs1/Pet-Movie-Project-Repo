@@ -99,9 +99,9 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
-        
+
         mockDelegate.reset()
-        
+
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
@@ -144,7 +144,7 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
-        
+
         mockDelegate.reset()
         mockRepository.shouldReturnEmptyArray = true
 
@@ -178,7 +178,7 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
-        
+
         mockDelegate.reset()
         mockRepository.shouldFail = true
 
@@ -195,7 +195,7 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModelUnderTest)
         XCTAssertNotNil(mockRepository)
         XCTAssertNotNil(mockDelegate)
-        
+
         mockDelegate.reset()
         mockRepository.shouldReturnNilResults = true
 
