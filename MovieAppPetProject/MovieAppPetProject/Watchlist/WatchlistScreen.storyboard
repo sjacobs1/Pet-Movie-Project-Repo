@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Page-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController title="My Page" id="Y6W-OH-hqX" customClass="WatchlistScreenViewController" customModule="MovieAppPetProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BMx-Vt-ORm">
+                                <rect key="frame" x="0.0" y="93" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="savedMovieCell" id="r78-zr-c7h">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r78-zr-c7h" id="Mbk-vw-hrg">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Watchlist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LW-Nx-kBF">
+                                <rect key="frame" x="0.0" y="59" width="393" height="29"/>
+                                <color key="backgroundColor" name="LabelBackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="kXj-ph-0si"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" name="LabelText"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVQ-cj-KRx">
+                                <rect key="frame" x="133" y="767.33333333333337" width="127" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="y4L-xC-uSa"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout" cornerStyle="small">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" name="LogoutBackground"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8MM-iW-Q48"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="uVQ-cj-KRx" secondAttribute="bottom" constant="16.670000000000002" id="0fy-B0-hLm"/>
+                            <constraint firstItem="BMx-Vt-ORm" firstAttribute="top" secondItem="9LW-Nx-kBF" secondAttribute="bottom" constant="5" id="5Tz-Gd-wCz"/>
+                            <constraint firstItem="9LW-Nx-kBF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="CUo-ax-cLQ"/>
+                            <constraint firstItem="BMx-Vt-ORm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZPp-MP-Cwj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9LW-Nx-kBF" secondAttribute="trailing" id="cqZ-rW-sad"/>
+                            <constraint firstItem="9LW-Nx-kBF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ini-YO-1pZ"/>
+                            <constraint firstItem="uVQ-cj-KRx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="133" id="qua-Ji-8ag"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="uVQ-cj-KRx" secondAttribute="trailing" constant="133" id="tT8-fK-PX0"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BMx-Vt-ORm" secondAttribute="trailing" id="w2h-eW-dnc"/>
+                            <constraint firstItem="BMx-Vt-ORm" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="zJB-4M-Gfm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="watchlistTableView" destination="BMx-Vt-ORm" id="tNv-gA-cOe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-335.1145038167939" y="14.788732394366198"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="LabelBackground">
+            <color red="0.16099999845027924" green="0.16099999845027924" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="LabelText">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="LogoutBackground">
+            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
