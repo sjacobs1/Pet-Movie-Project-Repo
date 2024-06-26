@@ -9,7 +9,6 @@ import XCTest
 @testable import MovieAppPetProject
 
 class MovieViewModelTests: XCTestCase {
-
     var viewModelUnderTest: MovieViewModel!
     var mockRepository: MockRepository!
     var mockDelegate: MockDelegate!
@@ -101,7 +100,6 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(mockDelegate)
 
         mockDelegate.reset()
-
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
@@ -147,7 +145,6 @@ class MovieViewModelTests: XCTestCase {
 
         mockDelegate.reset()
         mockRepository.shouldReturnEmptyArray = true
-
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
@@ -181,7 +178,6 @@ class MovieViewModelTests: XCTestCase {
 
         mockDelegate.reset()
         mockRepository.shouldFail = true
-
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
@@ -198,7 +194,6 @@ class MovieViewModelTests: XCTestCase {
 
         mockDelegate.reset()
         mockRepository.shouldReturnNilResults = true
-
         viewModelUnderTest.fetchMovies(for: .nowPlaying)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
