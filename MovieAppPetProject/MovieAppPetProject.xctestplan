@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "ECA8395D-8DBE-4C4C-90DC-2D5AC1821996",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MovieAppPetProject.xcodeproj",
+      "identifier" : "D81618562BBBD42000644A0B",
+      "name" : "MovieAppPetProject"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MovieAppPetProject.xcodeproj",
+        "identifier" : "D80105732BEA64390079C2BB",
+        "name" : "MovieAppPetProjectTests"
+      }
+    }
+  ],
+  "version" : 1
+}

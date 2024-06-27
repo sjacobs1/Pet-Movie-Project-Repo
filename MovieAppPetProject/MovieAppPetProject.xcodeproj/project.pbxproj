@@ -77,6 +77,7 @@
 		D81618662BBBD42100644A0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D81618682BBBD42100644A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83459562BC7AFE100046A9C /* PosterCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		D84BD55F2C2D467500512023 /* MovieAppPetProject.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MovieAppPetProject.xctestplan; sourceTree = "<group>"; };
 		D878A41B2BC68AFF00F8C5A7 /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
 		D882AF052C0063E0008FF59F /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		D882AF092C0091B9008FF59F /* ColorScheme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorScheme.xcassets; sourceTree = "<group>"; };
@@ -150,6 +151,7 @@
 		D816184E2BBBD42000644A0B = {
 			isa = PBXGroup;
 			children = (
+				D84BD55F2C2D467500512023 /* MovieAppPetProject.xctestplan */,
 				D81618592BBBD42000644A0B /* MovieAppPetProject */,
 				D80105752BEA64390079C2BB /* MovieAppPetProjectTests */,
 				D81618582BBBD42000644A0B /* Products */,
