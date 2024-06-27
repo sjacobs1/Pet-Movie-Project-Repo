@@ -29,7 +29,7 @@ class SearchMoviesViewModelTests: XCTestCase {
 
     func testFetchSearchedMoviesSuccessWithResults() {
         let movie = SearchMoviesResults(movieID: 1, originalTitle: "Test Movie",
-                                        moviePoster: "poster_path", voteAverage: 8.0,
+                                        moviePoster: "posterPath", voteAverage: 8.0,
                                         releaseDate: "2023-06-26")
         let searchMovies = SearchMovies(results: [movie])
 
@@ -92,7 +92,7 @@ class SearchMoviesViewModelTests: XCTestCase {
 
     func testFormattedVoteAverage() {
         let movie = SearchMoviesResults(movieID: 1, originalTitle: "Test Movie",
-                                        moviePoster: "poster_path", voteAverage: 8.0,
+                                        moviePoster: "posterPath", voteAverage: 8.0,
                                         releaseDate: "2023-06-26")
 
         let formattedVoteAverage = viewModel.formattedVoteAverage(for: movie)
@@ -104,7 +104,7 @@ class SearchMoviesViewModelTests: XCTestCase {
 
     func testFormattedReleaseDate() {
         let movie = SearchMoviesResults(movieID: 1, originalTitle: "Test Movie",
-                                        moviePoster: "poster_path", voteAverage: 8.0,
+                                        moviePoster: "posterPath", voteAverage: 8.0,
                                         releaseDate: "2023-06-26")
 
         let formattedReleaseDate = viewModel.formattedReleaseDate(for: movie)
@@ -114,7 +114,7 @@ class SearchMoviesViewModelTests: XCTestCase {
         XCTAssertEqual(formattedReleaseDateNil, "Release year: N/A")
 
         let movieInvalidDate = SearchMoviesResults(movieID: 1, originalTitle: "Test Movie",
-                                                   moviePoster: "poster_path", voteAverage: 8.0,
+                                                   moviePoster: "posterPath", voteAverage: 8.0,
                                                    releaseDate: "23")
         let formattedReleaseDateInvalid = viewModel.formattedReleaseDate(for: movieInvalidDate)
         XCTAssertEqual(formattedReleaseDateInvalid, "Release year: N/A")
@@ -122,7 +122,7 @@ class SearchMoviesViewModelTests: XCTestCase {
 
     func testMovieAt() {
         let movie = SearchMoviesResults(movieID: 1, originalTitle: "Test Movie",
-                                        moviePoster: "poster_path", voteAverage: 8.0,
+                                        moviePoster: "posterPath", voteAverage: 8.0,
                                         releaseDate: "2023-06-26")
 
         mockRepository.result = .success(SearchMovies(results: [movie]))
