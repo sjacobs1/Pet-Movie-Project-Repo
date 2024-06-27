@@ -2,7 +2,7 @@
 //  LoginViewModelTests.swift
 //  MovieAppPetProjectTests
 //
-//  Created by Sebastian Jacobs on 2024/06/24.
+//  Created by Sebastian Jacobs on 2024/06/27.
 //
 
 import XCTest
@@ -99,3 +99,4 @@ class MockDelegate: LoginViewModelDelegate {
         errorMessage = nil
     }
 }
+

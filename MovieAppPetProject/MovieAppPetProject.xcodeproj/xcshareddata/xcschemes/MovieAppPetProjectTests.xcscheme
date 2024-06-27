@@ -29,7 +29,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D80105732BEA64390079C2BB"
+               BlueprintIdentifier = "D89874C92C2D8DFB00433CEF"
                BuildableName = "MovieAppPetProjectTests.xctest"
                BlueprintName = "MovieAppPetProjectTests"
                ReferencedContainer = "container:MovieAppPetProject.xcodeproj">
@@ -57,7 +57,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D80105732BEA64390079C2BB"
+            BlueprintIdentifier = "D89874C92C2D8DFB00433CEF"
             BuildableName = "MovieAppPetProjectTests.xctest"
             BlueprintName = "MovieAppPetProjectTests"
             ReferencedContainer = "container:MovieAppPetProject.xcodeproj">

@@ -2,7 +2,7 @@
 //  WatchlistViewModelTests.swift
 //  MovieAppPetProjectTests
 //
-//  Created by Sebastian Jacobs on 2024/06/25.
+//  Created by Sebastian Jacobs on 2024/06/27.
 //
 
 import XCTest
@@ -103,3 +103,4 @@ class MockWatchlistViewModelDelegate: WatchlistViewModelType {
         updateWatchlistCalled = true
     }
 }
+

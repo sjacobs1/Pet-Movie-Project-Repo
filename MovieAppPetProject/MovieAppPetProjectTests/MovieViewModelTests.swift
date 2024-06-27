@@ -1,8 +1,8 @@
 //
-//  MovieAppPetProjectTests.swift
+//  MovieViewModelTests.swift
 //  MovieAppPetProjectTests
 //
-//  Created by Sebastian Jacobs on 2024/05/07.
+//  Created by Sebastian Jacobs on 2024/06/27.
 //
 
 import XCTest
@@ -204,3 +204,4 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertEqual(viewModelUnderTest.nowPlayingMovies.count, 0, "nowPlayingMovies count should be 0")
     }
 }
+
