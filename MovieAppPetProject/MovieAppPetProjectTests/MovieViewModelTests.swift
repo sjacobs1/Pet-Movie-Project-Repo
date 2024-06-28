@@ -1,15 +1,14 @@
 //
-//  MovieAppPetProjectTests.swift
+//  MovieViewModelTests.swift
 //  MovieAppPetProjectTests
 //
-//  Created by Sebastian Jacobs on 2024/05/07.
+//  Created by Sebastian Jacobs on 2024/06/27.
 //
 
 import XCTest
 @testable import MovieAppPetProject
 
 class MovieViewModelTests: XCTestCase {
-
     var viewModelUnderTest: MovieViewModel!
     var mockRepository: MockRepository!
     var mockDelegate: MockDelegate!
@@ -101,17 +100,16 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertNotNil(mockDelegate)
 
         mockDelegate.reset()
-
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.reloadViewCalled, "reloadView should be called")
-        XCTAssertNotNil(getMoviesForCategory(category), "\(category) movies should not be nil")
-        XCTAssertEqual(getMoviesForCategory(category)?.count ?? 0, 2, "\(category) movies count should be 2")
+        XCTAssertNotNil(fetchMoviesForCategory(category), "\(category) movies should not be nil")
+        XCTAssertEqual(fetchMoviesForCategory(category)?.count ?? 0, 2, "\(category) movies count should be 2")
     }
 
-    private func getMoviesForCategory(_ category: MovieCategory) -> [Movie]? {
+    private func fetchMoviesForCategory(_ category: MovieCategory) -> [Movie]? {
         switch category {
         case .nowPlaying:
             return viewModelUnderTest.nowPlayingMovies
@@ -147,15 +145,14 @@ class MovieViewModelTests: XCTestCase {
 
         mockDelegate.reset()
         mockRepository.shouldReturnEmptyArray = true
-
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.reloadViewCalled, "reloadView should be called")
-        XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
-        XCTAssertNotNil(getMoviesForCategory(category), "\(category) movies should not be nil")
-        XCTAssertEqual(getMoviesForCategory(category)?.count ?? 0, 0, "\(category) movies count should be 0")
+        XCTAssertTrue(fetchMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
+        XCTAssertNotNil(fetchMoviesForCategory(category), "\(category) movies should not be nil")
+        XCTAssertEqual(fetchMoviesForCategory(category)?.count ?? 0, 0, "\(category) movies count should be 0")
     }
 
     func testFetchNowPlayingMoviesFailure() {
@@ -181,12 +178,11 @@ class MovieViewModelTests: XCTestCase {
 
         mockDelegate.reset()
         mockRepository.shouldFail = true
-
         viewModelUnderTest.fetchMovies(for: category)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
         XCTAssertTrue(mockDelegate.stopLoadingIndicatorCalled, "stopLoadingIndicator should be called")
-        XCTAssertTrue(getMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
+        XCTAssertTrue(fetchMoviesForCategory(category)?.isEmpty ?? false, "\(category) movies should be empty")
         XCTAssertTrue(mockDelegate.handleFetchErrorCalled, "handleFetchError should be called")
         XCTAssertFalse(mockDelegate.reloadViewCalled, "reloadView should not be called")
     }
@@ -198,7 +194,6 @@ class MovieViewModelTests: XCTestCase {
 
         mockDelegate.reset()
         mockRepository.shouldReturnNilResults = true
-
         viewModelUnderTest.fetchMovies(for: .nowPlaying)
 
         XCTAssertTrue(mockDelegate.startLoadingIndicatorCalled, "startLoadingIndicator should be called")
@@ -209,3 +204,4 @@ class MovieViewModelTests: XCTestCase {
         XCTAssertEqual(viewModelUnderTest.nowPlayingMovies.count, 0, "nowPlayingMovies count should be 0")
     }
 }
+

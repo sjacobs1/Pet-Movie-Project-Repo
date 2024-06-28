@@ -40,7 +40,10 @@ class MovieDetailsViewModel {
     }
 
     var moviePosterURL: URL? {
-        movieDetails.flatMap { URL(string: "\(Constants.Path.moviePosterPath)\($0.moviePoster ?? "")") }
+        guard let posterPath = movieDetails?.moviePoster, !posterPath.isEmpty else {
+            return nil
+        }
+        return URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)")
     }
 
     var voteAverage: Double? {
