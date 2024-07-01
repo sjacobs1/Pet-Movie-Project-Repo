@@ -23,9 +23,9 @@ class NewTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionV
         newCollectionView.dataSource = self
         newCollectionView.delegate = self
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 122, height: 220)
+        layout.itemSize = CGSize(width: 105, height: 195)
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 10
         newCollectionView.collectionViewLayout = layout
     }
