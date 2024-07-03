@@ -16,11 +16,18 @@ class MockCoreDataManager: CoreDataManager {
         return mockItems
     }
 
-    override func createItem(movieDetails: MovieDetails) {
+    override func createItem(movieDetails: MovieDetails, completion: @escaping (Error?) -> Void) {
         let newItem = WatchList(context: context!)
         newItem.originalTitle = movieDetails.originalTitle
-        newItem.moviePoster = movieDetails.moviePoster
+        
+        if let posterPath = movieDetails.moviePoster {
+            newItem.moviePoster = Data(posterPath.utf8)
+        } else {
+            newItem.moviePoster = nil
+        }
+
         mockItems.append(newItem)
+        completion(nil)
     }
 
     override func deleteItem(item: WatchList) {
@@ -61,7 +68,7 @@ class WatchlistViewModelTests: XCTestCase {
                                         status: "Released",
                                         voteAverage: 8.0)
 
-        mockCoreDataManager.createItem(movieDetails: movieDetails)
+        mockCoreDataManager.createItem(movieDetails: movieDetails, completion: { _ in })
         viewModel.fetchAndDisplayWatchlistItems()
 
         XCTAssertEqual(viewModel.savedMoviesCount, 1)
@@ -77,7 +84,7 @@ class WatchlistViewModelTests: XCTestCase {
                                         status: "Released",
                                         voteAverage: 8.0)
 
-        mockCoreDataManager.createItem(movieDetails: movieDetails)
+        mockCoreDataManager.createItem(movieDetails: movieDetails, completion: { _ in })
         viewModel.fetchAndDisplayWatchlistItems()
 
         XCTAssertEqual(viewModel.savedMoviesCount, 1)
@@ -103,4 +110,3 @@ class MockWatchlistViewModelDelegate: WatchlistViewModelType {
         updateWatchlistCalled = true
     }
 }
-

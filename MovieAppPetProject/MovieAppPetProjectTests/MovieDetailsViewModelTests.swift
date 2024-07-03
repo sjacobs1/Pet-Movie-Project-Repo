@@ -175,8 +175,9 @@ class MockMovieDetailsRepository: MovieDetailsRepositoryType {
         return isMovieSavedResult
     }
 
-    func addToWatchlist(movieDetails: MovieDetails) {
+    func addToWatchlist(movieDetails: MovieDetails, completion: @escaping (Error?) -> Void) {
         addToWatchlistCalled = true
+        completion(nil)
     }
 }
 
@@ -194,4 +195,3 @@ class MockMovieDetailsViewModelDelegate: MovieDetailsViewModelType {
         errorMessage = message
     }
 }
-
