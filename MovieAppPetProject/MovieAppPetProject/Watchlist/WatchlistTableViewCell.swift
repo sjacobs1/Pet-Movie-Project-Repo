@@ -15,6 +15,7 @@ class WatchlistTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var savedMovieTitle: UILabel!
+    @IBOutlet private weak var savedMoviePoster: UIImageView!
 
     // MARK: - IBAction
     @IBAction private func removeFromWatchlistTapped(_ sender: UIButton) {
@@ -30,5 +31,10 @@ class WatchlistTableViewCell: UITableViewCell {
     func configure(with title: String?, item: WatchList) {
         savedMovieTitle.text = title
         watchlistItem = item
+        if let posterData = item.moviePoster {
+            savedMoviePoster.image = UIImage(data: posterData)
+        } else {
+            savedMoviePoster.image = nil
+        }
     }
 }
