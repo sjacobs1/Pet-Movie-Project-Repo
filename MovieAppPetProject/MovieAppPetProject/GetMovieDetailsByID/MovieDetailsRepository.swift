@@ -8,10 +8,11 @@
 import Foundation
 
 typealias MovieDetailsCompletion = (Result<MovieDetails, CustomError>) -> Void
+typealias AddToWatchlistCompletion = (Error?) -> Void
 
 protocol MovieDetailsRepositoryType {
     func fetchMovieDetails(movieID: Int, completion: @escaping MovieDetailsCompletion)
-    func addToWatchlist(movieDetails: MovieDetails)
+    func addToWatchlist(movieDetails: MovieDetails, completion: @escaping AddToWatchlistCompletion)
     func isMovieSaved(movieTitle: String) -> Bool
 }
 
@@ -40,8 +41,8 @@ class MovieDetailsRepository: MovieDetailsRepositoryType {
         }
     }
 
-    func addToWatchlist(movieDetails: MovieDetails) {
-        coreDataManager.createItem(movieDetails: movieDetails)
+    func addToWatchlist(movieDetails: MovieDetails, completion: @escaping AddToWatchlistCompletion) {
+        coreDataManager.createItem(movieDetails: movieDetails, completion: completion)
     }
 }
 

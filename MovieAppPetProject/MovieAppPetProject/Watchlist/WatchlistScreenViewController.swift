@@ -11,7 +11,7 @@ class WatchlistScreenViewController: UIViewController {
 
     // MARK: - IBOutlet
     @IBOutlet private weak var watchlistTableView: UITableView!
-    
+
     // MARK: - IBAction
     @IBAction private func logoutButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: Constants.Identifiers.loginIdentifier, bundle: nil)
@@ -33,6 +33,10 @@ class WatchlistScreenViewController: UIViewController {
         setupTableView()
         watchlistViewModel.fetchAndDisplayWatchlistItems()
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        110
+    }
 }
 
 // MARK: - Extention
@@ -49,7 +53,7 @@ extension WatchlistScreenViewController: UITableViewDelegate, UITableViewDataSou
         let watchlistItem = watchlistViewModel.watchlistItems[indexPath.row]
         cell.configure(with: watchlistItem.originalTitle, item: watchlistItem)
         cell.delegate = self
-        
+
         cell.selectionStyle = .none
 
         return cell

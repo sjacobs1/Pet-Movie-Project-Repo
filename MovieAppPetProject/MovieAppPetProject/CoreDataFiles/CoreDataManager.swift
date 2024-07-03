@@ -28,15 +28,47 @@ class CoreDataManager {
         }
     }
 
-    func createItem(movieDetails: MovieDetails) {
-        do {
-            guard let context = context else { throw CoreDataError.noContext }
-            let newItem = WatchList(context: context)
-            newItem.originalTitle = movieDetails.originalTitle
-            newItem.moviePoster = movieDetails.moviePoster
-            try context.save()
-        } catch {
-            print("Error creating item: \(error)")
+    func createItem(movieDetails: MovieDetails, completion: @escaping (Error?) -> Void) {
+        guard let context = context else {
+            completion(CoreDataError.noContext)
+            return
+        }
+
+        let newItem = WatchList(context: context)
+        newItem.originalTitle = movieDetails.originalTitle
+
+        if let posterPath = movieDetails.moviePoster,
+           let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)") {
+            URLSession.shared.dataTask(with: posterURL) { data, response, error in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        completion(error)
+                    }
+                    return
+                }
+
+                if let data = data {
+                    newItem.moviePoster = data
+                }
+
+                do {
+                    try context.save()
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(error)
+                    }
+                }
+            }.resume()
+        } else {
+            do {
+                try context.save()
+                completion(nil)
+            } catch {
+                completion(error)
+            }
         }
     }
 

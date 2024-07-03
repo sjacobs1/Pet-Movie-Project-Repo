@@ -84,9 +84,14 @@ class MovieDetailsViewModel {
         if movieDetailsRepository.isMovieSaved(movieTitle: originalTitle) {
             delegate?.displayError(with: "Movie is already in the watchlist.")
         } else {
-            movieDetailsRepository.addToWatchlist(movieDetails: movieDetails)
-            isMovieSaved = true
-            delegate?.updateMovieDetailsUI()
+            movieDetailsRepository.addToWatchlist(movieDetails: movieDetails) { [weak self] error in
+                if let error = error {
+                    self?.delegate?.displayError(with: error.localizedDescription)
+                } else {
+                    self?.isMovieSaved = true
+                    self?.delegate?.updateMovieDetailsUI()
+                }
+            }
         }
     }
 }
