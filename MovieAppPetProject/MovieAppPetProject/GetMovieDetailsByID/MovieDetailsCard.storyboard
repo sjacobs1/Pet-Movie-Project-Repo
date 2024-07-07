@@ -930,7 +930,7 @@
     </scenes>
     <resources>
         <namedColor name="LabelBackground">
-            <color red="0.15294116739999999" green="0.15294116739999999" blue="0.37254902719999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.15299999713897705" green="0.15299999713897705" blue="0.37299999594688416" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="LabelText">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
