@@ -41,9 +41,9 @@ class CoreDataManager {
            let posterURL = URL(string: "\(Constants.Path.moviePosterPath)\(posterPath)") {
             URLSession.shared.dataTask(with: posterURL) { data, response, error in
                 if let error = error {
-                    DispatchQueue.main.async {
-                        completion(error)
-                    }
+//                    DispatchQueue.main.async {
+//                        completion(error)
+//                    }
                     return
                 }
 
